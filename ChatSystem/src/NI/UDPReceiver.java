@@ -1,12 +1,10 @@
 package NI;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
-import java.io.ObjectOutputStream;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 
@@ -17,13 +15,13 @@ public class UDPReceiver extends Thread {
 	
 	private int port ;
 	private InetAddress address ;
-	private ServerSocket server ;
+	private DatagramSocket server ;
 	private String nickname; 
 	private byte[] bufIn;
 	
 
 	public UDPReceiver() throws IOException {
-        this.server = new ServerSocket(9876, 20, address);
+        this.server = new DatagramSocket(9876, address);
         bufIn = new byte[1024];
 	}
 	
@@ -58,11 +56,11 @@ public class UDPReceiver extends Thread {
 		this.nickname = nickname;
 	}
 
-	public ServerSocket getServer() {
+	public DatagramSocket getServer() {
 		return server;
 	}
 
-	public void setServer(ServerSocket server) {
+	public void setServer(DatagramSocket server) {
 		this.server = server;
 	}
 	
