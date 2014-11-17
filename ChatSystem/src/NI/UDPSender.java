@@ -5,6 +5,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.net.DatagramSocket;
+import java.net.SocketException;
 
 import Signals.*;
 
@@ -13,11 +15,13 @@ public class UDPSender {
 
 	private String nickname;
 	private ByteArrayOutputStream bos;
+	private DatagramSocket soc;
 
 
-	public UDPSender(String nickname){
+	public UDPSender(String nickname) throws SocketException{
 		this.nickname = nickname;
 		this.bos = new ByteArrayOutputStream();
+		this.soc = new DatagramSocket();
 	}
 	
 	public void send(AbstractMessage obj) {
