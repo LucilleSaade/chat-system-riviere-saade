@@ -24,6 +24,7 @@ public class UDPReceiver extends Thread {
 
 	public UDPReceiver() throws IOException {
         this.server = new ServerSocket(9876, 20, address);
+        bufIn = new byte[1024];
 	}
 	
 	public void start() {

@@ -1,5 +1,7 @@
 package NI;
 
+import java.io.ByteArrayOutputStream;
+
 import Controller.Controller;
 
 
@@ -20,6 +22,6 @@ public class ChatNI {
 	public void processGoodbye() {
 		
 	}
-	
+
 	
 }
