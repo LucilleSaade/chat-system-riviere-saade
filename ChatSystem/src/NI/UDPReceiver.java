@@ -7,29 +7,30 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.ServerSocket;
 
 import Signals.*;
 
 
 public class UDPReceiver extends Thread {
 	
-	private int port = 9876 ;
+	private String nickname;
 	private InetAddress address ;
 	private DatagramSocket server ;
-	private String nickname; 
 	private byte[] bufIn;
+	private int recvPort;
 	
 
-	public UDPReceiver() throws IOException {
-        this.server = new DatagramSocket(this.port, address);
+	public UDPReceiver(String nick, int port) throws IOException {
+		this.nickname = nick;
+		this.recvPort = port;
+        this.server = new DatagramSocket(this.recvPort, address);
         bufIn = new byte[5000];
 	}
 	
 	public void start() {
 		ObjectInput in = null;
 		try {
-			// le socket bloque jusqu'a ce qu'il recoive un DatagramPacket
+			// le socket bloque jusqu'a ce qu'il re coive un DatagramPacket
 			DatagramPacket packet = new DatagramPacket(bufIn, bufIn.length);
 			this.server.receive(packet);
 			
@@ -40,27 +41,29 @@ public class UDPReceiver extends Thread {
 		  
 			if (aMessage.getTypeContenu() == typeContenu.HELLO){
 				Hello helloSerialise = (Hello) aMessage;
-				System.out.println("C'est un HELLO ! " + helloSerialise.getNickname());
+				System.out.println(helloSerialise.getNickname() + " : C'est un HELLO ! " );
 			} else if (aMessage.getTypeContenu() == typeContenu.HELLOACK) {
 				HelloAck helloackSerialise = (HelloAck) aMessage;
-				System.out.println("C'est un HELLOACK ! " + helloackSerialise.getNickname());
+				System.out.println(helloackSerialise.getNickname() + " : C'est un HELLOACK ! " );
 			} else if (aMessage.getTypeContenu() == typeContenu.GOODBYE) {
 				Goodbye GoodbyeSerialise = (Goodbye) aMessage;
-				System.out.println("C'est un GOODBYE ! " + GoodbyeSerialise.getNickname());
+				System.out.println(GoodbyeSerialise.getNickname() + " : C'est un GOODBYE ! ");
+			} else if (aMessage.getTypeContenu() == typeContenu.TEXTMESSAGE) {
+				TextMessage msg = (TextMessage) aMessage;
+				System.out.println(msg.getNickname() + ":" + msg.getMessage());
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	  
 	}
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
+	
+	
+	
+	
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
 
 	public DatagramSocket getServer() {
 		return server;

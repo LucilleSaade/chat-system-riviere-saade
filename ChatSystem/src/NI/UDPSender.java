@@ -9,6 +9,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.ArrayList;
 
 import Signals.*;
 
@@ -18,13 +19,14 @@ public class UDPSender {
 	private String nickname;
 	private ByteArrayOutputStream bos;
 	private DatagramSocket soc;
-	private int destPort = 9876;
+	private int destPort;
 
 
-	public UDPSender(String nickname) throws SocketException{
+	public UDPSender(String nickname, int port) throws SocketException{
 		this.nickname = nickname;
 		this.bos = new ByteArrayOutputStream(5000);
 		this.soc = new DatagramSocket();
+		this.destPort = port;
 	}
 	
 	public void sendTo(AbstractMessage obj, String hostname) {
@@ -67,6 +69,17 @@ public class UDPSender {
 		AbstractMessage bye = new Goodbye(this.nickname);
 		return bye;
 	}
+	
+	public AbstractMessage sendMessage(ArrayList<String> Dest, String contenu) {
+		AbstractMessage msg = new TextMessage(this.nickname, contenu, Dest);
+		return msg;
+	}
+	
+	
+	
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
 	
 	public String getNickname() {
 		return nickname;

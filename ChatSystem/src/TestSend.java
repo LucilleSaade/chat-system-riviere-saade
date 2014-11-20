@@ -10,7 +10,7 @@ public class TestSend {
 		
 			UDPSender sender;
 			try {
-				sender = new UDPSender("lucille");
+				sender = new UDPSender("lucille", 9876);
 				sender.sendTo(sender.sendGoodbye(),"localhost");
 			} catch (SocketException e) {
 				// TODO Auto-generated catch block

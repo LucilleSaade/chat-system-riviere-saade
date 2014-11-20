@@ -11,9 +11,9 @@ public class TextMessage extends AbstractMessage{
 	
 	
 	/* Constructeur principal
-	 * La valeur test est mise par d�faut mais ce sera le nom de l'utilisateur local.
-	 * @param message : le message � envoyer
-	 * Remarque : Une nouvelle liste de nickname (vide) est cr��e, il faut ajouter un par un les destinataires via une m�thode
+	 * La valeur test est mise par defaut mais ce sera le nom de l'utilisateur local.
+	 * @param message : le message a envoyer
+	 * Remarque : Une nouvelle liste de nickname (vide) est creee, il faut ajouter un par un les destinataires via une methode
 	 */
 	public TextMessage(String message){
 		this.nickname = "TEST";
@@ -23,7 +23,7 @@ public class TextMessage extends AbstractMessage{
 	}
 	
 	/*
-	 * Constructeur secondaire au cas o� l'on poss�de d�j� une liste d'utilisateurs
+	 * Constructeur secondaire au cas ou l'on possede deja une liste d'utilisateurs
 	 */
 	public TextMessage(String message, ArrayList<String> list){
 		this.nickname = "TEST";
@@ -52,7 +52,11 @@ public class TextMessage extends AbstractMessage{
 		this.listNicknamesDest = new ArrayList<String>();
 	}
 	
-	// Getters et Setters
+	
+
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
 	
 	public ArrayList<String> getListNicknamesDest(){
 		return this.listNicknamesDest;
@@ -67,7 +71,7 @@ public class TextMessage extends AbstractMessage{
 	}
 	
 	
-	// M�thodes
+	// Methodes
 	
 	public void addNickame(String nicknameDest){
 		this.listNicknamesDest.add(nicknameDest);
