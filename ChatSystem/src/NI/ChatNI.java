@@ -56,7 +56,7 @@ public class ChatNI {
 	
 	
 	//////////////////////////////////////////
-	//          POUR UDP SENDER             //
+	//          POUR UDP RECEIVER           //
 	//////////////////////////////////////////
 
 	public void processHello(String remoteNickname){
