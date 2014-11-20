@@ -21,7 +21,7 @@ public class ChatNI {
 	public ChatNI() {
 		try {
 			this.usender = new UDPSender(this.nickname, this.uDestPort);
-			this.ureceiver = new UDPReceiver(this.nickname, this.uRecvPort);
+			this.ureceiver = new UDPReceiver(this, this.nickname, this.uRecvPort);
 			ureceiver.start();
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
@@ -70,8 +70,6 @@ public class ChatNI {
 	public void processGoodbye(String remoteNickname){
 		this.controller.removeFromUserList(remoteNickname);
 	}
-	
-	
 	
 	
 	//////////////////////////////////////////
