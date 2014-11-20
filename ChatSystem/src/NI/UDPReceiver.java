@@ -14,13 +14,15 @@ import Signals.*;
 public class UDPReceiver extends Thread {
 	
 	private String nickname;
+	private ChatNI ni;
 	private InetAddress address ;
 	private DatagramSocket server ;
 	private byte[] bufIn;
 	private int recvPort;
 	
 
-	public UDPReceiver(String nick, int port) throws IOException {
+	public UDPReceiver(ChatNI n, String nick, int port) throws IOException {
+		this.ni = n;
 		this.nickname = nick;
 		this.recvPort = port;
         this.server = new DatagramSocket(this.recvPort, address);
@@ -41,15 +43,19 @@ public class UDPReceiver extends Thread {
 		  
 			if (aMessage.getTypeContenu() == typeContenu.HELLO){
 				Hello helloSerialise = (Hello) aMessage;
+				this.ni.processHello(helloSerialise.getNickname());
 				System.out.println(helloSerialise.getNickname() + " : C'est un HELLO ! " );
 			} else if (aMessage.getTypeContenu() == typeContenu.HELLOACK) {
 				HelloAck helloackSerialise = (HelloAck) aMessage;
+				this.ni.processHelloAck(helloackSerialise.getNickname());
 				System.out.println(helloackSerialise.getNickname() + " : C'est un HELLOACK ! " );
 			} else if (aMessage.getTypeContenu() == typeContenu.GOODBYE) {
-				Goodbye GoodbyeSerialise = (Goodbye) aMessage;
-				System.out.println(GoodbyeSerialise.getNickname() + " : C'est un GOODBYE ! ");
+				Goodbye goodbyeSerialise = (Goodbye) aMessage;
+				this.ni.processGoodbye(goodbyeSerialise.getNickname());
+				System.out.println(goodbyeSerialise.getNickname() + " : C'est un GOODBYE ! ");
 			} else if (aMessage.getTypeContenu() == typeContenu.TEXTMESSAGE) {
 				TextMessage msg = (TextMessage) aMessage;
+				this.ni
 				System.out.println(msg.getNickname() + ":" + msg.getMessage());
 			}
 		} catch (Exception e) {
