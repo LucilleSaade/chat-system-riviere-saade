@@ -36,7 +36,7 @@ public class ChatNI {
 	//          POUR UDP SENDER             //
 	//////////////////////////////////////////
 	
-	// A regler comment savoir pour quel dest est le message. Probablement qu'on doit le récupérer d'un signal entre Chat GUI et NI.
+	// A regler comment savoir pour quel dest et quel message. Probablement qu'on doit le récupérer d'un signal entre Chat GUI et NI.
 	public void sendHello() {
 		this.usender.sendTo(usender.sendHello(),"localhost");
 	}
