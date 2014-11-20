@@ -17,7 +17,7 @@ public class ChatSystem {
 			UDPSender sender;
 			try {
 				sender = new UDPSender("lucille");
-				sender.send(sender.sendHello());
+				sender.sendTo(sender.sendHello(),"localhost");
 			} catch (SocketException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
