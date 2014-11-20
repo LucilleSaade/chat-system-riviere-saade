@@ -5,7 +5,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
 
 import Signals.*;
@@ -16,20 +18,34 @@ public class UDPSender {
 	private String nickname;
 	private ByteArrayOutputStream bos;
 	private DatagramSocket soc;
+	private int destPort = 9876;
 
 
 	public UDPSender(String nickname) throws SocketException{
 		this.nickname = nickname;
-		this.bos = new ByteArrayOutputStream();
+		this.bos = new ByteArrayOutputStream(5000);
 		this.soc = new DatagramSocket();
 	}
 	
-	public void send(AbstractMessage obj) {
+	public void sendTo(AbstractMessage obj, String hostname) {
 		ObjectOutput out = null;
 		try {
-		  out = new ObjectOutputStream(this.bos);   
-		  out.writeObject(obj);
-		  byte[] bufOut = bos.toByteArray();
+			// Preparation de l'adresse destinataire au bon format
+			InetAddress address = InetAddress.getByName(hostname);
+			
+			// Serialisation de l'obj a envoyer
+			out = new ObjectOutputStream(this.bos);
+			out.flush();
+			out.writeObject(obj);
+			out.flush();
+			byte[] bufOut = bos.toByteArray();
+			
+			// Transformation en DatagramPacket
+			DatagramPacket packet = new DatagramPacket(bufOut, bufOut.length, address, this.destPort);
+		
+			// Envoie du packet par le socket
+			soc.send(packet);
+			out.close();
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
