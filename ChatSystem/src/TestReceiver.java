@@ -11,7 +11,7 @@ public class TestReceiver {
 		
 			UDPReceiver recv;
 			try {
-				recv = new UDPReceiver();
+				recv = new UDPReceiver(9876);
 				recv.start();
 			} catch (SocketException e) {
 				// TODO Auto-generated catch block

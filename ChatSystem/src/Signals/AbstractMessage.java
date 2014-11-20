@@ -6,11 +6,15 @@ public abstract class AbstractMessage implements Serializable {
 
 	// Nom de l'utilisateur local
 	protected String nickname;
-	// Identifie la nature du message envoyé
+	// Identifie la nature du message envoye
 	protected typeContenu type;
 	
 	
-	// Getters et Setters
+	
+
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
 	
 	public String getNickname(){
 		return this.nickname;
