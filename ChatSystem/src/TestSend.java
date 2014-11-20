@@ -1,23 +1,17 @@
-import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.net.SocketException;
-import java.net.UnknownHostException;
 
 import NI.*;
 
 
-public class ChatSystem {
+public class TestSend {
 
-	/**
-	 * @param args
-	 */
+
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 			UDPSender sender;
 			try {
 				sender = new UDPSender("lucille");
-				sender.sendTo(sender.sendHello(),"localhost");
+				sender.sendTo(sender.sendGoodbye(),"localhost");
 			} catch (SocketException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
