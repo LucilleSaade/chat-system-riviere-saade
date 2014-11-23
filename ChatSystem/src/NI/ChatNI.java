@@ -19,9 +19,10 @@ public class ChatNI {
 	private int port = 9876;
 	
 	
-	
-	public ChatNI() {
+
+	public ChatNI(Controller control) {
 		try {
+			this.controller = control;
 			this.soc = new DatagramSocket(this.port);
 			this.usender = new UDPSender(this.nickname, this.port, soc);
 			this.ureceiver = new UDPReceiver(this, this.nickname, soc);
