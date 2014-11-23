@@ -7,7 +7,7 @@ public class MessageToSendTxtArea {
 	private JTextArea txtArea ;
 	
 	public MessageToSendTxtArea() {
-		
+		this.txtArea = new JTextArea();
 	}
 	
 	/* GETTERS AND SETTERS */ 

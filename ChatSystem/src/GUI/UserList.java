@@ -1,49 +1,58 @@
 package GUI;
 
-import java.awt.FlowLayout;
-
-import javax.swing.JLabel;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
-public class UserList {
+import User.User;
+
+public class UserList implements MouseListener {
 	
-	private JPanel listPanel ;
-	private String[] tabConnectedUsers = {} ;
-	private JList userList;
+	private JList<User> userList;
 	
 	public UserList() {
-		this.userList = new JList(tabConnectedUsers);
-		this.listPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		this.listPanel.add(new JLabel("Utilisateurs connectés"));
-		this.listPanel.add(new JScrollPane(userList)); 
+		this.setUserList(new JList<User>());
+	}
+	
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	/* GETTERS AND SETTERS */
 
-	public JList getUserList() {
+	public JList<User> getUserList() {
 		return userList;
 	}
 
-	public void setUserList(JList userList) {
+	public void setUserList(JList<User> userList) {
 		this.userList = userList;
-	}
-	
-	public JPanel getListPanel() {
-		return listPanel;
-	}
-
-	public void setListPanel(JPanel listPanel) {
-		this.listPanel = listPanel;
-	}
-
-	public String[] getTabConnectedUsers() {
-		return tabConnectedUsers;
-	}
-
-	public void setTabConnectedUsers(String[] tabConnectedUsers) {
-		this.tabConnectedUsers = tabConnectedUsers;
 	}
 
 
