@@ -1,9 +1,16 @@
 package Controller;
 
-public class Controller {
+import NI.*;
+import GUI.*;
 
+public class Controller {
+	
+	private ChatNI ni;
+	private ChatGUI gui;
+	
 	public Controller () {
-		
+		this.ni = new ChatNI(this);
+		this.gui = new ChatGUI(this);
 	}
 	//////////////////////////////////////////
 	//       A DESTINATION CHATNI           //
