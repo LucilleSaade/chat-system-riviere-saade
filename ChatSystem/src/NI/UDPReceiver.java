@@ -18,14 +18,12 @@ public class UDPReceiver extends Thread {
 	private InetAddress address ;
 	private DatagramSocket server ;
 	private byte[] bufIn;
-	private int recvPort;
 	
 
-	public UDPReceiver(ChatNI n, String nick, int port) throws IOException {
+	public UDPReceiver(ChatNI n, String nick, DatagramSocket soc) throws IOException {
 		this.ni = n;
 		this.nickname = nick;
-		this.recvPort = port;
-        this.server = new DatagramSocket(this.recvPort, address);
+        this.server = soc;
         bufIn = new byte[5000];
 	}
 	
@@ -55,7 +53,7 @@ public class UDPReceiver extends Thread {
 				System.out.println(goodbyeSerialise.getNickname() + " : C'est un GOODBYE ! ");
 			} else if (aMessage.getTypeContenu() == typeContenu.TEXTMESSAGE) {
 				TextMessage msg = (TextMessage) aMessage;
-				this.ni
+				//this.ni
 				System.out.println(msg.getNickname() + ":" + msg.getMessage());
 			}
 		} catch (Exception e) {
