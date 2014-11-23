@@ -22,10 +22,10 @@ public class UDPSender {
 	private int destPort;
 
 
-	public UDPSender(String nickname, int port) throws SocketException{
+	public UDPSender(String nickname,int port, DatagramSocket soc) throws SocketException{
 		this.nickname = nickname;
 		this.bos = new ByteArrayOutputStream(5000);
-		this.soc = new DatagramSocket();
+		this.soc = soc;
 		this.destPort = port;
 	}
 	
