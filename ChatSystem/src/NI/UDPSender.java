@@ -1,14 +1,13 @@
 package NI;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import Signals.*;
@@ -22,7 +21,7 @@ public class UDPSender {
 	private int destPort;
 
 
-	public UDPSender(String nickname,int port, DatagramSocket soc) throws SocketException{
+	public UDPSender(String nickname, int port, DatagramSocket soc) throws SocketException{
 		this.nickname = nickname;
 		this.bos = new ByteArrayOutputStream(5000);
 		this.soc = soc;
@@ -31,10 +30,14 @@ public class UDPSender {
 	
 	public void sendTo(AbstractMessage obj, String hostname) {
 		ObjectOutput out = null;
+		InetAddress address;
 		try {
-			// Preparation de l'adresse destinataire au bon format
-			InetAddress address = InetAddress.getByName(hostname);
-			
+			if (obj.getTypeContenu() == typeContenu.HELLO) {
+				address = InetAddress.getByName("255.255.255.255");
+			} else {
+				// Preparation de l'adresse destinataire au bon format
+				address = InetAddress.getByName(hostname);
+			}
 			// Serialisation de l'obj a envoyer
 			out = new ObjectOutputStream(this.bos);
 			out.flush();
@@ -55,23 +58,28 @@ public class UDPSender {
 		}	 
 	}
 	
-	public AbstractMessage sendHello() {
-		AbstractMessage hello = new Hello(this.nickname);
+	public AbstractMessage sendHello() throws UnknownHostException {
+		AbstractMessage hello = new Hello(this.nickname + "@" + InetAddress.getLocalHost().getHostName());
+		System.out.println(hello.getNickname());
+		sendTo(hello, this.nickname);
 		return hello;
 	}
 
-	public AbstractMessage sendHelloAck() {
-		AbstractMessage hello = new HelloAck(this.nickname);
+	public AbstractMessage sendHelloAck() throws UnknownHostException {
+		AbstractMessage hello = new HelloAck(this.nickname + "@" + InetAddress.getLocalHost().getHostName());
+		sendTo(hello, this.nickname);
 		return hello;
 	}
 	
-	public AbstractMessage sendGoodbye() {
-		AbstractMessage bye = new Goodbye(this.nickname);
+	public AbstractMessage sendGoodbye() throws UnknownHostException {
+		AbstractMessage bye = new Goodbye(this.nickname + "@" + InetAddress.getLocalHost().getHostName());
+		sendTo(bye, this.nickname);
 		return bye;
 	}
 	
-	public AbstractMessage sendMessage(ArrayList<String> Dest, String contenu) {
-		AbstractMessage msg = new TextMessage(this.nickname, contenu, Dest);
+	public AbstractMessage sendMessage(ArrayList<String> Dest, String contenu) throws UnknownHostException {
+		AbstractMessage msg = new TextMessage(this.nickname + "@" + InetAddress.getLocalHost().getHostName(), contenu, Dest);
+		sendTo(msg, this.nickname);
 		return msg;
 	}
 	
