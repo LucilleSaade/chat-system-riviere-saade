@@ -8,8 +8,8 @@ public class ChatGUI {
 	private ConnectedWindow connectedWindow ;
 	private Controller controller;
 	
-	public ChatGUI (Controller control) {
-		this.controller = control;
+	public ChatGUI (/*Controller control*/) {
+		//this.controller = control;
 		//this.disconnectedWindow = new DisconnectedWindow();
 		this.connectedWindow = new ConnectedWindow();
 	}

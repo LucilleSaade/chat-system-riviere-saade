@@ -9,7 +9,7 @@ public class Controller {
 	private ChatGUI gui;
 	
 	public Controller () {
-		this.ni = new ChatNI(this);
+		//this.ni = new ChatNI(this);
 		//this.gui = new ChatGUI(this);
 	}
 	//////////////////////////////////////////
