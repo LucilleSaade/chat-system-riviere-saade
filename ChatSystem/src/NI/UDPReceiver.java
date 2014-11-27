@@ -32,29 +32,32 @@ public class UDPReceiver extends Thread {
 		try {
 			// le socket bloque jusqu'a ce qu'il re coive un DatagramPacket
 			DatagramPacket packet = new DatagramPacket(bufIn, bufIn.length);
-			this.server.receive(packet);
 			
-			// Traitement du packet pour le re-transformer en AbstractMessage
-			ByteArrayInputStream byteIn = new ByteArrayInputStream(bufIn);
-			in = new ObjectInputStream(byteIn);
-			AbstractMessage aMessage = (AbstractMessage) in.readObject();
-		  
-			if (aMessage.getTypeContenu() == typeContenu.HELLO){
-				Hello helloSerialise = (Hello) aMessage;
-				this.ni.processHello(helloSerialise.getNickname());
-				System.out.println(helloSerialise.getNickname() + " : C'est un HELLO ! " );
-			} else if (aMessage.getTypeContenu() == typeContenu.HELLOACK) {
-				HelloAck helloackSerialise = (HelloAck) aMessage;
-				this.ni.processHelloAck(helloackSerialise.getNickname());
-				System.out.println(helloackSerialise.getNickname() + " : C'est un HELLOACK ! " );
-			} else if (aMessage.getTypeContenu() == typeContenu.GOODBYE) {
-				Goodbye goodbyeSerialise = (Goodbye) aMessage;
-				this.ni.processGoodbye(goodbyeSerialise.getNickname());
-				System.out.println(goodbyeSerialise.getNickname() + " : C'est un GOODBYE ! ");
-			} else if (aMessage.getTypeContenu() == typeContenu.TEXTMESSAGE) {
-				TextMessage msg = (TextMessage) aMessage;
-				//this.ni
-				System.out.println(msg.getNickname() + ":" + msg.getMessage());
+			while (true) {
+				this.server.receive(packet);
+				
+				// Traitement du packet pour le re-transformer en AbstractMessage
+				ByteArrayInputStream byteIn = new ByteArrayInputStream(bufIn);
+				in = new ObjectInputStream(byteIn);
+				AbstractMessage aMessage = (AbstractMessage) in.readObject();
+			  
+				if (aMessage.getTypeContenu() == typeContenu.HELLO){
+					Hello helloSerialise = (Hello) aMessage;
+					this.ni.processHello(helloSerialise.getNickname());
+					System.out.println(helloSerialise.getNickname() + " : C'est un HELLO ! " );
+				} else if (aMessage.getTypeContenu() == typeContenu.HELLOACK) {
+					HelloAck helloackSerialise = (HelloAck) aMessage;
+					this.ni.processHelloAck(helloackSerialise.getNickname());
+					System.out.println(helloackSerialise.getNickname() + " : C'est un HELLOACK ! " );
+				} else if (aMessage.getTypeContenu() == typeContenu.GOODBYE) {
+					Goodbye goodbyeSerialise = (Goodbye) aMessage;
+					this.ni.processGoodbye(goodbyeSerialise.getNickname());
+					System.out.println(goodbyeSerialise.getNickname() + " : C'est un GOODBYE ! ");
+				} else if (aMessage.getTypeContenu() == typeContenu.TEXTMESSAGE) {
+					TextMessage msg = (TextMessage) aMessage;
+					//this.ni
+					System.out.println(msg.getNickname() + ":" + msg.getMessage());
+				}
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

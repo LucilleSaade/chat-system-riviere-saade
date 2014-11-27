@@ -3,6 +3,7 @@ package NI;
 import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import java.net.UnknownHostException;
 
 import Controller.Controller;
 
@@ -20,12 +21,15 @@ public class ChatNI {
 	
 	
 
-	public ChatNI(Controller control) {
+	public ChatNI(/*Controller control*/) {
 		try {
-			this.controller = control;
+			this.nickname = "lucille";
+			//this.controller = control;
 			this.soc = new DatagramSocket(this.port);
+			this.soc.setBroadcast(true);
 			this.usender = new UDPSender(this.nickname, this.port, soc);
-			this.ureceiver = new UDPReceiver(this, this.nickname, soc);
+			this.ureceiver = new UDPReceiver(this, this.nickname, soc);	
+
 			ureceiver.start();
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
@@ -42,15 +46,30 @@ public class ChatNI {
 	
 	// A regler comment savoir pour quel dest et quel message. Probablement qu'on doit le récupérer d'un signal entre Chat GUI et NI.
 	public void sendHello() {
-		this.usender.sendTo(usender.sendHello(),"localhost");
+		try {
+			this.usender.sendHello();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void sendHelloAck() {
-		this.usender.sendTo(usender.sendHelloAck(),"localhost");
+		try {
+			this.usender.sendHelloAck();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void sendGoodbye() {
-		this.usender.sendTo(usender.sendGoodbye(),"localhost");
+		try {
+			this.usender.sendGoodbye();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void sendMessage() {
@@ -86,5 +105,21 @@ public class ChatNI {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+	
+	public UDPSender getUsender() {
+		return usender;
+	}
+
+	public void setUsender(UDPSender usender) {
+		this.usender = usender;
+	}
+	
+	public UDPReceiver getUreceiver() {
+		return ureceiver;
+	}
+
+	public void setUreceiver(UDPReceiver ureceiver) {
+		this.ureceiver = ureceiver;
 	}
 }

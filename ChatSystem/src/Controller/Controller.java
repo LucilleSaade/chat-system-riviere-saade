@@ -10,12 +10,15 @@ public class Controller {
 	
 	public Controller () {
 		this.ni = new ChatNI(this);
-		this.gui = new ChatGUI(this);
+		//this.gui = new ChatGUI(this);
 	}
 	//////////////////////////////////////////
 	//       A DESTINATION CHATNI           //
 	//////////////////////////////////////////
-	
+	public void sendHello() {
+		this.ni.sendHello();
+		System.out.println("Salut");
+	}
 	
 	
 	//////////////////////////////////////////
@@ -30,5 +33,26 @@ public class Controller {
 		
 	}
 	
+	
+	//////////////////////////////////////////
+	//           GETTER ET SETTER           //
+	//////////////////////////////////////////
+	
+	public ChatNI getNI() {
+		return ni;
+	}
+	
+	public void setNI(ChatNI ni) {
+		this.ni = ni;
+	}
+		
+	
+	public ChatGUI getGui() {
+		return gui;
+	}
+	
+	public void setGui(ChatGUI gui) {
+		this.gui = gui;
+	}
 	
 }
