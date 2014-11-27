@@ -9,18 +9,10 @@ public class TestNI {
 
 
 	public static void main(String[] args) {
-		
+			
+			/* tester le broadcast de hello !!!!!! */
 			ChatNI ni = new ChatNI();
-			try {
-				ni.getUsender().sendHello();
-				
-				// = new UDPReceiver(9876);
-				//recv.start();
-				
-			} catch (UnknownHostException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			ni.sendHello();
 		
 	}
 

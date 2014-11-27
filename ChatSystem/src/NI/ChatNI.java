@@ -82,8 +82,14 @@ public class ChatNI {
 	//          POUR UDP RECEIVER           //
 	//////////////////////////////////////////
 
-	public void processHello(String remoteNickname){
-		this.controller.addToUser(remoteNickname);
+	public void processHello(String remoteIp){
+		try {
+			//this.controller.addToUser(remoteNickname);
+			this.usender.sendHelloAck(remoteIp);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void processHelloAck(String remoteNickname){

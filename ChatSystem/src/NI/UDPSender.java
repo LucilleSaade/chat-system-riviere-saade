@@ -37,6 +37,7 @@ public class UDPSender {
 			} else {
 				// Preparation de l'adresse destinataire au bon format
 				address = InetAddress.getByName(hostname);
+				System.out.println(address);
 			}
 			// Serialisation de l'obj a envoyer
 			out = new ObjectOutputStream(this.bos);
@@ -47,7 +48,7 @@ public class UDPSender {
 			
 			// Transformation en DatagramPacket
 			DatagramPacket packet = new DatagramPacket(bufOut, bufOut.length, address, this.destPort);
-		
+
 			// Envoie du packet par le socket
 			soc.send(packet);
 			out.close();
@@ -60,14 +61,13 @@ public class UDPSender {
 	
 	public AbstractMessage sendHello() throws UnknownHostException {
 		AbstractMessage hello = new Hello(this.nickname + "@" + InetAddress.getLocalHost().getHostName());
-		System.out.println(hello.getNickname());
 		sendTo(hello, this.nickname);
 		return hello;
 	}
 
-	public AbstractMessage sendHelloAck() throws UnknownHostException {
+	public AbstractMessage sendHelloAck(String ip) throws UnknownHostException {
 		AbstractMessage hello = new HelloAck(this.nickname + "@" + InetAddress.getLocalHost().getHostName());
-		sendTo(hello, this.nickname);
+		sendTo(hello, ip);
 		return hello;
 	}
 	
