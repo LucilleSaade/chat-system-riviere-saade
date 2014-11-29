@@ -1,15 +1,13 @@
 package Model;
 
-import java.net.InetAddress;
-
 public class User {
 	
 	private String nickname;
-	private InetAddress address;
+	private String hostName;
 	
-	public User (String nickname, InetAddress address) {
+	public User (String nickname, String hostName) {
 		this.setNickname(nickname);
-		this.setAddress(address);
+		this.setHostName(hostName);
 	}
 	
 	//////////////////////////////////////////
@@ -24,12 +22,12 @@ public class User {
 		this.nickname = nickname;
 	}
 
-	public InetAddress getAddress() {
-		return address;
+	public String getHostName() {
+		return hostName;
 	}
 
-	public void setAddress(InetAddress address) {
-		this.address = address;
+	public void setHostName(String hostName) {
+		this.hostName = hostName;
 	}
 
 }

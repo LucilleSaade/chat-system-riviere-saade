@@ -30,7 +30,7 @@ public class UDPReceiver extends Thread {
 	public void start() {
 		ObjectInput in = null;
 		try {
-			// le socket bloque jusqu'a ce qu'il re coive un DatagramPacket
+			// le socket bloque jusqu'a ce qu'il recoive un DatagramPacket
 			DatagramPacket packet = new DatagramPacket(bufIn, bufIn.length);
 			
 			while (true) {

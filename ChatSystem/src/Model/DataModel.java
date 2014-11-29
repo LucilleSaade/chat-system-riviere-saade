@@ -22,9 +22,21 @@ public class DataModel {
 		userList.remove(u);
 	}
 	
-	public void getUser(User u) {
-		userList.get(userList.indexOf(u));
+	public User getUserByNickname(String nick) {
+		boolean trouve = false;
+		User u;
+		int i = 0;
+		while (!trouve && i <= userList.size()) {
+			if (userList.get(i).getNickname().equals(nick)) {
+				u = userList.get(i);
+				trouve = true;
+				return userList.get(userList.indexOf(u));
+			}
+		}
+		System.out.println("Erreur getUserByNickname : Utilisateur non trouve");
+		return null;		
 	}
+	
 
 	public ArrayList<User> getUserList() {
 		return userList;
@@ -43,5 +55,6 @@ public class DataModel {
 	public void setLocalUser(User localUser) {
 		this.localUser = localUser;
 	}
-	
+
+
 }

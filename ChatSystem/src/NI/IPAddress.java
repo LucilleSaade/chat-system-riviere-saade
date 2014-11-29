@@ -9,7 +9,7 @@ public class IPAddress {
 		return nickname.substring(nickname.indexOf('@')+1);
 	}
 	
-	public static String getnickname(String nickname) {
+	public static String getNickname(String nickname) {
 		return nickname.substring(0, nickname.indexOf('@'));
 	}
 	

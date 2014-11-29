@@ -3,6 +3,8 @@ package GUI;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -11,12 +13,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
-public class ConnectedWindow extends JFrame {
+import Controller.Controller;
+
+public class ConnectedWindow extends JFrame implements ActionListener {
 	
 	private final int WIDTH = 800;
 	private final int HEIGHT = 600;
 	
-	private UserList ul;
+	private Controller controller ;
+	private VisualUserList ul;
 	private DisconnectButton disconnectB;
 	private MessageToSendTxtArea sendTextArea;
 	private SendButton sendB;
@@ -29,8 +34,9 @@ public class ConnectedWindow extends JFrame {
 	private JPanel txtPanel;
 	private JPanel userListPanel;
 	
-	public ConnectedWindow() {
-		this.ul = new UserList() ;
+	public ConnectedWindow(Controller c) {
+		this.controller = c;
+		this.ul = new VisualUserList() ;
 		this.disconnectB = new DisconnectButton();
 		this.sendB = new SendButton();
 		this.sendFileB = new SendFileButton();
@@ -78,6 +84,11 @@ public class ConnectedWindow extends JFrame {
 		this.setSize(WIDTH, HEIGHT);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		
+	}
+
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
 		
 	}
 
