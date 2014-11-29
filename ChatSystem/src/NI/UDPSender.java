@@ -17,14 +17,14 @@ import Signals.*;
 
 public class UDPSender {
 
-	private String nickname;
+	private String hostname;
 	private ByteArrayOutputStream bos;
 	private DatagramSocket soc;
 	private int destPort;
 
 
 	public UDPSender(String hostname, int port, DatagramSocket soc) throws SocketException{
-		this.nickname = hostname;
+		this.hostname = hostname;
 		this.bos = new ByteArrayOutputStream(5000);
 		this.soc = soc;
 		this.destPort = port;
@@ -65,25 +65,25 @@ public class UDPSender {
 	}
 	
 	public AbstractMessage sendHello() throws UnknownHostException {
-		AbstractMessage hello = new Hello(IPAddress.concatLocalhostIP(this.nickname));
+		AbstractMessage hello = new Hello(this.hostname);
 		sendTo(hello, "default");
 		return hello;
 	}
 
 	public AbstractMessage sendHelloAck(String hostname) throws UnknownHostException {
-		AbstractMessage hello = new HelloAck(IPAddress.concatLocalhostIP(this.nickname));
+		AbstractMessage hello = new HelloAck(this.hostname);
 		sendTo(hello, hostname);
 		return hello;
 	}
 	
 	public AbstractMessage sendGoodbye() throws UnknownHostException {
-		AbstractMessage bye = new Goodbye(IPAddress.concatLocalhostIP(this.nickname));
+		AbstractMessage bye = new Goodbye(this.hostname);
 		sendTo(bye, "default");
 		return bye;
 	}
 	
 	public AbstractMessage sendMessage(ArrayList<String> Dest, String contenu) throws UnknownHostException {
-		AbstractMessage msg = new TextMessage(IPAddress.concatLocalhostIP(this.nickname), contenu, Dest);
+		AbstractMessage msg = new TextMessage(this.hostname, contenu, Dest);
 		
 		ListIterator<String> itr = Dest.listIterator();
 		while(itr.hasNext()){
@@ -98,11 +98,11 @@ public class UDPSender {
 	//         GETTER ET SETTER             //
 	//////////////////////////////////////////
 	
-	public String getNickname() {
-		return nickname;
+	public String getHostname() {
+		return hostname;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setNickname(String hostname) {
+		this.hostname = hostname;
 	}
 }

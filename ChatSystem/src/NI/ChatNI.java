@@ -10,7 +10,7 @@ import Controller.Controller;
 
 public class ChatNI {
 	
-	private String nickname;
+	private String hostname;
 	private Controller controller;
 	private UDPSender usender;
 	private UDPReceiver ureceiver;
@@ -24,11 +24,11 @@ public class ChatNI {
 	public ChatNI(Controller control) {
 		try {
 			this.controller = control;
-			this.nickname = this.controller.getModel().getLocalUser().getNickname() ;
+			this.hostname = this.controller.getModel().getLocalUser().getNickname() ;
 			this.soc = new DatagramSocket(this.port);
 			this.soc.setBroadcast(true);
-			this.usender = new UDPSender(this.nickname, this.port, soc);
-			this.ureceiver = new UDPReceiver(this, this.nickname, soc);	
+			this.usender = new UDPSender(this.hostname, this.port, soc);
+			this.ureceiver = new UDPReceiver(this, this.hostname, soc);	
 
 			ureceiver.start();
 		} catch (SocketException e) {
@@ -103,12 +103,12 @@ public class ChatNI {
 	//         GETTER ET SETTER             //
 	//////////////////////////////////////////
 
-	public String getNickname() {
-		return nickname;
+	public String getHostname() {
+		return hostname;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setNickname(String hostname) {
+		this.hostname = hostname;
 	}
 	
 	public UDPSender getUsender() {
