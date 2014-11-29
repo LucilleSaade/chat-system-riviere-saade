@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import Controller.Controller;
 
@@ -71,8 +72,8 @@ public class ChatNI {
 		}
 	}
 
-	public void sendMessage() {
-		//this.usender.sendMessage();
+	public void sendMessage(ArrayList<String> dest, String msg) throws UnknownHostException {
+		this.usender.sendMessage(dest, msg);
 	}
 
 	
