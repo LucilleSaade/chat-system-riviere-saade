@@ -50,7 +50,7 @@ public class DisconnectedWindow extends JFrame implements ActionListener {
 		}
 		else {
 			String localNickname = this.nicknameArea.getNicknameTA().getText();
-			// controller.connect(localNickname);
+			// controller.performConnect(localNickname);
 		}					
 	}
 
