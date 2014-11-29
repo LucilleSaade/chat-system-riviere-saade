@@ -65,25 +65,25 @@ public class UDPSender {
 	}
 	
 	public AbstractMessage sendHello() throws UnknownHostException {
-		AbstractMessage hello = new Hello(this.nickname + "@" + InetAddress.getLocalHost().getHostName());
+		AbstractMessage hello = new Hello(IPAddress.concatLocalhostIP(this.nickname));
 		sendTo(hello, "default");
 		return hello;
 	}
 
 	public AbstractMessage sendHelloAck(String hostname) throws UnknownHostException {
-		AbstractMessage hello = new HelloAck(this.nickname + "@" + InetAddress.getLocalHost().getHostName());
+		AbstractMessage hello = new HelloAck(IPAddress.concatLocalhostIP(this.nickname));
 		sendTo(hello, hostname);
 		return hello;
 	}
 	
 	public AbstractMessage sendGoodbye() throws UnknownHostException {
-		AbstractMessage bye = new Goodbye(this.nickname + "@" + InetAddress.getLocalHost().getHostName());
+		AbstractMessage bye = new Goodbye(IPAddress.concatLocalhostIP(this.nickname));
 		sendTo(bye, "default");
 		return bye;
 	}
 	
 	public AbstractMessage sendMessage(ArrayList<String> Dest, String contenu) throws UnknownHostException {
-		AbstractMessage msg = new TextMessage(this.nickname + "@" + InetAddress.getLocalHost().getHostName(), contenu, Dest);
+		AbstractMessage msg = new TextMessage(IPAddress.concatLocalhostIP(this.nickname), contenu, Dest);
 		
 		ListIterator<String> itr = Dest.listIterator();
 		while(itr.hasNext()){
