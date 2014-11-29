@@ -44,7 +44,6 @@ public class ChatNI {
 	//          POUR UDP SENDER             //
 	//////////////////////////////////////////
 	
-	// A regler comment savoir pour quel dest et quel message. Probablement qu'on doit le récupérer d'un signal entre Chat GUI et NI.
 	public void sendHello() {
 		try {
 			this.usender.sendHello();
@@ -96,7 +95,7 @@ public class ChatNI {
 	}
 	
 	public void processMessage(String hostname, String msg){
-		
+		this.controller.messageReceived(hostname, msg);
 	}
 	
 	//////////////////////////////////////////
