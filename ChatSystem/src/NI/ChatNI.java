@@ -21,10 +21,10 @@ public class ChatNI {
 	
 	
 
-	public ChatNI(/*Controller control*/) {
+	public ChatNI(Controller control) {
 		try {
-			this.nickname = "lucille";
-			//this.controller = control;
+			this.controller = control;
+			this.nickname = this.controller.getModel().getLocalUser().getNickname() ;
 			this.soc = new DatagramSocket(this.port);
 			this.soc.setBroadcast(true);
 			this.usender = new UDPSender(this.nickname, this.port, soc);
