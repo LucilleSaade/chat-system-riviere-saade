@@ -7,16 +7,20 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import Controller.Controller;
+
 public class DisconnectedWindow extends JFrame implements ActionListener {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private Controller controller ;
 	private ConnectButton connectB;
 	private NicknameTextArea nicknameArea ;
 	
-	public DisconnectedWindow () {
+	public DisconnectedWindow (Controller c) {
+		this.controller = c;
 		this.connectB = new ConnectButton();
 		this.connectB.getbConnect().addActionListener(this);
 		this.nicknameArea = new NicknameTextArea() ;
@@ -50,7 +54,7 @@ public class DisconnectedWindow extends JFrame implements ActionListener {
 		}
 		else {
 			String localNickname = this.nicknameArea.getNicknameTA().getText();
-			// controller.performConnect(localNickname);
+			controller.performConnect(localNickname);
 		}					
 	}
 
