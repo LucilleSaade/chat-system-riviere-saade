@@ -9,9 +9,11 @@ import GUI.ChatGUI;
 public class Main {
 	
 	public static void main (String[] args) {
-		Controller control = new Controller();
-		control.getNI().sendHello();
-		//ChatGUI gui = new ChatGUI();		
+
+		//Controller control = new Controller();
+		//control.getNI().sendHello();
+		ChatGUI gui = new ChatGUI();		
+
 	}
 
 }
