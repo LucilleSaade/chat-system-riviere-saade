@@ -14,7 +14,10 @@ public class Controller {
 		this.gui = new ChatGUI(this);
 	}
 	
-	/* connexion de l'utilisateur local */
+	//////////////////////////////////////////
+	//       CONNEXION / DECONNEXION        //
+	//////////////////////////////////////////
+	
 	public void performConnect(String nickname) {
 		model = new DataModel(new User(nickname,"localhost"));
 		this.ni = new ChatNI(this);
@@ -34,10 +37,11 @@ public class Controller {
 		System.exit(0);
 	}
 	
+	
+	
 	//////////////////////////////////////////
 	//       A DESTINATION CHATNI           //
-	//////////////////////////////////////////
-	
+	//////////////////////////////////////////	
 
 	public void sendHello() {
 		this.ni.sendHello();
@@ -50,6 +54,8 @@ public class Controller {
 		System.out.println("Envoi de goodbye");
 	}
 	
+	
+	
 	//////////////////////////////////////////
 	//       A DESTINATION DE CHATGUI       //
 	//////////////////////////////////////////
@@ -60,6 +66,10 @@ public class Controller {
 	
 	public void removeFromUserList(String hostname) {
 		this.model.removeFromList(this.model.getUserByNickname(nick));
+	}
+	
+	public void messageReceived(String hostname, String msg) {
+		
 	}
 	
 	
