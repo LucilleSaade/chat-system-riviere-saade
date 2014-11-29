@@ -47,7 +47,7 @@ public class UDPReceiver extends Thread {
 					System.out.println(helloSerialise.getNickname() + " : C'est un HELLO ! " );
 				} else if (aMessage.getTypeContenu() == typeContenu.HELLOACK) {
 					HelloAck helloackSerialise = (HelloAck) aMessage;
-					this.ni.processHelloAck(IPAddress.getIPaddress(helloackSerialise.getNickname()));
+					this.ni.processHelloAck(helloackSerialise.getNickname());
 					System.out.println(helloackSerialise.getNickname() + " : C'est un HELLOACK ! " );
 				} else if (aMessage.getTypeContenu() == typeContenu.GOODBYE) {
 					Goodbye goodbyeSerialise = (Goodbye) aMessage;
