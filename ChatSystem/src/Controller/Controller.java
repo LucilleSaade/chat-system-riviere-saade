@@ -13,8 +13,9 @@ public class Controller {
 	private ChatGUI gui;
 	private DataModel model ;
 	
+
 	public Controller () {
-		//this.ni = new ChatNI(this);
+		this.ni = new ChatNI(this);
 		//this.gui = new ChatGUI(this);
 	}
 	
@@ -25,26 +26,18 @@ public class Controller {
 		} catch (UnknownHostException e) {
 			System.out.println("Erreur lors du performConnect");
 		}
-		sendHello(model.getLocalUser());	
+		sendHello();	
 	}
 	
 	//////////////////////////////////////////
 	//       A DESTINATION CHATNI           //
 	//////////////////////////////////////////
 	
-	// methode a supprimer ?? cf celle avec argument 
+
 	public void sendHello() {
 		this.ni.sendHello();
 		System.out.println("Salut");
 	}
-	
-	public void sendHello(User u) {
-		//this.ni.sendHello(User u);
-		System.out.println("Salut");
-	}
-	
-	
-	
 	
 	//////////////////////////////////////////
 	//       A DESTINATION DE CHATGUI       //
@@ -62,6 +55,15 @@ public class Controller {
 	//////////////////////////////////////////
 	//           GETTER ET SETTER           //
 	//////////////////////////////////////////
+	
+	public DataModel getModel() {
+		return model;
+	}
+
+	public void setModel(DataModel model) {
+		this.model = model;
+	}
+
 	
 	public ChatNI getNI() {
 		return ni;

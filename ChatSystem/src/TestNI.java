@@ -10,9 +10,9 @@ public class TestNI {
 
 	public static void main(String[] args) {
 			
-			/* tester le broadcast de hello !!!!!! */
-			ChatNI ni = new ChatNI();
-			ni.sendHello();
+		/* tester le broadcast de hello !!!!!! */
+		Controller c = new Controller();
+		c.getNI().sendHello();
 		
 	}
 
