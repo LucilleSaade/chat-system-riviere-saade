@@ -54,9 +54,9 @@ public class ChatNI {
 		}
 	}
 	
-	public void sendHelloAck(String remoteNickname) {
+	public void sendHelloAck(String hostname) {
 		try {
-			this.usender.sendHelloAck(remoteNickname);
+			this.usender.sendHelloAck(hostname);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,20 +82,20 @@ public class ChatNI {
 	//          POUR UDP RECEIVER           //
 	//////////////////////////////////////////
 
-	public void processHello(String remoteNickname){
-		//this.controller.addToUser(remoteNickname);
-		sendHelloAck(remoteNickname);
+	public void processHello(String hostname){
+		//this.controller.addToUser(hostname);
+		sendHelloAck(hostname);
 	}
 	
-	public void processHelloAck(String remoteNickname){
-		this.controller.addToUser(remoteNickname);
+	public void processHelloAck(String hostname){
+		this.controller.addToUser(hostname);
 	}
 	
-	public void processGoodbye(String remoteNickname){
-		this.controller.removeFromUserList(remoteNickname);
+	public void processGoodbye(String hostname){
+		this.controller.removeFromUserList(hostname);
 	}
 	
-	public void processMessage(String nickname, String msg){
+	public void processMessage(String hostname, String msg){
 		
 	}
 	

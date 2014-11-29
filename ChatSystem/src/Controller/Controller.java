@@ -54,11 +54,11 @@ public class Controller {
 	//       A DESTINATION DE CHATGUI       //
 	//////////////////////////////////////////
 	
-	public void addToUser(String nick) {
+	public void addToUser(String hostname) {
 		//this.model.addToList(new User(nick, hostname));
 	}
 	
-	public void removeFromUserList(String nick) {
+	public void removeFromUserList(String hostname) {
 		this.model.removeFromList(this.model.getUserByNickname(nick));
 	}
 	
