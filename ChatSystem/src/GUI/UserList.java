@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JList;
 
-import User.User;
+import Model.User;
 
 public class UserList implements MouseListener {
 	

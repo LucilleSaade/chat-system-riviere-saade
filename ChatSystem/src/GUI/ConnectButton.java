@@ -1,23 +1,18 @@
 package GUI;
 
 import javax.swing.JButton;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class ConnectButton implements ActionListener {
+public class ConnectButton {
 	
 	private JButton bConnect ;
 	
 	public ConnectButton () {
 		this.setbConnect(new JButton("Connexion"));
-		this.bConnect.addActionListener(this);
 	}
 	
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO ;
-	}
-	
-	/* GETTERS AND SETTERS */
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
 
 	public JButton getbConnect() {
 		return bConnect;

@@ -1,15 +1,24 @@
 package GUI;
 
 import java.awt.GridLayout;
-import javax.swing.JFrame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class DisconnectedWindow extends JFrame {
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+public class DisconnectedWindow extends JFrame implements ActionListener {
 	
-private ConnectButton connectB;
-private NicknameTextArea nicknameArea ;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private ConnectButton connectB;
+	private NicknameTextArea nicknameArea ;
 	
 	public DisconnectedWindow () {
 		this.connectB = new ConnectButton();
+		this.connectB.getbConnect().addActionListener(this);
 		this.nicknameArea = new NicknameTextArea() ;
 		initComponents();
 	}
@@ -27,5 +36,22 @@ private NicknameTextArea nicknameArea ;
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	 }
+	
+	
+	/* LORSQU'ON CLIQUE SUR LE BOUTTON DE CONNEXION */
+	
+	public void actionPerformed(ActionEvent arg0) {
+		// on verifie que le nickname a été saisi
+		if (this.nicknameArea.getNicknameTA().getText().equals("")) {
+			JOptionPane.showMessageDialog(this,"Veuillez saisir un nom d'utilisateur non vide");
+		}
+		else if (this.nicknameArea.getNicknameTA().getText().contains("@")) {
+			JOptionPane.showMessageDialog(this,"Votre nom d'utilisateur ne doit pas contenir le caractère @");
+		}
+		else {
+			String localNickname = this.nicknameArea.getNicknameTA().getText();
+			// controller.connect(localNickname);
+		}					
+	}
 
 }
