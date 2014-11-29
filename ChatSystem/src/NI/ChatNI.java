@@ -54,9 +54,9 @@ public class ChatNI {
 		}
 	}
 	
-	public void sendHelloAck(String remoteIp) {
+	public void sendHelloAck(String remoteNickname) {
 		try {
-			this.usender.sendHelloAck(remoteIp);
+			this.usender.sendHelloAck(remoteNickname);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,7 +73,7 @@ public class ChatNI {
 	}
 
 	public void sendMessage() {
-		//this.usender.sendTo(usender.sendMessage(),"localhost");
+		//this.usender.sendMessage();
 	}
 
 	
@@ -84,8 +84,7 @@ public class ChatNI {
 
 	public void processHello(String remoteNickname){
 		//this.controller.addToUser(remoteNickname);
-		String remoteIp = IPAddress.getIPaddress(remoteNickname);
-		sendHelloAck(remoteIp);
+		sendHelloAck(remoteNickname);
 	}
 	
 	public void processHelloAck(String remoteNickname){
@@ -96,6 +95,9 @@ public class ChatNI {
 		this.controller.removeFromUserList(remoteNickname);
 	}
 	
+	public void processMessage(String nickname, String msg){
+		
+	}
 	
 	//////////////////////////////////////////
 	//         GETTER ET SETTER             //

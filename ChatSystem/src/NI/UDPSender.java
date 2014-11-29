@@ -9,6 +9,8 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
 
 import Signals.*;
 
@@ -31,12 +33,15 @@ public class UDPSender {
 	public void sendTo(AbstractMessage obj, String hostname) {
 		ObjectOutput out = null;
 		InetAddress address;
+		String remoteIp;
 		try {
-			if (obj.getTypeContenu() == typeContenu.HELLO) {
+			//(obj.getTypeContenu() == typeContenu.HELLO) | (obj.getTypeContenu() == typeContenu.GOODBYE)
+			if (hostname == "default") {
 				address = InetAddress.getByName("255.255.255.255");
 			} else {
 				// Preparation de l'adresse destinataire au bon format
-				address = InetAddress.getByName(hostname);
+				remoteIp = IPAddress.getIPaddress(hostname);
+				address = InetAddress.getByName(remoteIp);
 				System.out.println(address);
 			}
 			// Serialisation de l'obj a envoyer
@@ -61,25 +66,29 @@ public class UDPSender {
 	
 	public AbstractMessage sendHello() throws UnknownHostException {
 		AbstractMessage hello = new Hello(this.nickname + "@" + InetAddress.getLocalHost().getHostName());
-		sendTo(hello, this.nickname);
+		sendTo(hello, "default");
 		return hello;
 	}
 
-	public AbstractMessage sendHelloAck(String ip) throws UnknownHostException {
+	public AbstractMessage sendHelloAck(String hostname) throws UnknownHostException {
 		AbstractMessage hello = new HelloAck(this.nickname + "@" + InetAddress.getLocalHost().getHostName());
-		sendTo(hello, ip);
+		sendTo(hello, hostname);
 		return hello;
 	}
 	
 	public AbstractMessage sendGoodbye() throws UnknownHostException {
 		AbstractMessage bye = new Goodbye(this.nickname + "@" + InetAddress.getLocalHost().getHostName());
-		sendTo(bye, this.nickname);
+		sendTo(bye, "default");
 		return bye;
 	}
 	
 	public AbstractMessage sendMessage(ArrayList<String> Dest, String contenu) throws UnknownHostException {
 		AbstractMessage msg = new TextMessage(this.nickname + "@" + InetAddress.getLocalHost().getHostName(), contenu, Dest);
-		sendTo(msg, this.nickname);
+		
+		ListIterator<String> itr = Dest.listIterator();
+		while(itr.hasNext()){
+			sendTo(msg, itr.next());
+		}
 		return msg;
 	}
 	

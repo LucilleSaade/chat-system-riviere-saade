@@ -43,7 +43,7 @@ public class UDPReceiver extends Thread {
 			  
 				if (aMessage.getTypeContenu() == typeContenu.HELLO){
 					Hello helloSerialise = (Hello) aMessage;
-					this.ni.processHello(IPAddress.getIPaddress(helloSerialise.getNickname()));
+					this.ni.processHello(helloSerialise.getNickname());
 					System.out.println(helloSerialise.getNickname() + " : C'est un HELLO ! " );
 				} else if (aMessage.getTypeContenu() == typeContenu.HELLOACK) {
 					HelloAck helloackSerialise = (HelloAck) aMessage;
@@ -55,7 +55,7 @@ public class UDPReceiver extends Thread {
 					System.out.println(goodbyeSerialise.getNickname() + " : C'est un GOODBYE ! ");
 				} else if (aMessage.getTypeContenu() == typeContenu.TEXTMESSAGE) {
 					TextMessage msg = (TextMessage) aMessage;
-					//this.ni
+					this.ni.processMessage(msg.getNickname(), msg.getMessage());
 					System.out.println(msg.getNickname() + ":" + msg.getMessage());
 				}
 			}
