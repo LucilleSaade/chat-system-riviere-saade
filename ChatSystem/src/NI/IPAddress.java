@@ -13,6 +13,7 @@ public class IPAddress {
 		return nickname.substring(0, nickname.indexOf('@'));
 	}
 	
+	// Renvoie un nickname = "name@IP_du_localhost"
 	public static String concatLocalhostIP(String name) throws UnknownHostException {
 		return name + "@" + InetAddress.getLocalHost().getHostName();
 	}
