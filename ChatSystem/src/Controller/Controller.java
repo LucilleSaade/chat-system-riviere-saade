@@ -18,8 +18,8 @@ public class Controller {
 	//       CONNEXION / DECONNEXION        //
 	//////////////////////////////////////////
 	
-	public void performConnect(String nickname) {
-		model = new DataModel(new User(nickname,"localhost"));
+	public void performConnect(String hostname) {
+		model = new DataModel(new User(hostname));
 		this.ni = new ChatNI(this);
 		sendHello();
 		
@@ -60,12 +60,14 @@ public class Controller {
 	//       A DESTINATION DE CHATGUI       //
 	//////////////////////////////////////////
 	
-	public void addToUser(String hostname) {
-		//this.model.addToList(new User(nick, hostname));
+	public void addToUserList(String hostname) {
+		this.model.addToList(new User(hostname));
+		this.gui.getConnectedWindow().notifyConnection(hostname);
 	}
 	
 	public void removeFromUserList(String hostname) {
-		this.model.removeFromList(this.model.getUserByNickname(nick));
+		this.model.removeFromList(this.model.getUserByHostname(hostname));
+		this.gui.getConnectedWindow().notifyDisconnection(hostname);
 	}
 	
 	public void messageReceived(String hostname, String msg) {

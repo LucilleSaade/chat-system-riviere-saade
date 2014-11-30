@@ -1,39 +1,56 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class DataModel {
+public class DataModel extends Observable {
 	
 	private User localUser ;
 	private ArrayList<User> userList ;
+	private String typeModification ;
 	
 	public DataModel(User localUser) {
 		this.setLocalUser(localUser);
 		this.setUserList(new ArrayList<User>());
+		this.typeModification = "Add" ;
 	}
 	
 	/* UserList methods */
 	
+	public void notifyAdd(User u) {
+		this.typeModification = "Add" ;
+        this.notifyObservers(u);
+	}
+	
 	public void addToList (User u) {
 		userList.add(u);
+		setChanged();
+		notifyAdd(u);
+	}
+	
+	public void notifyRemove(User u) {
+		this.typeModification = "Remove" ;
+        this.notifyObservers(u);
 	}
 	
 	public void removeFromList (User u) {
 		userList.remove(u);
+		setChanged();
+        this.notifyRemove(u);
 	}
 	
-	public User getUserByNickname(String nick) {
+	public User getUserByHostname(String hostname) {
 		boolean trouve = false;
 		User u;
 		int i = 0;
 		while (!trouve && i <= userList.size()) {
-			if (userList.get(i).getNickname().equals(nick)) {
+			if (userList.get(i).getHostName().equals(hostname)) {
 				u = userList.get(i);
 				trouve = true;
 				return userList.get(userList.indexOf(u));
 			}
 		}
-		System.out.println("Erreur getUserByNickname : Utilisateur non trouve");
+		System.out.println("Erreur getUserByHostname : Utilisateur non trouve");
 		return null;		
 	}
 	
@@ -54,6 +71,14 @@ public class DataModel {
 
 	public void setLocalUser(User localUser) {
 		this.localUser = localUser;
+	}
+
+	public String getTypeModification() {
+		return typeModification;
+	}
+
+	public void setTypeModification(String typeModification) {
+		this.typeModification = typeModification;
 	}
 
 

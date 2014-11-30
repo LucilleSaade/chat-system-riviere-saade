@@ -25,7 +25,7 @@ public class ChatNI {
 	public ChatNI(Controller control) {
 		try {
 			this.controller = control;
-			this.hostname = this.controller.getModel().getLocalUser().getNickname() ;
+			this.hostname = this.controller.getModel().getLocalUser().getHostName();
 			this.soc = new DatagramSocket(this.port);
 			this.soc.setBroadcast(true);
 			this.usender = new UDPSender(this.hostname, this.port, soc);
@@ -83,12 +83,12 @@ public class ChatNI {
 	//////////////////////////////////////////
 
 	public void processHello(String hostname){
-		//this.controller.addToUser(hostname);
+		this.controller.addToUserList(hostname);
 		sendHelloAck(hostname);
 	}
 	
 	public void processHelloAck(String hostname){
-		this.controller.addToUser(hostname);
+		this.controller.addToUserList(hostname);
 	}
 	
 	public void processGoodbye(String hostname){
@@ -107,7 +107,7 @@ public class ChatNI {
 		return hostname;
 	}
 
-	public void setNickname(String hostname) {
+	public void setHostname(String hostname) {
 		this.hostname = hostname;
 	}
 	
