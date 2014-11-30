@@ -7,10 +7,12 @@ public class SendFileButton {
 	private JButton bSendFile ;
 	
 	public SendFileButton () {
-		this.setbSendFile(new JButton("Add file"));
+		this.setbSendFile(new JButton("Send file"));
 	}
 
-	/* GETTERS AND SETTERS */
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
 
 	public JButton getbSendFile() {
 		return bSendFile;

@@ -13,7 +13,7 @@ import javax.swing.JSplitPane;
 
 import Controller.Controller;
 
-public class ConnectedWindow extends JFrame implements ActionListener {
+public class ConnectedWindow extends JFrame {
 	
 	private final int WIDTH = 800;
 	private final int HEIGHT = 600;
@@ -31,21 +31,25 @@ public class ConnectedWindow extends JFrame implements ActionListener {
 	private JPanel sendPanel;
 	private JPanel txtPanel;
 	private JPanel userListPanel;
+	private JPanel histPanel ;
 	
 	public ConnectedWindow(Controller c) {
 		this.controller = c;
 		this.ul = new VisualUserList() ;
 		this.disconnectB = new DisconnectButton();
+		this.disconnectB.getbDisconnect().addActionListener(new DisconnectActionListener(c));
 		this.sendB = new SendButton();
+		this.sendB.getbSend().addActionListener(new SendMsgActionListener(c));
 		this.sendFileB = new SendFileButton();
+		this.sendFileB.getbSendFile().addActionListener(new SendFileActionListener(c));
 		this.sendTextArea = new MessageToSendTxtArea();
 		this.historicArea = new HistoricArea();
-		
 		this.disconnectPanel = new JPanel();
 		this.chatPanel = new JPanel();
 		this.sendPanel = new JPanel();
 		this.txtPanel = new JPanel();
 		this.userListPanel = new JPanel();
+		this.histPanel = new JPanel();
 		initComponents();
 	}
 	
@@ -65,9 +69,13 @@ public class ConnectedWindow extends JFrame implements ActionListener {
 		txtPanel.add(new JScrollPane(sendTextArea.getTxtArea()),BorderLayout.CENTER);
 		txtPanel.add(sendPanel,BorderLayout.EAST);
 		txtPanel.add(disconnectPanel, BorderLayout.SOUTH);
+		
+		histPanel.setLayout(new BorderLayout());
+		histPanel.add(new JScrollPane(historicArea.getHist()),BorderLayout.CENTER);
 
 		chatPanel.setLayout(new BorderLayout());
-		chatPanel.add(historicArea.getHist(),BorderLayout.CENTER);
+		//chatPanel.add(historicArea.getHist(),BorderLayout.CENTER);
+		chatPanel.add(histPanel,BorderLayout.CENTER);
 		chatPanel.add(txtPanel,BorderLayout.SOUTH);
 		chatPanel.setMinimumSize(new Dimension((int) (0.8*WIDTH), chatPanel.getHeight()));
 
@@ -93,10 +101,6 @@ public class ConnectedWindow extends JFrame implements ActionListener {
 		JOptionPane.showMessageDialog(this,hostname+" vient de se deconnecter.");
 	}
 
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 

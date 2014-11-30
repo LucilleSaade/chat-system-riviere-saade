@@ -65,7 +65,9 @@ public class VisualUserList implements MouseListener , Observer {
 		
 	}
 	
-	/* GETTERS AND SETTERS */
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
 
 	public JList<String> getUserList() {
 		return userList;

@@ -10,7 +10,9 @@ public class DisconnectButton {
 		this.setbDisconnect(new JButton("Deconnexion"));
 	}
 
-	/* GETTERS AND SETTERS */
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
 
 	public JButton getbDisconnect() {
 		return bDisconnect;

@@ -12,6 +12,10 @@ public class ChatGUI {
 		this.controller = control;
 		this.setDisconnectedWindow(new DisconnectedWindow(control));
 	}
+	
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
 
 	public DisconnectedWindow getDisconnectedWindow() {
 		return disconnectedWindow;
