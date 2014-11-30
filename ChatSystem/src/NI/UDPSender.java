@@ -102,7 +102,7 @@ public class UDPSender {
 		return hostname;
 	}
 
-	public void setNickname(String hostname) {
+	public void setHostname(String hostname) {
 		this.hostname = hostname;
 	}
 }

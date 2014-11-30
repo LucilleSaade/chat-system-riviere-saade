@@ -3,11 +3,13 @@ package GUI;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.UnknownHostException;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import Controller.Controller;
+import NI.IPAddress;
 
 public class DisconnectedWindow extends JFrame implements ActionListener {
 	
@@ -54,7 +56,14 @@ public class DisconnectedWindow extends JFrame implements ActionListener {
 		}
 		else {
 			String localNickname = this.nicknameArea.getNicknameTA().getText();
-			controller.performConnect(localNickname);
+			String localHostname;
+			try {
+				localHostname = IPAddress.concatLocalhostIP(localNickname);
+				controller.performConnect(localHostname);
+			} catch (UnknownHostException e) {
+				System.out.println("Erreur lors du actionPerformed du boutton connect : localhost not found");
+			}
+
 		}					
 	}
 
