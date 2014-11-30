@@ -71,7 +71,7 @@ public class Controller {
 	}
 	
 	public void messageReceived(String hostname, String msg) {
-		
+		this.model.getLocalUser().addMessage(hostname, msg);
 	}
 	
 	
