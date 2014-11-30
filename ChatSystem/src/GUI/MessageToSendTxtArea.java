@@ -10,7 +10,9 @@ public class MessageToSendTxtArea {
 		this.txtArea = new JTextArea();
 	}
 	
-	/* GETTERS AND SETTERS */ 
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
 
 	public JTextArea getTxtArea() {
 		return txtArea;

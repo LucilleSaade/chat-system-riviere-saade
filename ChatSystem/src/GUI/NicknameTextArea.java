@@ -14,7 +14,9 @@ public class NicknameTextArea {
 	}
 	
 	
-	/* GETTERS AND SETTERS */
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
 
 	public JTextArea getNicknameTA() {
 		return nicknameTA;

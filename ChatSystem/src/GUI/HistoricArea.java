@@ -1,21 +1,42 @@
 package GUI;
 
-import javax.swing.JTextPane;
+import java.util.Observable;
+import java.util.Observer;
 
-public class HistoricArea {
+import javax.swing.JTextArea;
+
+import Model.*;
+
+public class HistoricArea implements Observer {
 	
-	private JTextPane hist; 
+	private JTextArea hist; 
 	
 	public HistoricArea() {
-		this.setHist(new JTextPane());
+		this.setHist(new JTextArea());
 	}
+	
+	public void update(Observable obs, Object arg) {
+		if (obs instanceof User) {
+			if (arg instanceof TxtMessage) {
+				String emetteur = ((TxtMessage) arg).getEmetteur();
+				String mess = ((TxtMessage) arg).getContenu();
+				this.hist.append(emetteur+" : "+mess+"\n");
+			}				
+		}
+	}
+	
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
 
-	public JTextPane getHist() {
+
+	public JTextArea getHist() {
 		return hist;
 	}
 
-	public void setHist(JTextPane hist) {
+	public void setHist(JTextArea hist) {
 		this.hist = hist;
 	}
+
 
 }

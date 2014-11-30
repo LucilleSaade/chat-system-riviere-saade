@@ -10,7 +10,9 @@ public class SendButton {
 		this.setbSend(new JButton("Send"));
 	}
 
-	/* GETTERS AND SETTERS */
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
 
 	public JButton getbSend() {
 		return bSend;

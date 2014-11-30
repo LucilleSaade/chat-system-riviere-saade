@@ -1,8 +1,9 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class User {
+public class User extends Observable {
 	
 	private String hostName;
 	private ArrayList<Message> messages;
@@ -13,8 +14,14 @@ public class User {
 	}
 	
 	public void addMessage (String hostname, String msg) {
-		Message m = new Message(hostname,msg);
+		TxtMessage m = new TxtMessage(hostname,msg);
 		messages.add(m);
+		setChanged();
+		notifyObservers(m);
+	}
+	
+	public void addFile (String hostname, byte[]File) {
+		// TODO
 	}
 
 	
