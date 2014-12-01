@@ -12,12 +12,12 @@ import Model.*;
 
 public class VisualUserList implements MouseListener , Observer {
 	
-	private JList<String> userList;
-	private DefaultListModel<String> model;
+	private JList userList;
+	private DefaultListModel model;
 	
 	public VisualUserList() {
-		this.setUserList(new JList<String>());
-		this.model = new DefaultListModel<String>();
+		this.setUserList(new JList());
+		this.model = new DefaultListModel();
 	}
 	
 	public void update(Observable o, Object arg) {
@@ -30,7 +30,7 @@ public class VisualUserList implements MouseListener , Observer {
 					model.addElement(u.getHostName());
 				else if (typeModif.equals("Remove"))
 					model.removeElement(u.getHostName());
-				this.userList = new JList<String>(model);
+				this.userList = new JList(model);
 			}
 		}
 	}
@@ -69,11 +69,11 @@ public class VisualUserList implements MouseListener , Observer {
 	//         GETTER ET SETTER             //
 	//////////////////////////////////////////
 
-	public JList<String> getUserList() {
+	public JList getUserList() {
 		return userList;
 	}
 
-	public void setUserList(JList<String> userList) {
+	public void setUserList(JList userList) {
 		this.userList = userList;
 	}
 
