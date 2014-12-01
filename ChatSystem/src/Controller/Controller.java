@@ -45,13 +45,13 @@ public class Controller {
 
 	public void sendHello() {
 		this.ni.sendHello();
-		System.out.println("Salut");
+		System.out.println("Envoie de Hello");
 	}
 	
 
 	public void sendGoodbye() {
 		this.ni.sendGoodbye();
-		System.out.println("Envoi de goodbye");
+		System.out.println("Envoi de Goodbye");
 	}
 	
 	//public void sendMessage() { }
@@ -64,7 +64,6 @@ public class Controller {
 	public void addToUserList(String hostname) {
 		this.model.addToList(new User(hostname));
 		this.gui.getConnectedWindow().notifyConnection(hostname);
-		System.out.println("Problème de Connection ?");
 	}
 	
 	public void removeFromUserList(String hostname) {

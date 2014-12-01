@@ -47,12 +47,12 @@ public class DisconnectedWindow extends JFrame implements ActionListener {
 	/* LORSQU'ON CLIQUE SUR LE BOUTTON DE CONNEXION */
 	
 	public void actionPerformed(ActionEvent arg0) {
-		// on verifie que le nickname a �t� saisi
+		// on verifie que le nickname a ete saisi
 		if (this.nicknameArea.getNicknameTA().getText().equals("")) {
 			JOptionPane.showMessageDialog(this,"Veuillez saisir un nom d'utilisateur non vide");
 		}
 		else if (this.nicknameArea.getNicknameTA().getText().contains("@")) {
-			JOptionPane.showMessageDialog(this,"Votre nom d'utilisateur ne doit pas contenir le caract�re @");
+			JOptionPane.showMessageDialog(this,"Votre nom d'utilisateur ne doit pas contenir le caractere @");
 		}
 		else {
 			String localNickname = this.nicknameArea.getNicknameTA().getText();
