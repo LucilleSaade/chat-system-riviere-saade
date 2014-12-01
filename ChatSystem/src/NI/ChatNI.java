@@ -31,7 +31,7 @@ public class ChatNI {
 			this.usender = new UDPSender(this.hostname, this.port, soc);
 			this.ureceiver = new UDPReceiver(this, this.hostname, soc);	
 
-			ureceiver.start();
+			ureceiver.start(); // TODO
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -83,8 +83,8 @@ public class ChatNI {
 	//////////////////////////////////////////
 
 	public void processHello(String hostname){
-		this.controller.addToUserList(hostname);
-		sendHelloAck(hostname);
+		if (!this.hostname.equals(hostname))
+			sendHelloAck(hostname);
 	}
 	
 	public void processHelloAck(String hostname){
