@@ -63,6 +63,7 @@ public class Controller {
 	public void addToUserList(String hostname) {
 		this.model.addToList(new User(hostname));
 		this.gui.getConnectedWindow().notifyConnection(hostname);
+		System.out.println("Problème de Connection ?");
 	}
 	
 	public void removeFromUserList(String hostname) {

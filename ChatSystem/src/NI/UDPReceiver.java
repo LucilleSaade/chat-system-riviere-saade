@@ -27,7 +27,7 @@ public class UDPReceiver extends Thread {
         bufIn = new byte[5000];
 	}
 	
-	public void start() {
+	public void run() {
 		ObjectInput in = null;
 		try {
 			// le socket bloque jusqu'a ce qu'il recoive un DatagramPacket
