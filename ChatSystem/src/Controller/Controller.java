@@ -54,6 +54,7 @@ public class Controller {
 		System.out.println("Envoi de goodbye");
 	}
 	
+	//public void sendMessage() { }
 	
 	
 	//////////////////////////////////////////

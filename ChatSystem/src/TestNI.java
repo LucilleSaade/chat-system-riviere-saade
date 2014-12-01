@@ -12,7 +12,7 @@ public class TestNI {
 			
 		/* tester le broadcast de hello !!!!!! */
 		Controller c = new Controller();
-		c.getNI().sendHello();
+		c.getNI().sendH();
 		
 	}
 
