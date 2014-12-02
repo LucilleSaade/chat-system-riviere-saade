@@ -75,8 +75,13 @@ public class ChatNI {
 		}
 	}
 
-	public void sendMessage(ArrayList<String> dest, String msg) throws UnknownHostException {
-		this.usender.sendMessage(dest, msg);
+	public void sendMessage(ArrayList<String> dest, String msg) {
+		try {
+			this.usender.sendMessage(dest, msg);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	
