@@ -29,17 +29,18 @@ public class UDPReceiver extends Thread {
 	
 	public void run() {
 		ObjectInput in = null;
+		ByteArrayInputStream byteIn;
 		try {
 			
-			while (true) {
-				bufIn.rest();
+			while (true) { 
 				// le socket bloque jusqu'a ce qu'il recoive un DatagramPacket
 				DatagramPacket packet = new DatagramPacket(bufIn, bufIn.length);
 				
 				this.server.receive(packet);
 				
 				// Traitement du packet pour le re-transformer en AbstractMessage
-				ByteArrayInputStream byteIn = new ByteArrayInputStream(bufIn);
+				byteIn = new ByteArrayInputStream(bufIn);
+				byteIn.reset();
 				in = new ObjectInputStream(byteIn);
 				AbstractMessage aMessage = (AbstractMessage) in.readObject();
 			  
