@@ -19,11 +19,11 @@ public class Controller {
 	//////////////////////////////////////////
 	
 	public void performConnect(String hostname) {
-		model = new DataModel(new User(hostname), this);
 		// fermeture de la disconnect window
 		this.gui.getDisconnectedWindow().dispose();
 		// ouverture de la connected window
 		this.gui.setConnectedWindow(new ConnectedWindow(this));
+		model = new DataModel(new User(hostname), this);
 		this.ni = new ChatNI(this);
 		sendHello();
 	}

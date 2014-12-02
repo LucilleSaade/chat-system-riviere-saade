@@ -2,8 +2,6 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Observer;
-
 import Controller.Controller;
 
 public class DataModel extends Observable {
