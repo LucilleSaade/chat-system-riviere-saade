@@ -35,6 +35,8 @@ public class UDPSender {
 		InetAddress address;
 		String remoteIp;
 		DatagramPacket packet;
+		byte[] bufOut;
+
 		
 		try {
 			//(obj.getTypeContenu() == typeContenu.HELLO) | (obj.getTypeContenu() == typeContenu.GOODBYE)
@@ -51,15 +53,16 @@ public class UDPSender {
 			out.flush();
 			out.writeObject(obj);
 			out.flush();
-			byte[] bufOut = bos.toByteArray();
+			bufOut = bos.toByteArray();
 			
 			// Transformation en DatagramPacket
 			packet = new DatagramPacket(bufOut, bufOut.length, address, this.destPort);
 
 			// Envoie du packet par le socket
 			soc.send(packet);
+			this.bos.reset();
 			out.close();
-		
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
