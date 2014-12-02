@@ -19,7 +19,7 @@ public class Controller {
 	//////////////////////////////////////////
 	
 	public void performConnect(String hostname) {
-		model = new DataModel(new User(hostname));
+		model = new DataModel(new User(hostname), this);
 		// fermeture de la disconnect window
 		this.gui.getDisconnectedWindow().dispose();
 		// ouverture de la connected window
