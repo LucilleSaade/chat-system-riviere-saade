@@ -32,6 +32,7 @@ public class UDPReceiver extends Thread {
 		try {
 			
 			while (true) {
+				bufIn.rest();
 				// le socket bloque jusqu'a ce qu'il recoive un DatagramPacket
 				DatagramPacket packet = new DatagramPacket(bufIn, bufIn.length);
 				
