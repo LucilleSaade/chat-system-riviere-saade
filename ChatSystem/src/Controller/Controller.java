@@ -20,13 +20,12 @@ public class Controller {
 	
 	public void performConnect(String hostname) {
 		model = new DataModel(new User(hostname));
-		this.ni = new ChatNI(this);
-		sendHello();
-		
 		// fermeture de la disconnect window
 		this.gui.getDisconnectedWindow().dispose();
 		// ouverture de la connected window
 		this.gui.setConnectedWindow(new ConnectedWindow(this));
+		this.ni = new ChatNI(this);
+		sendHello();
 	}
 	
 	public void performDisconnect() {
@@ -44,14 +43,14 @@ public class Controller {
 	//////////////////////////////////////////	
 
 	public void sendHello() {
-		this.ni.sendHello();
 		System.out.println("Envoie de Hello");
+		this.ni.sendHello();
 	}
 	
 
 	public void sendGoodbye() {
-		this.ni.sendGoodbye();
 		System.out.println("Envoi de Goodbye");
+		this.ni.sendGoodbye();
 	}
 	
 	//public void sendMessage() { }
