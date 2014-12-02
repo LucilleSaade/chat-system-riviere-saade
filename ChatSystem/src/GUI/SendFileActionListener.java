@@ -10,10 +10,23 @@ public class SendFileActionListener implements ActionListener {
 	private Controller cont;
 	
 	public SendFileActionListener(Controller cont){
-		this.cont = cont;
+		super();
+		this.setCont(cont);
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO
+	}
+	
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
+
+	public Controller getCont() {
+		return cont;
+	}
+
+	public void setCont(Controller cont) {
+		this.cont = cont;
 	}
 }

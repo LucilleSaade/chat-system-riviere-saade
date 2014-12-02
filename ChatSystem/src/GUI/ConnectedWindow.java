@@ -3,8 +3,6 @@ package GUI;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -15,6 +13,10 @@ import Controller.Controller;
 
 public class ConnectedWindow extends JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private final int WIDTH = 800;
 	private final int HEIGHT = 600;
 	
@@ -36,6 +38,7 @@ public class ConnectedWindow extends JFrame {
 	public ConnectedWindow(Controller c) {
 		this.controller = c;
 		this.ul = new VisualUserList() ;
+		this.ul.getUserList().addMouseListener(new SelectDestListener(c));
 		this.disconnectB = new DisconnectButton();
 		this.disconnectB.getbDisconnect().addActionListener(new DisconnectActionListener(c));
 		this.sendB = new SendButton();
@@ -93,6 +96,10 @@ public class ConnectedWindow extends JFrame {
 		
 	}
 	
+	//////////////////////////////////////////
+	//        NOTIFICATIONS                 //
+	//////////////////////////////////////////
+	
 	public void notifyConnection(String hostname) {
 		// si l'utilisateur n'est pas l'utilisateur local, on affiche le message
 		if (!controller.getModel().getLocalUser().getHostName().equals(hostname))
@@ -102,6 +109,18 @@ public class ConnectedWindow extends JFrame {
 	public void notifyDisconnection(String hostname) {
 		JOptionPane.showMessageDialog(this,hostname+" vient de se deconnecter.");
 	}
+	
+	public void notifyEmptyMessage() {
+		JOptionPane.showMessageDialog(this,"Vous ne pouvez pas envoyer un message vide.");
+	}
+	
+	public void notifyEmptyDestList() {
+		JOptionPane.showMessageDialog(this,"Veuillez choisir au moins un destinataire en cliquant sur son pseudo.");
+	}
+	
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
 
 
 	public VisualUserList getUl() {
@@ -111,5 +130,23 @@ public class ConnectedWindow extends JFrame {
 	public void setUl(VisualUserList ul) {
 		this.ul = ul;
 	}
+
+	public MessageToSendTxtArea getSendTextArea() {
+		return sendTextArea;
+	}
+
+	public void setSendTextArea(MessageToSendTxtArea sendTextArea) {
+		this.sendTextArea = sendTextArea;
+	}
+
+	public HistoricArea getHistoricArea() {
+		return historicArea;
+	}
+
+	public void setHistoricArea(HistoricArea historicArea) {
+		this.historicArea = historicArea;
+	}
+	
+	
 
 }

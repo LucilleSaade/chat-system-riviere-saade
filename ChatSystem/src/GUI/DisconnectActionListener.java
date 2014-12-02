@@ -10,6 +10,7 @@ public class DisconnectActionListener implements ActionListener {
 	private Controller cont;
 	
 	public DisconnectActionListener(Controller cont){
+		super();
 		this.cont = cont;
 	}
 

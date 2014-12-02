@@ -1,5 +1,7 @@
 package Controller;
 
+import java.util.ArrayList;
+
 import Model.*;
 import NI.*;
 import GUI.*;
@@ -23,7 +25,7 @@ public class Controller {
 		this.gui.getDisconnectedWindow().dispose();
 		// ouverture de la connected window
 		this.gui.setConnectedWindow(new ConnectedWindow(this));
-		model = new DataModel(new User(hostname), this);
+		model = new DataModel(new User(hostname,this), this);
 		this.ni = new ChatNI(this);
 		sendHello();
 	}
@@ -34,6 +36,36 @@ public class Controller {
 		this.getGui().getConnectedWindow().dispose() ;
 		// TODO : fermer threads / sockets ??
 		System.exit(0);
+	}
+	
+	//////////////////////////////////////////
+	//       ENVOI DE MESSAGES              //
+	//////////////////////////////////////////
+		
+	public void updateUsersDest(int i) {
+		//dest = destinateur sur lequel on a clique
+		String dest = (String) this.getGui().getConnectedWindow().getUl().getModel().get(i);
+		// si un message a envoyer a deja ete cree
+		if (this.getModel().getLocalUser().isCurrentMessageCree()) {
+			// si l'utilisateur n'est pas dans la liste : l'ajouter
+			boolean estPresent = false;
+			for (String d : this.getModel().getLocalUser().getCurrentMessage().getListDest()) {
+				if (d.equals(dest)) {
+					estPresent = true;
+				}
+			}
+			if (!estPresent)
+				this.getModel().getLocalUser().getCurrentMessage().addDest(dest);
+			else // si l'utilisateur est dans la liste : l'enlever
+				this.getModel().getLocalUser().getCurrentMessage().removeDest(dest);
+		}
+		else {
+			Message m = new Message(this.getModel().getLocalUser().getHostName(),"");
+			this.getModel().getLocalUser().getCurrentMessage().addDest(dest);
+			this.getModel().getLocalUser().setCurrentMessage(m);
+			this.getModel().getLocalUser().setCurrentMessageCree(true);
+		}
+		
 	}
 	
 	
@@ -53,7 +85,17 @@ public class Controller {
 		this.ni.sendGoodbye();
 	}
 	
-	//public void sendMessage() { }
+	public void sendMessage(TxtMessage m) { 
+		ArrayList<String> Dest = m.getListDest(); 
+		String contenu = m.getContenu();
+		// on ajoute le message dans la liste des messages
+		this.getModel().getLocalUser().addTxtMessage(m);
+		// on reset le currentmessage
+		this.getModel().getLocalUser().setCurrentMessage(null);
+		this.getModel().getLocalUser().setCurrentMessageCree(false);
+		// on envoie le message
+		this.ni.sendMessage(Dest, contenu);
+	}
 	
 	
 	//////////////////////////////////////////
@@ -61,7 +103,7 @@ public class Controller {
 	//////////////////////////////////////////
 	
 	public void addToUserList(String hostname) {
-		this.model.addToList(new User(hostname));
+		this.model.addToList(new User(hostname,this));
 		this.gui.getConnectedWindow().notifyConnection(hostname);
 	}
 	
@@ -71,7 +113,15 @@ public class Controller {
 	}
 	
 	public void messageReceived(String hostname, String msg) {
-		this.model.getLocalUser().addMessage(hostname, msg);
+		this.model.getLocalUser().addReceivedMessage(hostname, msg);
+	}
+	
+	public void notifyEmptyMessage() {
+		this.gui.getConnectedWindow().notifyEmptyMessage();
+	}
+	
+	public void notifyEmptyDestList() {
+		this.gui.getConnectedWindow().notifyEmptyDestList();
 	}
 	
 	
@@ -104,5 +154,9 @@ public class Controller {
 	public void setGui(ChatGUI gui) {
 		this.gui = gui;
 	}
+
+
+
+
 	
 }

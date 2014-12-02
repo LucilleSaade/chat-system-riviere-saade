@@ -1,7 +1,5 @@
 package GUI;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -10,7 +8,7 @@ import javax.swing.JList;
 
 import Model.*;
 
-public class VisualUserList implements MouseListener , Observer {
+public class VisualUserList implements Observer {
 	
 	private JList userList;
 	private DefaultListModel model;
@@ -26,7 +24,7 @@ public class VisualUserList implements MouseListener , Observer {
 			System.out.println("o est un datamodel");
 			String typeModif = ((DataModel) o).getTypeModification();
 			if (arg instanceof User) {
-				System.out.println("arf est un user");
+				System.out.println("arg est un user");
 				User u = (User)arg;
 				if (typeModif.equals("Add")) 
 					model.addElement(u.getHostName());
@@ -37,36 +35,6 @@ public class VisualUserList implements MouseListener , Observer {
 		}
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	//////////////////////////////////////////
 	//         GETTER ET SETTER             //
 	//////////////////////////////////////////
@@ -77,6 +45,14 @@ public class VisualUserList implements MouseListener , Observer {
 
 	public void setUserList(JList userList) {
 		this.userList = userList;
+	}
+
+	public DefaultListModel getModel() {
+		return model;
+	}
+
+	public void setModel(DefaultListModel model) {
+		this.model = model;
 	}
 
 

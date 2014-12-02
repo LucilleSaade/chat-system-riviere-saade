@@ -9,7 +9,7 @@ public class ChatGUI {
 	private Controller controller;
 	
 	public ChatGUI (Controller control) {
-		this.controller = control;
+		this.setController(control);
 		this.setDisconnectedWindow(new DisconnectedWindow(control));
 	}
 	
@@ -31,6 +31,14 @@ public class ChatGUI {
 
 	public void setConnectedWindow(ConnectedWindow connectedWindow) {
 		this.connectedWindow = connectedWindow;
+	}
+
+	public Controller getController() {
+		return controller;
+	}
+
+	public void setController(Controller controller) {
+		this.controller = controller;
 	}
 
 }
