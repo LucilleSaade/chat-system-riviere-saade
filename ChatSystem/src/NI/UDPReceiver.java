@@ -30,10 +30,11 @@ public class UDPReceiver extends Thread {
 	public void run() {
 		ObjectInput in = null;
 		try {
-			// le socket bloque jusqu'a ce qu'il recoive un DatagramPacket
-			DatagramPacket packet = new DatagramPacket(bufIn, bufIn.length);
 			
 			while (true) {
+				// le socket bloque jusqu'a ce qu'il recoive un DatagramPacket
+				DatagramPacket packet = new DatagramPacket(bufIn, bufIn.length);
+				
 				this.server.receive(packet);
 				
 				// Traitement du packet pour le re-transformer en AbstractMessage
