@@ -34,6 +34,8 @@ public class UDPSender {
 		ObjectOutput out = null;
 		InetAddress address;
 		String remoteIp;
+		DatagramPacket packet;
+		
 		try {
 			//(obj.getTypeContenu() == typeContenu.HELLO) | (obj.getTypeContenu() == typeContenu.GOODBYE)
 			if (hostname == "default") {
@@ -52,7 +54,7 @@ public class UDPSender {
 			byte[] bufOut = bos.toByteArray();
 			
 			// Transformation en DatagramPacket
-			DatagramPacket packet = new DatagramPacket(bufOut, bufOut.length, address, this.destPort);
+			packet = new DatagramPacket(bufOut, bufOut.length, address, this.destPort);
 
 			// Envoie du packet par le socket
 			soc.send(packet);

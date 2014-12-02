@@ -49,10 +49,8 @@ public class ChatNI {
 	
 	public void sendHello() {
 		try {
-			if(this.hellosend==false) {
-				this.usender.sendHello();
-				this.hellosend=true;
-			}
+			this.usender.sendHello();
+			this.hellosend=true;
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -88,8 +86,10 @@ public class ChatNI {
 	//////////////////////////////////////////
 
 	public void processHello(String hostname){
-		if (!this.hostname.equals(hostname))
+		//if (!this.hostname.equals(hostname)) {
 			sendHelloAck(hostname);
+			System.out.println("Envoie de Helloack");
+		
 	}
 	
 	public void processHelloAck(String hostname){
