@@ -29,7 +29,7 @@ public class UDPReceiver extends Thread {
 	
 	public void run() {
 		ObjectInput in = null;
-		ByteArrayInputStream byteIn;
+		ByteArrayInputStream byteIn = new ByteArrayInputStream(bufIn);
 		try {
 			
 			while (true) { 
@@ -39,7 +39,6 @@ public class UDPReceiver extends Thread {
 				this.server.receive(packet);
 				
 				// Traitement du packet pour le re-transformer en AbstractMessage
-				byteIn = new ByteArrayInputStream(bufIn);
 				byteIn.reset();
 				in = new ObjectInputStream(byteIn);
 				AbstractMessage aMessage = (AbstractMessage) in.readObject();
