@@ -23,8 +23,10 @@ public class VisualUserList implements MouseListener , Observer {
 	public void update(Observable o, Object arg) {
 		System.out.println("update");
 		if (o instanceof DataModel) {
+			System.out.println("o est un datamodel");
 			String typeModif = ((DataModel) o).getTypeModification();
 			if (arg instanceof User) {
+				System.out.println("arf est un user");
 				User u = (User)arg;
 				if (typeModif.equals("Add")) 
 					model.addElement(u.getHostName());
