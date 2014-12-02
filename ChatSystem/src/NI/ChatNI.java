@@ -88,6 +88,7 @@ public class ChatNI {
 	public void processHello(String hostname){
 		//if (!this.hostname.equals(hostname)) {
 			sendHelloAck(hostname);
+			this.controller.addToUserList(hostname);
 			System.out.println("Envoie de Helloack");
 		
 	}
