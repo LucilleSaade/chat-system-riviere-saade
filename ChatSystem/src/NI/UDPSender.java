@@ -71,9 +71,9 @@ public class UDPSender {
 	}
 
 	public AbstractMessage sendHelloAck(String hostname) throws UnknownHostException {
-		AbstractMessage hello = new HelloAck(this.hostname);
-		sendTo(hello, hostname);
-		return hello;
+		AbstractMessage helloack = new HelloAck(this.hostname);
+		sendTo(helloack, hostname);
+		return helloack;
 	}
 	
 	public AbstractMessage sendGoodbye() throws UnknownHostException {
