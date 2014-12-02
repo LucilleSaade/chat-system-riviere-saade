@@ -104,6 +104,12 @@ public class ConnectedWindow extends JFrame {
 	}
 
 
+	public VisualUserList getUl() {
+		return ul;
+	}
 
+	public void setUl(VisualUserList ul) {
+		this.ul = ul;
+	}
 
 }

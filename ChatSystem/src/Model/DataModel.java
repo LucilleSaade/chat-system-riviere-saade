@@ -2,17 +2,23 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.Observer;
+
+import Controller.Controller;
 
 public class DataModel extends Observable {
 	
 	private User localUser ;
+	private Controller controller;
 	private ArrayList<User> userList ;
 	private String typeModification ;
 	
-	public DataModel(User localUser) {
+	public DataModel(User localUser, Controller c) {
+		this.controller = c ;
 		this.setLocalUser(localUser);
 		this.setUserList(new ArrayList<User>());
 		this.typeModification = "Add" ;
+		this.addObserver(c.getGui().getConnectedWindow().getUl());
 	}
 	
 	/* UserList methods */
