@@ -94,6 +94,8 @@ public class ConnectedWindow extends JFrame {
 	}
 	
 	public void notifyConnection(String hostname) {
+		// si l'utilisateur n'est pas l'utilisateur local, on affiche le message
+		if (!controller.getModel().getLocalUser().getHostName().equals(hostname))
 		JOptionPane.showMessageDialog(this,hostname+" vient de se connecter.");
 	}
 	

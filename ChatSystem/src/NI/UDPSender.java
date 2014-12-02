@@ -48,6 +48,7 @@ public class UDPSender {
 				address = InetAddress.getByName(remoteIp);
 				System.out.println(address);
 			}
+			this.bos.reset();
 			// Serialisation de l'obj a envoyer
 			out = new ObjectOutputStream(this.bos);
 			out.flush();
