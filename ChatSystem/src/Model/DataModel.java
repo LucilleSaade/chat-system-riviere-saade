@@ -2,45 +2,49 @@ package Model;
 
 import java.util.ArrayList;
 import java.util.Observable;
+
+import javax.swing.DefaultListModel;
+
 import Controller.Controller;
 
-public class DataModel extends Observable {
-	
+public class DataModel {
+	//extends Observable
 	private User localUser ;
 	private Controller controller;
-	private ArrayList<User> userList ;
-	private String typeModification ;
+	private DefaultListModel<User> userList ;
+	//private String typeModification ;
 	
 	public DataModel(User localUser, Controller c) {
 		this.controller = c ;
 		this.setLocalUser(localUser);
-		this.setUserList(new ArrayList<User>());
-		this.typeModification = "Add" ;
-		this.addObserver(c.getGui().getConnectedWindow().getUl());
+		this.setUserList(new DefaultListModel<User>());
+		//this.typeModification = "Add" ;
+		//this.addObserver(c.getGui().getConnectedWindow().getUl());
 	}
 	
 	/* UserList methods */
-	
+	/*
 	public void notifyAdd(User u) {
 		this.typeModification = "Add" ;
         this.notifyObservers(u);
-	}
+	}*/
 	
 	public void addToList (User u) {
-		userList.add(u);
-		setChanged();
-		notifyAdd(u);
+		userList.addElement(u);
+		//setChanged();
+		//notifyAdd(u);
 	}
-	
+	/*
 	public void notifyRemove(User u) {
 		this.typeModification = "Remove" ;
         this.notifyObservers(u);
-	}
+	}*/
 	
 	public void removeFromList (User u) {
-		userList.remove(u);
-		setChanged();
-        this.notifyRemove(u);
+		//userList.remove(u);
+		userList.removeElement(u);
+		//setChanged();
+        //this.notifyRemove(u);
 	}
 	
 	public User getUserByHostname(String hostname) {
@@ -59,11 +63,11 @@ public class DataModel extends Observable {
 	}
 	
 
-	public ArrayList<User> getUserList() {
+	public DefaultListModel<User> getUserList() {
 		return userList;
 	}
 
-	public void setUserList(ArrayList<User> userList) {
+	public void setUserList(DefaultListModel<User> userList) {
 		this.userList = userList;
 	}
 	
@@ -76,14 +80,14 @@ public class DataModel extends Observable {
 	public void setLocalUser(User localUser) {
 		this.localUser = localUser;
 	}
-
+/*
 	public String getTypeModification() {
 		return typeModification;
 	}
 
 	public void setTypeModification(String typeModification) {
 		this.typeModification = typeModification;
-	}
+	}*/
 
 
 }
