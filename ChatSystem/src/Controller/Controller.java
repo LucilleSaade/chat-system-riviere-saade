@@ -108,13 +108,12 @@ public class Controller {
 	//////////////////////////////////////////
 	
 	public void addToUserList(String hostname) {
-		User u = new User(hostname,this);
-		this.model.addToList(u);
+		this.model.addToList(hostname);
 		this.gui.getConnectedWindow().notifyConnection(hostname);
 	}
 	
 	public void removeFromUserList(String hostname) {
-		//this.model.removeFromList(this.model.getUserByHostname(hostname));
+		this.model.removeFromList(hostname);
 		this.gui.getConnectedWindow().notifyDisconnection(hostname);
 	}
 	
