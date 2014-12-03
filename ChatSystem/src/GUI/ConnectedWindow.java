@@ -38,7 +38,6 @@ public class ConnectedWindow extends JFrame {
 	public ConnectedWindow(Controller c) {
 		this.controller = c;
 		this.ul = new VisualUserList() ;
-		//this.ul.addMouseListener(new SelectDestListener(c));
 		this.disconnectB = new DisconnectButton();
 		this.disconnectB.getbDisconnect().addActionListener(new DisconnectActionListener(c));
 		this.sendB = new SendButton();
@@ -55,11 +54,7 @@ public class ConnectedWindow extends JFrame {
 		this.histPanel = new JPanel();
 	}
 	
-	public void callInitComponents() {
-		initComponents();
-	}
-	
-	private void initComponents() {
+	public void initComponents() {
 		
 		disconnectPanel.setLayout(new BorderLayout());
 		disconnectPanel.add(disconnectB.getbDisconnect(),BorderLayout.CENTER);
@@ -80,7 +75,6 @@ public class ConnectedWindow extends JFrame {
 		histPanel.add(new JScrollPane(historicArea.getHist()),BorderLayout.CENTER);
 
 		chatPanel.setLayout(new BorderLayout());
-		//chatPanel.add(historicArea.getHist(),BorderLayout.CENTER);
 		chatPanel.add(histPanel,BorderLayout.CENTER);
 		chatPanel.add(txtPanel,BorderLayout.SOUTH);
 		chatPanel.setMinimumSize(new Dimension((int) (0.8*WIDTH), chatPanel.getHeight()));
@@ -106,19 +100,19 @@ public class ConnectedWindow extends JFrame {
 	public void notifyConnection(String hostname) {
 		// si l'utilisateur n'est pas l'utilisateur local, on affiche le message
 		if (!controller.getModel().getLocalUser().getHostName().equals(hostname))
-		JOptionPane.showMessageDialog(this,hostname+" vient de se connecter.");
+		JOptionPane.showMessageDialog(this,hostname+" is connected.");
 	}
 	
 	public void notifyDisconnection(String hostname) {
-		JOptionPane.showMessageDialog(this,hostname+" vient de se deconnecter.");
+		JOptionPane.showMessageDialog(this,hostname+" is disconnected.");
 	}
 	
 	public void notifyEmptyMessage() {
-		JOptionPane.showMessageDialog(this,"Vous ne pouvez pas envoyer un message vide.");
+		JOptionPane.showMessageDialog(this,"You can't send an empty message.");
 	}
 	
 	public void notifyEmptyDestList() {
-		JOptionPane.showMessageDialog(this,"Veuillez choisir au moins un destinataire en cliquant sur son pseudo.");
+		JOptionPane.showMessageDialog(this,"Please select at least one user.");
 	}
 	
 	//////////////////////////////////////////

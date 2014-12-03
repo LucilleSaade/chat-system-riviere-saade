@@ -7,7 +7,7 @@ public class DisconnectButton {
 	private JButton bDisconnect ;
 	
 	public DisconnectButton () {
-		this.setbDisconnect(new JButton("Deconnexion"));
+		this.setbDisconnect(new JButton("Disconnect"));
 	}
 
 	//////////////////////////////////////////

@@ -10,7 +10,7 @@ public class NicknameTextArea {
 	
 	public NicknameTextArea() {
 		this.nicknameTA = new JTextArea() ;
-		this.nicknameLabel = new JLabel ("Entrez votre nom d'utilisateur :");
+		this.nicknameLabel = new JLabel ("Nickname :");
 	}
 	
 	

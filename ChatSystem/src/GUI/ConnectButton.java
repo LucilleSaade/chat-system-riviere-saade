@@ -7,7 +7,7 @@ public class ConnectButton {
 	private JButton bConnect ;
 	
 	public ConnectButton () {
-		this.setbConnect(new JButton("Connexion"));
+		this.setbConnect(new JButton("Connect"));
 	}
 	
 	//////////////////////////////////////////

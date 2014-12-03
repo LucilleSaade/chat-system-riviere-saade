@@ -31,8 +31,8 @@ public class DisconnectedWindow extends JFrame implements ActionListener {
 	}
 	
 	private void initComponents() {
-		this.setTitle("Connexion au ChatSystem");
-        this.setSize(700, 80);
+		this.setTitle("Connection to the ChatSystem");
+        this.setSize(500, 80);
         this.setLocation(100, 100);
 		// configures the JFrame layout using a border layout
 		this.setLayout(new GridLayout(1,3));
@@ -50,10 +50,10 @@ public class DisconnectedWindow extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// on verifie que le nickname a ete saisi
 		if (this.nicknameArea.getNicknameTA().getText().equals("")) {
-			JOptionPane.showMessageDialog(this,"Veuillez saisir un nom d'utilisateur non vide");
+			JOptionPane.showMessageDialog(this,"You can't choose an empty nickname.");
 		}
 		else if (this.nicknameArea.getNicknameTA().getText().contains("@")) {
-			JOptionPane.showMessageDialog(this,"Votre nom d'utilisateur ne doit pas contenir le caractere @");
+			JOptionPane.showMessageDialog(this,"Your username can't contain the @ character.");
 		}
 		else {
 			String localNickname = this.nicknameArea.getNicknameTA().getText();
