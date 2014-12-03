@@ -23,9 +23,13 @@ public class Controller {
 	public void performConnect(String hostname) {
 		// fermeture de la disconnect window
 		this.gui.getDisconnectedWindow().dispose();
+		
+		
 		// ouverture de la connected window
+		//model = new DataModel(new User(hostname,this), this);
+		model = new DataModel(new User(hostname,this),this);
 		this.gui.setConnectedWindow(new ConnectedWindow(this));
-		model = new DataModel(new User(hostname,this), this);
+		this.getGui().getConnectedWindow().setUl(new VisualUserList(this));
 		this.ni = new ChatNI(this);
 		sendHello();
 	}
@@ -44,7 +48,7 @@ public class Controller {
 		
 	public void updateUsersDest(int i) {
 		//dest = destinateur sur lequel on a clique
-		String dest = (String) this.getGui().getConnectedWindow().getUl().getModel().get(i);
+		String dest = "";//(String) this.getGui().getConnectedWindow().getUl().getModel().get(i);
 		// si un message a envoyer a deja ete cree
 		if (this.getModel().getLocalUser().isCurrentMessageCree()) {
 			// si l'utilisateur n'est pas dans la liste : l'ajouter
@@ -103,12 +107,13 @@ public class Controller {
 	//////////////////////////////////////////
 	
 	public void addToUserList(String hostname) {
+		System.out.println("addtouserlist");
 		this.model.addToList(new User(hostname,this));
 		this.gui.getConnectedWindow().notifyConnection(hostname);
 	}
 	
 	public void removeFromUserList(String hostname) {
-		this.model.removeFromList(this.model.getUserByHostname(hostname));
+		//this.model.removeFromList(this.model.getUserByHostname(hostname));
 		this.gui.getConnectedWindow().notifyDisconnection(hostname);
 	}
 	

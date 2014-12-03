@@ -9,17 +9,27 @@ import javax.swing.JList;
 import Controller.Controller;
 import Model.*;
 
-public class VisualUserList {
+public class VisualUserList extends JList {
 	//implements Observer 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Controller c;
-	private JList userList;
+	//private JList userList;
 	private DefaultListModel model;
 	
+	public VisualUserList() {
+		super();
+		//this.setUserList(new JList());
+	}
+	
 	public VisualUserList(Controller c) {
+		super(c.getModel());
 		this.c = c;
-		this.model = c.getModel().getUserList();
-		this.setUserList(new JList(model));
+		this.model = c.getModel();
+		//this.setUserList(new JList(c.getModel()));
 		//this.model = new DefaultListModel();
 	}
 	
@@ -50,7 +60,7 @@ public class VisualUserList {
 	//////////////////////////////////////////
 	//         GETTER ET SETTER             //
 	//////////////////////////////////////////
-
+/*
 	public JList getUserList() {
 		return userList;
 	}
@@ -66,7 +76,7 @@ public class VisualUserList {
 	public void setModel(DefaultListModel model) {
 		this.model = model;
 	}
-
+*/
 
 
 }
