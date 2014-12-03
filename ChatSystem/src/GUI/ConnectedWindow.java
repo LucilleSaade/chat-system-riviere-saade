@@ -38,7 +38,6 @@ public class ConnectedWindow extends JFrame {
 	public ConnectedWindow(Controller c) {
 		this.controller = c;
 		this.ul = new VisualUserList() ;
-		//this.ul.getUserList().addMouseListener(new SelectDestListener(c));
 		this.ul.addMouseListener(new SelectDestListener(c));
 		this.disconnectB = new DisconnectButton();
 		this.disconnectB.getbDisconnect().addActionListener(new DisconnectActionListener(c));
@@ -54,7 +53,6 @@ public class ConnectedWindow extends JFrame {
 		this.txtPanel = new JPanel();
 		this.userListPanel = new JPanel();
 		this.histPanel = new JPanel();
-		//callInitComponents();
 	}
 	
 	public void callInitComponents() {
@@ -67,7 +65,6 @@ public class ConnectedWindow extends JFrame {
 		disconnectPanel.add(disconnectB.getbDisconnect(),BorderLayout.CENTER);
 		
 		userListPanel.setLayout(new BorderLayout());
-		//userListPanel.add(ul.getUserList(), BorderLayout.CENTER);
 		userListPanel.add(ul, BorderLayout.CENTER);
 	
 		sendPanel.setLayout(new GridLayout(2,1));
