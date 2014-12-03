@@ -30,7 +30,7 @@ public class UDPSender {
 		this.destPort = port;
 	}
 	
-	public void sendTo(AbstractMessage obj, String hostname) {
+	private void sendTo(AbstractMessage obj, String hostname) {
 		ObjectOutput out = null;
 		InetAddress address;
 		String remoteIp;

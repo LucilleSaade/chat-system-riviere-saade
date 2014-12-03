@@ -16,8 +16,6 @@ public class ChatNI {
 	private UDPSender usender;
 	private UDPReceiver ureceiver;
 	protected DatagramSocket soc ;
-	private Boolean hellosend;
-
 	
 	private int port = 9876;
 	
@@ -31,8 +29,7 @@ public class ChatNI {
 			this.soc.setBroadcast(true);
 			this.usender = new UDPSender(this.hostname, this.port, soc);
 			this.ureceiver = new UDPReceiver(this, this.hostname, soc);	
-			this.hellosend = false;
-
+			
 			ureceiver.start(); // TODO
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
@@ -50,7 +47,6 @@ public class ChatNI {
 	public void sendHello() {
 		try {
 			this.usender.sendHello();
-			this.hellosend=true;
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
