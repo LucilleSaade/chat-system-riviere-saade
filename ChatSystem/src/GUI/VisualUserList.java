@@ -26,10 +26,15 @@ public class VisualUserList implements Observer {
 			if (arg instanceof User) {
 				System.out.println("arg est un user");
 				User u = (User)arg;
-				if (typeModif.equals("Add")) 
+				if (typeModif.equals("Add")) { 
 					model.addElement(u.getHostName());
-				else if (typeModif.equals("Remove"))
+					System.out.println("add");
+				}
+				else if (typeModif.equals("Remove")) {
 					model.removeElement(u.getHostName());
+					System.out.println("remove");
+				}
+				System.out.println("userlist modifee");
 				this.userList = new JList(model);
 			}
 		}
