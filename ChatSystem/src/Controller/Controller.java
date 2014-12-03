@@ -30,6 +30,7 @@ public class Controller {
 		model = new DataModel(new User(hostname,this),this);
 		this.gui.setConnectedWindow(new ConnectedWindow(this));
 		this.getGui().getConnectedWindow().setUl(new VisualUserList(this));
+		this.getGui().getConnectedWindow().callInitComponents();
 		this.ni = new ChatNI(this);
 		sendHello();
 	}
