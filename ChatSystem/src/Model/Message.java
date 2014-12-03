@@ -16,8 +16,11 @@ public class Message {
 		this.contenu = contenu;
 	}
 	
-	public void addDests (List<String> listDest) {
-		this.listDest = new ArrayList<String>(listDest);
+	public void addDests (Object[] tabDests) {
+		this.listDest = new ArrayList<String>();
+		for (int i = 0; i < tabDests.length; i++) {
+			listDest.add((String) tabDests[i]);
+		}
 	}
 	
 	

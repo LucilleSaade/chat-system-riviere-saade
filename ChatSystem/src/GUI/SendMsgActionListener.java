@@ -20,13 +20,13 @@ public class SendMsgActionListener implements ActionListener {
 		
 		String contenuToSend = cont.getGui().getConnectedWindow().getSendTextArea().getTxtArea().getText();
 	
-		if (cont.getGui().getConnectedWindow().getUl().getSelectedValuesList().isEmpty())
+		if (cont.getGui().getConnectedWindow().getUl().getSelectedValues().length == 0)
 			cont.notifyEmptyDestList();
 		else if (contenuToSend.equals("")) {
 			cont.notifyEmptyMessage() ;
 		}
 		else {
-			List listDest = cont.getGui().getConnectedWindow().getUl().getSelectedValuesList();
+			Object[] listDest = cont.getGui().getConnectedWindow().getUl().getSelectedValues();
 			String emetteur = cont.getModel().getLocalUser().getHostName();
 			TxtMessage messageToSend = new TxtMessage(emetteur,contenuToSend);
 			messageToSend.addDests(listDest);
