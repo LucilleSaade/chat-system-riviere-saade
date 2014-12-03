@@ -17,7 +17,7 @@ public class ChatNI {
 	private UDPReceiver ureceiver;
 	protected DatagramSocket soc ;
 	
-	private int port = 9876;
+	private int port = 9877;
 	
 	
 
