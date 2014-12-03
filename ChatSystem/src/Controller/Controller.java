@@ -31,7 +31,7 @@ public class Controller {
 		this.gui.setConnectedWindow(new ConnectedWindow(this));
 		this.getGui().getConnectedWindow().setUl(new VisualUserList(this));
 		this.getModel().getLocalUser().addObserverToHistArea();
-		this.getGui().getConnectedWindow().callInitComponents();
+		this.getGui().getConnectedWindow().initComponents();
 		this.ni = new ChatNI(this);
 		sendHello();
 	}
@@ -65,9 +65,6 @@ public class Controller {
 		String contenu = m.getContenu();
 		// on ajoute le message dans la liste des messages
 		this.getModel().getLocalUser().addTxtMessage(m);
-		// on reset le currentmessage
-		this.getModel().getLocalUser().setCurrentMessage(null);
-		this.getModel().getLocalUser().setCurrentMessageCree(false);
 		// on envoie le message
 		this.ni.sendMessage(Dest, contenu);
 	}
