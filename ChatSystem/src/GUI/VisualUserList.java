@@ -3,7 +3,6 @@ package GUI;
 import javax.swing.JList;
 
 import Controller.Controller;
-import Model.*;
 
 public class VisualUserList extends JList {
 	

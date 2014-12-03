@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import Controller.Controller;
 import Model.*;
@@ -17,23 +18,19 @@ public class SendMsgActionListener implements ActionListener {
 
 	public void actionPerformed(ActionEvent arg0) {
 		
-		// si aucun message n'a ete cree
-		// alors il faut choisir au moins un dest + ecrire contenu
-		if (!cont.getModel().getLocalUser().isCurrentMessageCree()){
+		String contenuToSend = cont.getGui().getConnectedWindow().getSendTextArea().getTxtArea().getText();
+	
+		if (cont.getGui().getConnectedWindow().getUl().getSelectedValuesList().isEmpty())
 			cont.notifyEmptyDestList();
+		else if (contenuToSend.equals("")) {
+			cont.notifyEmptyMessage() ;
 		}
 		else {
-			TxtMessage messageToSend = (TxtMessage) cont.getModel().getLocalUser().getCurrentMessage() ;
-			String contenuToSend = cont.getGui().getConnectedWindow().getSendTextArea().getTxtArea().getText();
-			// si le contenu est vide
-			if (contenuToSend.equals("")) {
-				cont.notifyEmptyMessage() ;
-			}
-			else {
-				// si le message est correct : contenu non vide + dest OK
-				messageToSend.setContenu(contenuToSend);
-				cont.sendMessage(messageToSend);				
-			}
+			List listDest = cont.getGui().getConnectedWindow().getUl().getSelectedValuesList();
+			String emetteur = cont.getModel().getLocalUser().getHostName();
+			TxtMessage messageToSend = new TxtMessage(emetteur,contenuToSend);
+			messageToSend.addDests(listDest);
+			cont.sendMessage(messageToSend);				
 		}
 	}
 }

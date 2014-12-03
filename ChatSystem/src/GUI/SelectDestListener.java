@@ -9,19 +9,22 @@ import Controller.Controller;
 
 public class SelectDestListener implements MouseListener {
 	
+	// jlist.getselectedvalueslist()
+	/*
 	private Controller cont;
 	
 	public SelectDestListener(Controller cont){
 		super();
 		this.cont = cont;
 	}
-
+*/
 	public void mouseClicked(MouseEvent arg0) {
+		/*
 		JList userList = cont.getGui().getConnectedWindow().getUl();
 		//JList userList = cont.getGui().getConnectedWindow().getUl().getUserList().getSelectedValuesList();
 		int i = userList.locationToIndex(arg0.getPoint());
 		if(i != -1)
-			cont.updateUsersDest(i);
+			cont.updateUsersDest(i);*/
 	}
 
 	@Override
