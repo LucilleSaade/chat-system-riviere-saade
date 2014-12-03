@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Message {
 	
@@ -14,6 +15,11 @@ public class Message {
 		this.emetteur = emetteur;
 		this.contenu = contenu;
 	}
+	
+	public void addDests (List<String> listDest) {
+		this.listDest = new ArrayList<String>(listDest);
+	}
+	
 	
 	public void addDest(String d) {
 		this.listDest.add(d);

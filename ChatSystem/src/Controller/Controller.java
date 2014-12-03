@@ -30,6 +30,7 @@ public class Controller {
 		model = new DataModel(new User(hostname,this),this);
 		this.gui.setConnectedWindow(new ConnectedWindow(this));
 		this.getGui().getConnectedWindow().setUl(new VisualUserList(this));
+		this.getModel().getLocalUser().addObserverToHistArea();
 		this.getGui().getConnectedWindow().callInitComponents();
 		this.ni = new ChatNI(this);
 		sendHello();
@@ -46,7 +47,7 @@ public class Controller {
 	//////////////////////////////////////////
 	//       ENVOI DE MESSAGES              //
 	//////////////////////////////////////////
-		
+		/*
 	public void updateUsersDest(int i) {
 		//dest = destinateur sur lequel on a clique
 		String dest = "";//(String) this.getGui().getConnectedWindow().getUl().getModel().get(i);
@@ -72,7 +73,7 @@ public class Controller {
 		}
 		
 	}
-	
+	*/
 	
 	
 	//////////////////////////////////////////
