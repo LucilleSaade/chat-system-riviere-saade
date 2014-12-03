@@ -1,5 +1,6 @@
 package GUI;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -20,7 +21,11 @@ public class HistoricArea implements Observer {
 			if (arg instanceof TxtMessage) {
 				String emetteur = ((TxtMessage) arg).getEmetteur();
 				String mess = ((TxtMessage) arg).getContenu();
-				this.hist.append(emetteur+" : "+mess+"\n");
+				ArrayList<String> listDest = ((TxtMessage) arg).getListDest();
+				this.hist.append(emetteur+" to ");
+				for (String s : listDest)
+					this.hist.append(s+" ");
+				this.hist.append(" : \n"+mess+"\n\n");
 			}				
 		}
 	}
