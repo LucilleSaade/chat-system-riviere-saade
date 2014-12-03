@@ -54,6 +54,10 @@ public class ConnectedWindow extends JFrame {
 		this.txtPanel = new JPanel();
 		this.userListPanel = new JPanel();
 		this.histPanel = new JPanel();
+		//callInitComponents();
+	}
+	
+	public void callInitComponents() {
 		initComponents();
 	}
 	
