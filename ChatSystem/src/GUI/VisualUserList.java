@@ -6,18 +6,25 @@ import java.util.Observer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 
+import Controller.Controller;
 import Model.*;
 
-public class VisualUserList implements Observer {
+public class VisualUserList {
+	//implements Observer 
 	
+	private Controller c;
 	private JList userList;
 	private DefaultListModel model;
 	
-	public VisualUserList() {
-		this.setUserList(new JList());
-		this.model = new DefaultListModel();
+	public VisualUserList(Controller c) {
+		this.c = c;
+		this.model = c.getModel().getUserList();
+		this.setUserList(new JList(model));
+		//this.model = new DefaultListModel();
 	}
 	
+	
+	/*
 	public void update(Observable o, Object arg) {
 		System.out.println("update");
 		if (o instanceof DataModel) {
@@ -38,7 +45,7 @@ public class VisualUserList implements Observer {
 				this.userList = new JList(model);
 			}
 		}
-	}
+	}*/
 
 	//////////////////////////////////////////
 	//         GETTER ET SETTER             //
@@ -59,9 +66,6 @@ public class VisualUserList implements Observer {
 	public void setModel(DefaultListModel model) {
 		this.model = model;
 	}
-
-
-
 
 
 

@@ -37,7 +37,7 @@ public class ConnectedWindow extends JFrame {
 	
 	public ConnectedWindow(Controller c) {
 		this.controller = c;
-		this.ul = new VisualUserList() ;
+		this.ul = new VisualUserList(c) ;
 		this.ul.getUserList().addMouseListener(new SelectDestListener(c));
 		this.disconnectB = new DisconnectButton();
 		this.disconnectB.getbDisconnect().addActionListener(new DisconnectActionListener(c));
