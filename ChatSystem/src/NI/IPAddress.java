@@ -25,16 +25,13 @@ public class IPAddress {
 		
 		while(en.hasMoreElements()){
 		    NetworkInterface ni=(NetworkInterface) en.nextElement();
-		    System.out.println(ni.getName());
 		    Enumeration ee = ni.getInetAddresses();
 		    while(ee.hasMoreElements()) {
 		    	while(ee.hasMoreElements()) {
 			        InetAddress ia= (InetAddress) ee.nextElement();
-			        System.out.println("coucou");
 			        if(!ia.isLoopbackAddress() & !ia.isLinkLocalAddress() & !find){
 			        	hostname = name + "@" + ia.getHostAddress();
 			        	find = true;
-			        	System.out.println(hostname);
 			        }
 			    }
 		    }
