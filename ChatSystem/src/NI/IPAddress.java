@@ -15,7 +15,9 @@ public class IPAddress {
 	
 	// Renvoie un nickname = "name@IP_du_localhost"
 	public static String concatLocalhostIP(String name) throws UnknownHostException {
-		return name + "@" + InetAddress.getLocalHost().getHostName();
+		String hostname = name + "@" + InetAddress.getLocalHost().getHostAddress();
+		System.out.println(hostname);
+		return hostname;
 	}
 	
 }
