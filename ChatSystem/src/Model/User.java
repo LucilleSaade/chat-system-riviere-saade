@@ -19,6 +19,7 @@ public class User extends Observable {
 		this.messages = new ArrayList<Message>();
 		this.currentMessageCree = false;		
 	}
+
 	
 	public void addObserverToHistArea () {
 		this.addObserver(this.controller.getGui().getConnectedWindow().getHistoricArea());

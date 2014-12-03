@@ -7,7 +7,7 @@ import javax.swing.DefaultListModel;
 
 import Controller.Controller;
 
-public class DataModel extends DefaultListModel<User> {
+public class DataModel extends DefaultListModel {
 	//extends Observable
 	private User localUser ;
 	private Controller controller;
@@ -32,7 +32,7 @@ public class DataModel extends DefaultListModel<User> {
 	
 	public void addToList (User u) {
 		//userList.addElement(u);
-		this.addElement(u);
+		this.addElement(u.getHostName());
 		//setChanged();
 		//notifyAdd(u);
 	}
@@ -45,7 +45,7 @@ public class DataModel extends DefaultListModel<User> {
 	public void removeFromList (User u) {
 		//userList.remove(u);
 		//userList.removeElement(u);
-		this.removeElement(u);
+		this.removeElement(u.getHostName());
 		//setChanged();
         //this.notifyRemove(u);
 	}

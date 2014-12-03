@@ -108,8 +108,8 @@ public class Controller {
 	//////////////////////////////////////////
 	
 	public void addToUserList(String hostname) {
-		System.out.println("addtouserlist");
-		this.model.addToList(new User(hostname,this));
+		User u = new User(hostname,this);
+		this.model.addToList(u);
 		this.gui.getConnectedWindow().notifyConnection(hostname);
 	}
 	
