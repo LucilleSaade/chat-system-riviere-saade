@@ -18,8 +18,11 @@ public class IPAddress {
 	
 	// Renvoie un nickname = "name@IP_du_localhost"
 	public static String concatLocalhostIP(String name) throws UnknownHostException, SocketException {
+		
+		boolean find = false;
 		String hostname = "0";
 		Enumeration en = NetworkInterface.getNetworkInterfaces();
+		
 		while(en.hasMoreElements()){
 		    NetworkInterface ni=(NetworkInterface) en.nextElement();
 		    System.out.println(ni.getName());
@@ -28,9 +31,11 @@ public class IPAddress {
 		    	while(ee.hasMoreElements()) {
 			        InetAddress ia= (InetAddress) ee.nextElement();
 			        System.out.println("coucou");
-			        if(!ia.isLoopbackAddress() & !ia.isLinkLocalAddress())
+			        if(!ia.isLoopbackAddress() & !ia.isLinkLocalAddress() & !find){
 			        	hostname = name + "@" + ia.getHostAddress();
+			        	find = true;
 			        	System.out.println(hostname);
+			        }
 			    }
 		    }
 		 }
