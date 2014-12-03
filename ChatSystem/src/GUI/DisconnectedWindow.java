@@ -3,6 +3,7 @@ package GUI;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 
 import javax.swing.JFrame;
@@ -62,6 +63,9 @@ public class DisconnectedWindow extends JFrame implements ActionListener {
 				controller.performConnect(localHostname);
 			} catch (UnknownHostException e) {
 				System.out.println("Erreur lors du actionPerformed du boutton connect : localhost not found");
+			} catch (SocketException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 
 		}					
