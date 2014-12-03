@@ -43,38 +43,7 @@ public class Controller {
 		// TODO : fermer threads / sockets ??
 		System.exit(0);
 	}
-	
-	//////////////////////////////////////////
-	//       ENVOI DE MESSAGES              //
-	//////////////////////////////////////////
-		/*
-	public void updateUsersDest(int i) {
-		//dest = destinateur sur lequel on a clique
-		String dest = "";//(String) this.getGui().getConnectedWindow().getUl().getModel().get(i);
-		// si un message a envoyer a deja ete cree
-		if (this.getModel().getLocalUser().isCurrentMessageCree()) {
-			// si l'utilisateur n'est pas dans la liste : l'ajouter
-			boolean estPresent = false;
-			for (String d : this.getModel().getLocalUser().getCurrentMessage().getListDest()) {
-				if (d.equals(dest)) {
-					estPresent = true;
-				}
-			}
-			if (!estPresent)
-				this.getModel().getLocalUser().getCurrentMessage().addDest(dest);
-			else // si l'utilisateur est dans la liste : l'enlever
-				this.getModel().getLocalUser().getCurrentMessage().removeDest(dest);
-		}
-		else {
-			Message m = new Message(this.getModel().getLocalUser().getHostName(),"");
-			this.getModel().getLocalUser().getCurrentMessage().addDest(dest);
-			this.getModel().getLocalUser().setCurrentMessage(m);
-			this.getModel().getLocalUser().setCurrentMessageCree(true);
-		}
-		
-	}
-	*/
-	
+
 	
 	//////////////////////////////////////////
 	//       A DESTINATION CHATNI           //
