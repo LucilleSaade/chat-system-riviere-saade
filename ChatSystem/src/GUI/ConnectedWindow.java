@@ -37,8 +37,9 @@ public class ConnectedWindow extends JFrame {
 	
 	public ConnectedWindow(Controller c) {
 		this.controller = c;
-		this.ul = new VisualUserList(c) ;
-		this.ul.getUserList().addMouseListener(new SelectDestListener(c));
+		this.ul = new VisualUserList() ;
+		//this.ul.getUserList().addMouseListener(new SelectDestListener(c));
+		this.ul.addMouseListener(new SelectDestListener(c));
 		this.disconnectB = new DisconnectButton();
 		this.disconnectB.getbDisconnect().addActionListener(new DisconnectActionListener(c));
 		this.sendB = new SendButton();
@@ -62,7 +63,8 @@ public class ConnectedWindow extends JFrame {
 		disconnectPanel.add(disconnectB.getbDisconnect(),BorderLayout.CENTER);
 		
 		userListPanel.setLayout(new BorderLayout());
-		userListPanel.add(ul.getUserList(), BorderLayout.CENTER);
+		//userListPanel.add(ul.getUserList(), BorderLayout.CENTER);
+		userListPanel.add(ul, BorderLayout.CENTER);
 	
 		sendPanel.setLayout(new GridLayout(2,1));
 		sendPanel.add(sendB.getbSend());

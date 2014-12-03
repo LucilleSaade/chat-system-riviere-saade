@@ -7,17 +7,18 @@ import javax.swing.DefaultListModel;
 
 import Controller.Controller;
 
-public class DataModel {
+public class DataModel extends DefaultListModel<User> {
 	//extends Observable
 	private User localUser ;
 	private Controller controller;
-	private DefaultListModel<User> userList ;
+	//private DefaultListModel<User> userList ;
 	//private String typeModification ;
 	
 	public DataModel(User localUser, Controller c) {
 		this.controller = c ;
 		this.setLocalUser(localUser);
-		this.setUserList(new DefaultListModel<User>());
+		
+		//this.setUserList(new DefaultListModel<User>());
 		//this.typeModification = "Add" ;
 		//this.addObserver(c.getGui().getConnectedWindow().getUl());
 	}
@@ -30,7 +31,8 @@ public class DataModel {
 	}*/
 	
 	public void addToList (User u) {
-		userList.addElement(u);
+		//userList.addElement(u);
+		this.addElement(u);
 		//setChanged();
 		//notifyAdd(u);
 	}
@@ -42,11 +44,12 @@ public class DataModel {
 	
 	public void removeFromList (User u) {
 		//userList.remove(u);
-		userList.removeElement(u);
+		//userList.removeElement(u);
+		this.removeElement(u);
 		//setChanged();
         //this.notifyRemove(u);
 	}
-	
+	/*
 	public User getUserByHostname(String hostname) {
 		boolean trouve = false;
 		User u;
@@ -61,8 +64,8 @@ public class DataModel {
 		System.out.println("Erreur getUserByHostname : Utilisateur non trouve");
 		return null;		
 	}
-	
-
+	*/
+/*
 	public DefaultListModel<User> getUserList() {
 		return userList;
 	}
@@ -70,7 +73,7 @@ public class DataModel {
 	public void setUserList(DefaultListModel<User> userList) {
 		this.userList = userList;
 	}
-	
+	*/
 	/* Local user methods */
 	
 	public User getLocalUser() {
@@ -87,7 +90,7 @@ public class DataModel {
 
 	public void setTypeModification(String typeModification) {
 		this.typeModification = typeModification;
-	}*/
-
+	}
+*/
 
 }

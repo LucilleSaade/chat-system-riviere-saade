@@ -17,7 +17,8 @@ public class SelectDestListener implements MouseListener {
 	}
 
 	public void mouseClicked(MouseEvent arg0) {
-		JList userList = cont.getGui().getConnectedWindow().getUl().getUserList();
+		JList userList = cont.getGui().getConnectedWindow().getUl();
+		//JList userList = cont.getGui().getConnectedWindow().getUl().getUserList().getSelectedValuesList();
 		int i = userList.locationToIndex(arg0.getPoint());
 		if(i != -1)
 			cont.updateUsersDest(i);
