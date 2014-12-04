@@ -49,16 +49,16 @@ public class UDPReceiver extends Thread {
 					this.ni.processHello(helloSerialise.getNickname());
 				} else if (aMessage.getTypeContenu() == typeContenu.HELLOACK) {
 					HelloAck helloackSerialise = (HelloAck) aMessage;
-					this.ni.processHelloAck(helloackSerialise.getNickname());
 					System.out.println(helloackSerialise.getNickname() + " : C'est un HELLOACK ! " );
+					this.ni.processHelloAck(helloackSerialise.getNickname());
 				} else if (aMessage.getTypeContenu() == typeContenu.GOODBYE) {
 					Goodbye goodbyeSerialise = (Goodbye) aMessage;
-					this.ni.processGoodbye(goodbyeSerialise.getNickname());
 					System.out.println(goodbyeSerialise.getNickname() + " : C'est un GOODBYE ! ");
+					this.ni.processGoodbye(goodbyeSerialise.getNickname());
 				} else if (aMessage.getTypeContenu() == typeContenu.TEXTMESSAGE) {
 					TextMessage msg = (TextMessage) aMessage;
-					this.ni.processMessage(msg.getNickname(), msg.getMessage());
 					System.out.println(msg.getNickname() + ":" + msg.getMessage());
+					this.ni.processMessage(msg.getNickname(), msg.getMessage());
 				}
 			}
 		} catch (Exception e) {
