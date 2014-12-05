@@ -115,6 +115,8 @@ public class ConnectedWindow extends JFrame {
 		JOptionPane.showMessageDialog(this,"Please select at least one user.");
 	}
 	
+
+	
 	//////////////////////////////////////////
 	//         GETTER ET SETTER             //
 	//////////////////////////////////////////
