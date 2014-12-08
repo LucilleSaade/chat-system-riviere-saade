@@ -40,7 +40,7 @@ public class TCPSender extends Thread {
 	
 	
 	public void run() {
-        byte[] bufOut;
+        byte[] bufOut = new byte[(int) file.length()];
         FileInputStream fis;
         Socket soc;
 		try {
