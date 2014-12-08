@@ -9,9 +9,9 @@ public class TCPServer extends Thread {
 	private Socket soc;
 	
 	public TCPServer(ChatNI ni, String hostname, Socket soc){
-		this.setHostname(hostname);
-		this.setNi(ni);
-		this.setSoc(soc);
+		this.hostname = hostname;
+		this.ni = ni;
+		this.soc = soc;
 	}
 
 	
