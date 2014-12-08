@@ -1,5 +1,6 @@
 package NI;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.Socket;
@@ -17,12 +18,10 @@ public class ChatNI {
 	private UDPSender usender;
 	private UDPReceiver ureceiver;
 	private TCPServer tserver;
-	private TCPSender tsender;
 	private DatagramSocket soc ;
-	private Socket socTcp;
 	
 	private int portUDP = 9876;
-	private int portTCP = 6789 ;
+	private int portTCP = 6789;
 	
 	
 
@@ -31,7 +30,6 @@ public class ChatNI {
 			this.controller = control;
 			this.hostname = this.controller.getModel().getLocalUser().getHostName();
 			this.soc = new DatagramSocket(this.portUDP);
-			this.socTcp = new Socket(this.hostname, this.portTCP);
 			this.soc.setBroadcast(true);
 			this.usender = new UDPSender(this.hostname, this.portUDP, soc);
 			this.ureceiver = new UDPReceiver(this, this.hostname, soc);
@@ -112,6 +110,18 @@ public class ChatNI {
 	public void processMessage(String hostname, String msg){
 		this.controller.messageReceived(hostname, msg);
 	}
+
+	
+	//////////////////////////////////////////
+	//           POUR TCP SENDER            //
+	//////////////////////////////////////////
+	
+	public void sendFile(File file, ArrayList<String> dest) {
+		TCPSender tsender = new TCPSender(this.hostname, dest, file, this.portTCP);
+		tsender.start();
+	}
+	
+	
 	
 	//////////////////////////////////////////
 	//         GETTER ET SETTER             //
@@ -150,14 +160,6 @@ public class ChatNI {
 		return soc;
 	}
 	
-	public Socket getSocTcp() {
-		return socTcp;
-	}
-
-	public void setSocTcp(Socket socTcp) {
-		this.socTcp = socTcp;
-	}
-
 	public TCPServer getTserver() {
 		return tserver;
 	}
@@ -166,12 +168,4 @@ public class ChatNI {
 		this.tserver = tserver;
 	}
 	
-
-	public TCPSender getTsender() {
-		return tsender;
-	}
-
-	public void setTsender(TCPSender tsender) {
-		this.tsender = tsender;
-	}
 }

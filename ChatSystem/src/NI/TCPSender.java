@@ -12,37 +12,64 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.ListIterator;
+
+import Signals.FileMessage;
 
 public class TCPSender extends Thread {
-	private String hostname;
+	private String user;
+	private ArrayList<String> dest;
 	private ByteArrayOutputStream bos;
 	private ChatNI ni;
-	private Socket soc;
+	private File file;
+	private FileMessage fmsg;
+	private int port;
 	
 	
-	public TCPSender(ChatNI ni, String hostname, Socket soc, File file){
-		this.hostname = hostname;
+	
+	public TCPSender(String user, ArrayList<String> dest, File file, int port){
+		this.user= user;
+		this.dest = dest;
 		this.bos = new ByteArrayOutputStream((int) file.length());
-		this.ni = ni;
-		this.soc = soc;
+		this.port = port;
+		this.file = file;
+		this.fmsg = new FileMessage(file.getName(), dest, file.length());
+		this.fmsg.setNickname(user);
 	}
 	
 	
-	public void transfert(File file) {
-        byte[] bufOut = new byte[(int) file.length()];
-        FileOutputStream fos;
+	public void run() {
+        byte[] bufOut;
+        FileInputStream fis;
+        Socket soc;
 		try {
-			fos = new FileOutputStream(file);
-	        ObjectOutputStream oos= new ObjectOutputStream(fos);
-	        
-	        // Ecriture dans le flux de sortie
-	        oos.writeObject(file);
-	        // Vide le tampon
-	        oos.flush();
-	        bufOut = this.bos.toByteArray();
+			ListIterator<String> itr = dest.listIterator();
+			while(itr.hasNext()){
+				soc = new Socket(IPAddress.getIPaddress(itr.next()), this.port);
+				//Preparation des objets necessaires pour l'envoie des file et filemsg
+				OutputStream os = soc.getOutputStream();
+		        ObjectOutputStream oos= new ObjectOutputStream(bos);
+		        
+		        // Ecriture dans le flux de sortie, envoie du file message ne contenant que le nom et la taille du fichier
+		        oos.writeObject(this.fmsg);
 	
-	    	oos.close();
-	    	fos.close();
+		        fis = new FileInputStream(this.file);
+		        bufOut = this.bos.toByteArray();
+		        
+		        //Ecriture du file dans le bufOut
+		        fis.read(bufOut);
+		        //Envoie du file
+		        os.write(bufOut);
+		        
+		        // Vide le tampon
+		        oos.flush();
+	
+		    	fis.close();
+		    	oos.close();
+		    	os.close();
+		    	soc.close();
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,12 +86,12 @@ public class TCPSender extends Thread {
 	//         GETTER ET SETTER             //
 	//////////////////////////////////////////	
 	
-	public String getHostname() {
-		return hostname;
+	public ArrayList<String> getDest() {
+		return dest;
 	}
 
-	public void setHostname(String hostname) {
-		this.hostname = hostname;
+	public void setDest(ArrayList<String> dest) {
+		this.dest = dest;
 	}
 
 	public ChatNI getNi() {
@@ -74,15 +101,6 @@ public class TCPSender extends Thread {
 	public void setNi(ChatNI ni) {
 		this.ni = ni;
 	}
-
-	public Socket getSoc() {
-		return soc;
-	}
-
-	public void setSoc(Socket soc) {
-		this.soc = soc;
-	}
-
 
 	public ByteArrayOutputStream getBos() {
 		return bos;
