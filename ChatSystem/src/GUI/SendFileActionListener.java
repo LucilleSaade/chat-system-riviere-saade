@@ -29,21 +29,6 @@ public class SendFileActionListener implements ActionListener {
 		return fichier;
 	}
 	
-	/*
-	
-	public byte[] convertFileToByte (File fichier) {
-		byte[] fileByte = new byte[(int) fichier.length()];
-        FileInputStream fileInputStream;
-		try {
-			fileInputStream = new FileInputStream(fichier);
-			fileInputStream.read(fileByte);
-		} catch (FileNotFoundException e1) {
-			System.out.println("File not found");
-		} catch (IOException e) {
-			System.out.println("IOException : convertFileToByte error");
-		}
-        return fileByte;
-	}*/
 
 	public void actionPerformed(ActionEvent arg0) {
 		File fichier = selectFile();
