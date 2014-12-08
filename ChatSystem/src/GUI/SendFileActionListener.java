@@ -3,13 +3,11 @@ package GUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import javax.swing.JFileChooser;
 
 import Controller.Controller;
+import Model.FileMessage;
 
 public class SendFileActionListener implements ActionListener {
 	
@@ -28,18 +26,22 @@ public class SendFileActionListener implements ActionListener {
 		}		
 		return fichier;
 	}
-	
 
 	public void actionPerformed(ActionEvent arg0) {
 		File fichier = selectFile();
-		/*
+				
 		if (fichier == null) {
 			System.out.println("Erreur : Fichier null");
 		}
+		else if (cont.getGui().getConnectedWindow().getUl().getSelectedValues().length == 0)
+			cont.notifyEmptyDestList();
 		else {
-			byte[] fileByte = convertFileToByte(fichier);
-
-		}*/
+			Object[] listDest = cont.getGui().getConnectedWindow().getUl().getSelectedValues();
+			String emetteur = cont.getModel().getLocalUser().getHostName();
+			FileMessage fileToSend = new FileMessage(emetteur, fichier);
+			fileToSend.addDests(listDest);
+			cont.sendFile(fileToSend);				
+		}
 	}
 	
 	//////////////////////////////////////////
