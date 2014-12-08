@@ -42,6 +42,7 @@ public class User extends Observable {
 		setChanged();
 		notifyObservers(f);
 	}
+	
 
 	
 	//////////////////////////////////////////

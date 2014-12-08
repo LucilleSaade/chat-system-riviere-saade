@@ -1,21 +1,40 @@
 package NI;
 
+import java.io.IOException;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 
 public class TCPServer extends Thread {
 	private String hostname;
+	private ServerSocket server;
 	private ChatNI ni;
-	private Socket soc;
+	private int port;
 	
-	public TCPServer(ChatNI ni, String hostname, Socket soc){
+
+	public TCPServer (String hostname, ServerSocket server, ChatNI ni, int port) {
 		this.hostname = hostname;
+		//this.server = new ServerSocket(port);
+		this.server = server;
 		this.ni = ni;
-		this.soc = soc;
+		this.port = port;
+
+	}
+	
+	public void run() {	
+		Socket soc;
+		while(true) {
+			try {
+				soc = server.accept();
+		 		// TODO TCPReceiver receiver = new TCPReceiver(soc);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
-	
-	
+		
 	
 	//////////////////////////////////////////
 	//         GETTER ET SETTER             //
@@ -37,12 +56,5 @@ public class TCPServer extends Thread {
 		this.ni = ni;
 	}
 
-	public Socket getSoc() {
-		return soc;
-	}
-
-	public void setSoc(Socket soc) {
-		this.soc = soc;
-	}
-
 }
+
