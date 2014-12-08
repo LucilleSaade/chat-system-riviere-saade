@@ -3,6 +3,9 @@ package GUI;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -11,7 +14,7 @@ import javax.swing.JSplitPane;
 
 import Controller.Controller;
 
-public class ConnectedWindow extends JFrame {
+public class ConnectedWindow extends JFrame implements WindowListener {
 	
 	/**
 	 * 
@@ -52,6 +55,7 @@ public class ConnectedWindow extends JFrame {
 		this.txtPanel = new JPanel();
 		this.userListPanel = new JPanel();
 		this.histPanel = new JPanel();
+		addWindowListener(this);
 	}
 	
 	public void initComponents() {
@@ -144,6 +148,46 @@ public class ConnectedWindow extends JFrame {
 
 	public void setHistoricArea(HistoricArea historicArea) {
 		this.historicArea = historicArea;
+	}
+
+	@Override
+	public void windowActivated(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void windowClosed(WindowEvent arg0) {
+		// TODO Auto-generated method stub	
+	}
+
+	
+	public void windowClosing(WindowEvent arg0) {
+		controller.performDisconnect();	
+		
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowIconified(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowOpened(WindowEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

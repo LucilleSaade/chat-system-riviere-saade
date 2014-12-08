@@ -1,5 +1,6 @@
 package Controller;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import Model.*;
@@ -43,6 +44,12 @@ public class Controller {
 		// TODO : fermer threads / sockets ??
 		System.exit(0);
 	}
+	
+
+	
+	public void performReceivedFile() {
+		
+	}
 
 	
 	//////////////////////////////////////////
@@ -67,6 +74,13 @@ public class Controller {
 		this.getModel().getLocalUser().addTxtMessage(m);
 		// on envoie le message
 		this.ni.sendMessage(Dest, contenu);
+	}
+	
+	public void sendFile(FileMessage f) {
+		ArrayList<String> Dest = f.getListDest(); 
+		this.getModel().getLocalUser().addSentFile(f);
+		// on envoie le message
+		// TODO this.ni.sendFile();
 	}
 	
 	
