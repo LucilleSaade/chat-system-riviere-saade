@@ -6,17 +6,13 @@ import java.net.Socket;
 
 
 public class TCPServer extends Thread {
-	private String hostname;
 	private ServerSocket server;
-	private ChatNI ni;
 	private int port;
 	
 
-	public TCPServer (String hostname, ServerSocket server, ChatNI ni, int port) {
-		this.hostname = hostname;
+	public TCPServer (ServerSocket server, int port) {
 		//this.server = new ServerSocket(port);
 		this.server = server;
-		this.ni = ni;
 		this.port = port;
 
 	}
@@ -34,27 +30,7 @@ public class TCPServer extends Thread {
 		}
 	}
 
-		
-	
-	//////////////////////////////////////////
-	//         GETTER ET SETTER             //
-	//////////////////////////////////////////	
-	
-	public String getHostname() {
-		return hostname;
-	}
 
-	public void setHostname(String hostname) {
-		this.hostname = hostname;
-	}
-
-	public ChatNI getNi() {
-		return ni;
-	}
-
-	public void setNi(ChatNI ni) {
-		this.ni = ni;
-	}
 
 }
 
