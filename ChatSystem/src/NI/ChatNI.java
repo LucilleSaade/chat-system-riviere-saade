@@ -21,7 +21,8 @@ public class ChatNI {
 	private DatagramSocket soc ;
 	private Socket socTcp;
 	
-	private int port = 9876;
+	private int portUDP = 9876;
+	private int portTCP = 6789 ;
 	
 	
 
@@ -29,10 +30,10 @@ public class ChatNI {
 		try {
 			this.controller = control;
 			this.hostname = this.controller.getModel().getLocalUser().getHostName();
-			this.soc = new DatagramSocket(this.port);
+			this.soc = new DatagramSocket(this.portUDP);
 			this.socTcp = new Socket(this.hostname, this.port);
 			this.soc.setBroadcast(true);
-			this.usender = new UDPSender(this.hostname, this.port, soc);
+			this.usender = new UDPSender(this.hostname, this.portUDP, soc);
 			this.ureceiver = new UDPReceiver(this, this.hostname, soc);	
 			this.tserver = new TCPServer(this, this.hostname, socTcp);
 			this.tsender = new TCPSender(this, this.hostname, socTcp);
