@@ -80,7 +80,7 @@ public class Controller {
 		ArrayList<String> Dest = f.getListDest(); 
 		this.getModel().getLocalUser().addSentFile(f);
 		// on envoie le message
-		// TODO this.ni.sendFile();
+		this.ni.sendFile(f.getFile(),f.getListDest());
 	}
 	
 	
