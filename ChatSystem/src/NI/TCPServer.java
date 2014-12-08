@@ -1,7 +1,7 @@
 package NI;
 
 
-public class TCPServer {
+public class TCPServer extends Thread {
 	private String hostname;
 	private ChatNI ni;
 

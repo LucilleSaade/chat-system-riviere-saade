@@ -1,5 +1,5 @@
 package NI;
 
-public class TCPReceiver {
+public class TCPReceiver extends Thread {
 
 }
