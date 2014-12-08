@@ -2,6 +2,7 @@ package NI;
 
 import java.io.IOException;
 import java.net.DatagramSocket;
+import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -15,7 +16,10 @@ public class ChatNI {
 	private Controller controller;
 	private UDPSender usender;
 	private UDPReceiver ureceiver;
-	protected DatagramSocket soc ;
+	private TCPServer tserver;
+	private TCPSender tsender;
+	private DatagramSocket soc ;
+	private Socket socTcp;
 	
 	private int port = 9876;
 	
@@ -26,10 +30,13 @@ public class ChatNI {
 			this.controller = control;
 			this.hostname = this.controller.getModel().getLocalUser().getHostName();
 			this.soc = new DatagramSocket(this.port);
+			this.socTcp = new Socket(this.hostname, this.port);
 			this.soc.setBroadcast(true);
 			this.usender = new UDPSender(this.hostname, this.port, soc);
 			this.ureceiver = new UDPReceiver(this, this.hostname, soc);	
-			
+			this.tserver = new TCPServer(this, this.hostname, socTcp);
+			this.tsender = new TCPSender(this, this.hostname, socTcp);
+
 			ureceiver.start(); // TODO
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
@@ -133,5 +140,39 @@ public class ChatNI {
 
 	public void setUreceiver(UDPReceiver ureceiver) {
 		this.ureceiver = ureceiver;
+	}
+
+
+	public void setSoc(DatagramSocket soc) {
+		this.soc = soc;
+	}
+	
+	public DatagramSocket getSoc() {
+		return soc;
+	}
+	
+	public Socket getSocTcp() {
+		return socTcp;
+	}
+
+	public void setSocTcp(Socket socTcp) {
+		this.socTcp = socTcp;
+	}
+
+	public TCPServer getTserver() {
+		return tserver;
+	}
+
+	public void setTserver(TCPServer tserver) {
+		this.tserver = tserver;
+	}
+	
+
+	public TCPSender getTsender() {
+		return tsender;
+	}
+
+	public void setTsender(TCPSender tsender) {
+		this.tsender = tsender;
 	}
 }
