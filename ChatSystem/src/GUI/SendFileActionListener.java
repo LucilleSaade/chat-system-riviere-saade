@@ -28,19 +28,23 @@ public class SendFileActionListener implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
-		File fichier = selectFile();
-				
-		if (fichier == null) {
-			System.out.println("Erreur : Fichier null");
-		}
-		else if (cont.getGui().getConnectedWindow().getUl().getSelectedValues().length == 0)
+		
+		if (cont.getGui().getConnectedWindow().getUl().getSelectedValues().length == 0) {
 			cont.notifyEmptyDestList();
+		}
 		else {
-			Object[] listDest = cont.getGui().getConnectedWindow().getUl().getSelectedValues();
-			String emetteur = cont.getModel().getLocalUser().getHostName();
-			FileMessage fileToSend = new FileMessage(emetteur, fichier);
-			fileToSend.addDests(listDest);
-			cont.sendFile(fileToSend);				
+			File fichier = selectFile();
+					
+			if (fichier == null) {
+				System.out.println("Erreur : Fichier null");
+			}
+			else {
+				Object[] listDest = cont.getGui().getConnectedWindow().getUl().getSelectedValues();
+				String emetteur = cont.getModel().getLocalUser().getHostName();
+				FileMessage fileToSend = new FileMessage(emetteur, fichier);
+				fileToSend.addDests(listDest);
+				cont.sendFile(fileToSend);				
+			}
 		}
 	}
 	
