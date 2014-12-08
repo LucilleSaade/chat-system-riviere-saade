@@ -24,5 +24,17 @@ public class TCPSender extends Thread {
 		}
         return fileByte;
 	}
+	
+	static public byte[] fileToByte(File file) throws IOException {
+		InputStream in = new BufferedInputStream(new FileInputStream(file));
+		ByteArrayOutputStream result = new ByteArrayOutputStream();
+		BufferedOutputStream tmp = new BufferedOutputStream(result);
+		for (int b=in.read(); b != -1; b=in.read()) {
+		tmp.write(b);
+		}
+		in.close();
+		tmp.close();
+		return result.toByteArray();
+		} 
 
 }
