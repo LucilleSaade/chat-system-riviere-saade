@@ -26,6 +26,15 @@ public class HistoricArea implements Observer {
 				for (String s : listDest)
 					this.hist.append(s+" ");
 				this.hist.append(" : \n"+mess+"\n\n");
+			}			
+			else if (arg instanceof FileMessage) {
+				String emetteur = ((FileMessage) arg).getEmetteur();
+				ArrayList<String> listDest = ((FileMessage) arg).getListDest();
+				String fileName = ((FileMessage) arg).getFile().getName();
+				this.hist.append(emetteur+" to ");
+				for (String s : listDest)
+					this.hist.append(s+" ");
+				this.hist.append(" : \n Envoi du fichier : "+fileName+"\n\n");
 			}				
 		}
 	}

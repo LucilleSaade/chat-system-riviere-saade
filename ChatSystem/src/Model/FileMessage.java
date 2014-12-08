@@ -1,10 +1,12 @@
 package Model;
 
+import java.io.File;
+
 public class FileMessage extends Message {
 	
-	private byte[] File ;
+	private File file ;
 
-	public FileMessage(String emetteur, byte[] file) {
+	public FileMessage(String emetteur, File file) {
 		super(emetteur, "");
 		this.setFile(file);
 	}
@@ -14,12 +16,12 @@ public class FileMessage extends Message {
 	//         GETTER ET SETTER             //
 	//////////////////////////////////////////
 
-	public byte[] getFile() {
-		return File;
+	public File getFile() {
+		return file;
 	}
 
-	public void setFile(byte[] file) {
-		File = file;
+	public void setFile(File file) {
+		this.file = file;
 	}
 	
 	

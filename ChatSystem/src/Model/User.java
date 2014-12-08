@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -36,8 +37,10 @@ public class User extends Observable {
 		notifyObservers(m);
 	}
 	
-	public void addFile (String hostname, byte[]File) {
-		// TODO
+	public void addSentFile (FileMessage f) {
+		messages.add(f);
+		setChanged();
+		notifyObservers(f);
 	}
 
 	
