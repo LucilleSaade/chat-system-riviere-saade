@@ -3,6 +3,7 @@ package NI;
 import java.io.File;
 import java.io.IOException;
 import java.net.DatagramSocket;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
@@ -33,7 +34,7 @@ public class ChatNI {
 			this.soc.setBroadcast(true);
 			this.usender = new UDPSender(this.hostname, this.portUDP, soc);
 			this.ureceiver = new UDPReceiver(this, this.hostname, soc);
-
+			//this.tserver = new TCPServer(new ServerSocket(portTCP));
 			ureceiver.start(); // TODO
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
