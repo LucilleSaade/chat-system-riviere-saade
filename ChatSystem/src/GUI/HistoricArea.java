@@ -27,10 +27,10 @@ public class HistoricArea implements Observer {
 					this.hist.append(s+" ");
 				this.hist.append(" : \n"+mess+"\n\n");
 			}			
-			else if (arg instanceof FileMessage) {
-				String emetteur = ((FileMessage) arg).getEmetteur();
-				ArrayList<String> listDest = ((FileMessage) arg).getListDest();
-				String fileName = ((FileMessage) arg).getFile().getName();
+			else if (arg instanceof ModelFileMessage) {
+				String emetteur = ((ModelFileMessage) arg).getEmetteur();
+				ArrayList<String> listDest = ((ModelFileMessage) arg).getListDest();
+				String fileName = ((ModelFileMessage) arg).getFile().getName();
 				this.hist.append(emetteur+" to ");
 				for (String s : listDest)
 					this.hist.append(s+" ");

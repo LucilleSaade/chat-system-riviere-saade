@@ -37,7 +37,7 @@ public class User extends Observable {
 		notifyObservers(m);
 	}
 	
-	public void addSentFile (FileMessage f) {
+	public void addSentFile (ModelFileMessage f) {
 		messages.add(f);
 		setChanged();
 		notifyObservers(f);

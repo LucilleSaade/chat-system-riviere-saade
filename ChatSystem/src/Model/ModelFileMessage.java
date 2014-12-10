@@ -2,11 +2,11 @@ package Model;
 
 import java.io.File;
 
-public class FileMessage extends Message {
+public class ModelFileMessage extends Message {
 	
 	private File file ;
 
-	public FileMessage(String emetteur, File file) {
+	public ModelFileMessage(String emetteur, File file) {
 		super(emetteur, "");
 		this.setFile(file);
 	}
