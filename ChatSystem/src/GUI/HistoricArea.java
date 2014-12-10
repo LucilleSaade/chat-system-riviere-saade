@@ -18,8 +18,8 @@ public class HistoricArea implements Observer {
 	
 	public void update(Observable obs, Object arg) {
 		if (obs instanceof User) {
-			if (arg instanceof TxtMessage) {
-				addTxtMessageToHist((TxtMessage) arg);
+			if (arg instanceof ModelTxtMessage) {
+				addTxtMessageToHist((ModelTxtMessage) arg);
 			}			
 			else if (arg instanceof ModelFileMessage) {
 				// si cest un fichier envoyé
@@ -34,7 +34,7 @@ public class HistoricArea implements Observer {
 		}
 	}
 	
-	public void addTxtMessageToHist (TxtMessage m) {
+	public void addTxtMessageToHist (ModelTxtMessage m) {
 		String emetteur = m.getEmetteur();
 		String mess = m.getContenu();
 		ArrayList<String> listDest = m.getListDest();

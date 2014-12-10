@@ -60,7 +60,7 @@ public class Controller {
 		this.ni.sendGoodbye();
 	}
 	
-	public void sendMessage(TxtMessage m) { 
+	public void sendMessage(ModelTxtMessage m) { 
 		ArrayList<String> Dest = m.getListDest(); 
 		String contenu = m.getContenu();
 		// on ajoute le message dans la liste des messages

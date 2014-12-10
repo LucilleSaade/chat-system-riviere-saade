@@ -24,7 +24,7 @@ public class User extends Observable {
 	}
 	
 	public void addReceivedMessage(String hostname, String msg){
-		TxtMessage m = new TxtMessage(hostname,msg);
+		ModelTxtMessage m = new ModelTxtMessage(hostname,msg);
 		m.addDest(this.hostName);
 		this.messages.add(m);
 		setChanged();
@@ -40,7 +40,7 @@ public class User extends Observable {
 		notifyObservers(m);
 	}
 	
-	public void addTxtMessage (TxtMessage m) {
+	public void addTxtMessage (ModelTxtMessage m) {
 		messages.add(m);
 		setChanged();
 		notifyObservers(m);
