@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.util.ArrayList;
 
 import Signals.*;
 
@@ -54,7 +55,8 @@ public class UDPReceiver extends Thread {
 				} else if (aMessage.getTypeContenu() == typeContenu.TEXTMESSAGE) {
 					TextMessage msg = (TextMessage) aMessage;
 					System.out.println(msg.getNickname() + ":" + msg.getMessage());
-					this.ni.processMessage(msg.getNickname(), msg.getMessage());
+					ArrayList<String> listNicknamesDest = msg.getListNicknamesDest();
+					this.ni.processMessage(msg.getNickname(), msg.getMessage(), listNicknamesDest);
 				}
 			}
 		} catch (Exception e) {
