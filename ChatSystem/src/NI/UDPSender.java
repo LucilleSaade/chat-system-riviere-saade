@@ -111,4 +111,8 @@ public class UDPSender {
 	public void setHostname(String hostname) {
 		this.hostname = hostname;
 	}
+	
+	public DatagramSocket getSoc() {
+		return soc;
+	}
 }

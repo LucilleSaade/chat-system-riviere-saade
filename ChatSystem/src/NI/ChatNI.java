@@ -33,7 +33,7 @@ public class ChatNI {
 			this.soc.setBroadcast(true);
 			this.usender = new UDPSender(this.hostname, this.portUDP, this.soc);
 			this.ureceiver = new UDPReceiver(this, this.soc);
-			this.tserver = new TCPServer(new ServerSocket(portTCP), this.hostname, this.portTCP, this);
+			this.tserver = new TCPServer(new ServerSocket(portTCP), this);
 			ureceiver.start();
 			tserver.start();
 		} catch (SocketException e) {
@@ -133,7 +133,23 @@ public class ChatNI {
 		this.controller.fileReceived(hostSource, fileName, listDest);
 	}
 	
+	//////////////////////////////////////////
+	//           DECONNEXION                //
+	//////////////////////////////////////////
 	
+	public void closeSocAndThreads () {
+		//try {
+		usender.getSoc().close();
+		ureceiver.getServer().close();
+		ureceiver.interrupt();
+		tserver.interrupt();
+		//tserver.getServer().close();
+		//} catch (IOException e) {
+		//	// TODO Auto-generated catch block
+		//	e.printStackTrace();
+		//}
+
+	}
 	
 	//////////////////////////////////////////
 	//         GETTER ET SETTER             //
