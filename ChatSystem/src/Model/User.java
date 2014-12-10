@@ -33,8 +33,10 @@ public class User extends Observable {
 	
 
 	public void addReceivedFile(String hostname, String fileName) {
-		Message m = new Message(hostname, fileName+" envoyé.");
+		ModelFileMessage m = new ModelFileMessage(hostname, fileName);
 		messages.add(m);
+		setChanged();
+		notifyObservers(m);
 	}
 	
 	public void addTxtMessage (TxtMessage m) {
