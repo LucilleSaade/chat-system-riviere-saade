@@ -7,18 +7,22 @@ import java.net.Socket;
 
 public class TCPServer extends Thread {
 	private ServerSocket server;
-
-	public TCPServer (ServerSocket server) {
-		//this.server = new ServerSocket(port);
+	private String hostname;
+	private int port;
+	
+	public TCPServer (ServerSocket server, String hostname, int port) {
 		this.server = server;
+		this.hostname = hostname;
+		this.port = port;
 	}
 	
 	public void run() {	
-		TCPReceiver soc;
+		Socket soc;
 		while(true) {
 			try {
-				soc = new TCPReceiver(server.accept());
-		 		// TODO TCPReceiver receiver = new TCPReceiver(soc);
+				soc = new Socket(IPAddress.getIPaddress(this.hostname), this.port);
+		 		TCPReceiver receiver = new TCPReceiver(soc);
+		 		receiver.start();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
