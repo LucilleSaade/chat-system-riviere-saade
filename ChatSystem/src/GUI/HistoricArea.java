@@ -19,32 +19,51 @@ public class HistoricArea implements Observer {
 	public void update(Observable obs, Object arg) {
 		if (obs instanceof User) {
 			if (arg instanceof TxtMessage) {
-				String emetteur = ((TxtMessage) arg).getEmetteur();
-				String mess = ((TxtMessage) arg).getContenu();
-				ArrayList<String> listDest = ((TxtMessage) arg).getListDest();
-				this.hist.append(emetteur+" to ");
-				for (String s : listDest)
-					this.hist.append(s+" ");
-				this.hist.append(" : \n"+mess+"\n\n");
+				addTxtMessageToHist((TxtMessage) arg);
 			}			
 			else if (arg instanceof ModelFileMessage) {
 				// si cest un fichier envoyé
 				if (((ModelFileMessage) arg).getFile() != null) {
-					String emetteur = ((ModelFileMessage) arg).getEmetteur();
-					ArrayList<String> listDest = ((ModelFileMessage) arg).getListDest();
-					String fileName = ((ModelFileMessage) arg).getFileName();
-					this.hist.append(emetteur+" to ");
-					for (String s : listDest)
-						this.hist.append(s+" ");
-					this.hist.append(" : \n Envoi du fichier : "+fileName+"\n\n");
+					addFileSentToHist((ModelFileMessage) arg);
 				}
 				// fichier recu
 				else {
-					String emetteur = ((ModelFileMessage) arg).getEmetteur();
+					addReceivedFileToHist((ModelFileMessage) arg);
 				}
 			}				
 		}
 	}
+	
+	public void addTxtMessageToHist (TxtMessage m) {
+		String emetteur = m.getEmetteur();
+		String mess = m.getContenu();
+		ArrayList<String> listDest = m.getListDest();
+		this.hist.append(emetteur+" to ");
+		for (String s : listDest)
+			this.hist.append(s+" ");
+		this.hist.append(" : \n"+mess+"\n\n");
+	}
+	
+	public void addFileSentToHist(ModelFileMessage m) {
+		String emetteur = m.getEmetteur();
+		ArrayList<String> listDest = m.getListDest();
+		String fileName = m.getFileName();
+		this.hist.append(emetteur+" to ");
+		for (String s : listDest)
+			this.hist.append(s+" ");
+		this.hist.append(" : \n File sent : "+fileName+"\n\n");
+	}
+	
+	public void addReceivedFileToHist (ModelFileMessage m) {
+		String emetteur = m.getEmetteur();
+		ArrayList<String> listDest = m.getListDest();
+		String fileName = m.getFileName();
+		this.hist.append(emetteur+" to ");
+		for (String s : listDest)
+			this.hist.append(s+" ");
+		this.hist.append(" : \n File received : "+fileName+"\n\n");
+	}
+	
 	
 	//////////////////////////////////////////
 	//         GETTER ET SETTER             //
