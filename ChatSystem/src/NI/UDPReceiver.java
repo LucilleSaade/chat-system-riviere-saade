@@ -33,16 +33,15 @@ public class UDPReceiver extends Thread {
 		try {
 			
 			while (true) { 
-				// le socket bloque jusqu'a ce qu'il recoive un DatagramPacket
+				// le socket bloque jusqu'a ce qu'il recoive un DatagramPacket			
 				DatagramPacket packet = new DatagramPacket(bufIn, bufIn.length);
-				
 				this.server.receive(packet);
 				
 				// Traitement du packet pour le re-transformer en AbstractMessage
 				byteIn.reset();
 				in = new ObjectInputStream(byteIn);
 				AbstractMessage aMessage = (AbstractMessage) in.readObject();
-			  
+
 				if (aMessage.getTypeContenu() == typeContenu.HELLO){
 					Hello helloSerialise = (Hello) aMessage;
 					System.out.println(helloSerialise.getNickname() + " : C'est un HELLO ! " );
