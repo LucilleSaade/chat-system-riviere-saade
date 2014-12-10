@@ -77,7 +77,7 @@ public class Controller {
 	}
 	
 
-	public void sendFile(FileMessage f) {
+	public void sendFile(ModelFileMessage f) {
 		ArrayList<String> Dest = f.getListDest(); 
 		this.getModel().getLocalUser().addSentFile(f);
 		// on envoie le message

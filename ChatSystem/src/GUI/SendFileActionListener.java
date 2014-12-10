@@ -7,7 +7,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 
 import Controller.Controller;
-import Model.FileMessage;
+import Model.ModelFileMessage;
 
 public class SendFileActionListener implements ActionListener {
 	
@@ -41,7 +41,7 @@ public class SendFileActionListener implements ActionListener {
 			else {
 				Object[] listDest = cont.getGui().getConnectedWindow().getUl().getSelectedValues();
 				String emetteur = cont.getModel().getLocalUser().getHostName();
-				FileMessage fileToSend = new FileMessage(emetteur, fichier);
+				ModelFileMessage fileToSend = new ModelFileMessage(emetteur, fichier);
 				fileToSend.addDests(listDest);
 				cont.sendFile(fileToSend);				
 			}
