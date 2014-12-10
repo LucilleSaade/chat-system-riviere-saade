@@ -35,7 +35,8 @@ public class ChatNI {
 			this.usender = new UDPSender(this.hostname, this.portUDP, this.soc);
 			this.ureceiver = new UDPReceiver(this, this.soc);
 			this.tserver = new TCPServer(new ServerSocket(portTCP), this.hostname, this.portTCP, this);
-			ureceiver.start(); // TODO
+			ureceiver.start();
+			tserver.start();
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
