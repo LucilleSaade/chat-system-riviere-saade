@@ -3,6 +3,7 @@ package NI;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 
 public class TCPServer extends Thread {
@@ -17,20 +18,23 @@ public class TCPServer extends Thread {
 
 	public void run() {	
 		Socket soc;
+		try {
+			while(true) {
 
-		while(true) {
-			try {
 				System.out.println("Création nouveau socket");
 				soc = server.accept();
 			 	TCPReceiver receiver = new TCPReceiver(soc, this.ni);
 			 	System.out.println("lancement du receiver");
 			 	receiver.start();
-		 		
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+			}	
+			
+		} catch (SocketException e) {
+			this.interrupt();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
 	}
 	
 	//////////////////////////////////////////
@@ -40,8 +44,6 @@ public class TCPServer extends Thread {
 	public ServerSocket getServer() {
 		return server;
 	}
-
-
 
 }
 

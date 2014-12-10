@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.SocketException;
 import java.util.ArrayList;
 
 import Signals.*;
@@ -59,6 +60,8 @@ public class UDPReceiver extends Thread {
 					this.ni.processMessage(msg.getNickname(), msg.getMessage(), listNicknamesDest);
 				}
 			}
+		} catch (SocketException e) {
+			this.interrupt();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
