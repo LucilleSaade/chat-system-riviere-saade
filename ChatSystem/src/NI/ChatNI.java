@@ -139,10 +139,12 @@ public class ChatNI {
 	
 	public void closeSocAndThreads () {
 		//try {
-		usender.getSoc().close();
-		ureceiver.getServer().close();
 		ureceiver.interrupt();
 		tserver.interrupt();
+		usender.getSoc().close();
+		ureceiver.getServer().close();
+		ureceiver=null;
+		
 		//tserver.getServer().close();
 		//} catch (IOException e) {
 		//	// TODO Auto-generated catch block
