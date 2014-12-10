@@ -61,7 +61,7 @@ public class HistoricArea implements Observer {
 		this.hist.append(emetteur+" to ");
 		for (String s : listDest)
 			this.hist.append(s+" ");
-		this.hist.append(" : \nFile received : "+fileName+"\n\n");
+		this.hist.append(" : \nFile received  : "+fileName+"\n\n");
 	}
 	
 	

@@ -42,7 +42,9 @@ public class Controller {
 		this.getGui().getConnectedWindow().dispose() ;
 		// TODO : fermer threads / sockets ??
 		this.getNI().closeSocAndThreads();
-		System.exit(0);
+		this.setGui(new ChatGUI(this));
+		this.getGui().setDisconnectedWindow(new DisconnectedWindow(this));
+		//System.exit(0);
 	}
 	
 	//////////////////////////////////////////
