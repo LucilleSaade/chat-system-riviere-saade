@@ -1,6 +1,5 @@
 package Controller;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import Model.*;
@@ -96,8 +95,8 @@ public class Controller {
 		this.model.getLocalUser().addReceivedMessage(hostname, msg, listDest);
 	}
 	
-	public void fileReceived(String hostname, String fileName) {
-		//this.model.getLocalUser().addReceivedFile(hostname, fileName);
+	public void fileReceived(String hostname, String fileName, ArrayList<String> listDest) {
+		this.model.getLocalUser().addReceivedFile(hostname, fileName, listDest);
 		System.out.println("Fichier recu");
 	}
 	

@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -130,8 +129,8 @@ public class ChatNI {
 	//           POUR TCP SERVER            //
 	//////////////////////////////////////////
 	
-	public void rcvdFile(String hostSource, String fileName) {
-		this.controller.fileReceived(hostSource, fileName);
+	public void rcvdFile(String hostSource, String fileName, ArrayList<String> listDest) {
+		this.controller.fileReceived(hostSource, fileName, listDest);
 	}
 	
 	

@@ -1,6 +1,5 @@
 package Model;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -33,9 +32,10 @@ public class User extends Observable {
 	}
 	
 
-	public void addReceivedFile(String hostname, String fileName) {
+	public void addReceivedFile(String hostname, String fileName, ArrayList<String> listDest) {
 		ModelFileMessage m = new ModelFileMessage(hostname, fileName);
-		m.addDest(this.hostName);
+		for (String host : listDest)
+			m.addDest(host);
 		messages.add(m);
 		setChanged();
 		notifyObservers(m);
