@@ -45,17 +45,21 @@ public class TCPSender extends Thread {
 				//Preparation des objets necessaires pour l'envoie des file et filemsg
 				OutputStream os = soc.getOutputStream();
 		        ObjectOutputStream oos= new ObjectOutputStream(bos);
-		        
+		        oos.flush();
+
 		        // Ecriture dans le flux de sortie, envoie du file message ne contenant que le nom et la taille du fichier
 		        oos.writeObject(this.fmsg);
+		        
+		        bufOut = this.bos.toByteArray();
+		        os.write(bufOut);
 	
 		        fis = new FileInputStream(this.file);
-		        bufOut = this.bos.toByteArray();
-		        
+		        //bufOut = this.bos.toByteArray();
+		        byte[] buffer = new byte[(int) this.file.length()];
 		        //Ecriture du file dans le bufOut
-		        fis.read(bufOut);
+		        fis.read(buffer);
 		        //Envoie du file
-		        os.write(bufOut);
+		        os.write(buffer);
 		        
 		        // Vide le tampon
 		        oos.flush();
