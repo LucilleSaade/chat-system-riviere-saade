@@ -45,13 +45,6 @@ public class Controller {
 		System.exit(0);
 	}
 	
-
-	
-	public void performReceivedFile() {
-		
-	}
-
-	
 	//////////////////////////////////////////
 	//       A DESTINATION CHATNI           //
 	//////////////////////////////////////////	
@@ -101,6 +94,11 @@ public class Controller {
 	
 	public void messageReceived(String hostname, String msg) {
 		this.model.getLocalUser().addReceivedMessage(hostname, msg);
+	}
+	
+	public void fileReceived(String hostname, String fileName) {
+		//this.model.getLocalUser().addReceivedFile(hostname, fileName);
+		System.out.println("Fichier recu");
 	}
 	
 	public void notifyEmptyMessage() {

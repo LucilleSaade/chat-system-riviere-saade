@@ -31,6 +31,12 @@ public class User extends Observable {
 		notifyObservers(m);
 	}
 	
+
+	public void addReceivedFile(String hostname, String fileName) {
+		Message m = new Message(hostname, fileName+" envoyé.");
+		messages.add(m);
+	}
+	
 	public void addTxtMessage (TxtMessage m) {
 		messages.add(m);
 		setChanged();
@@ -64,5 +70,6 @@ public class User extends Observable {
 	public void setMessages(ArrayList<Message> messages) {
 		this.messages = messages;
 	}
+
 
 }
