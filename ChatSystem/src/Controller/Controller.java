@@ -41,6 +41,7 @@ public class Controller {
 		// fermeture de la connected window
 		this.getGui().getConnectedWindow().dispose() ;
 		// TODO : fermer threads / sockets ??
+		this.getNI().closeSocAndThreads();
 		System.exit(0);
 	}
 	

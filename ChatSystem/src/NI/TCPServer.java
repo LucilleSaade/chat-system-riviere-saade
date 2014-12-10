@@ -7,18 +7,14 @@ import java.net.Socket;
 
 public class TCPServer extends Thread {
 	private ServerSocket server;
-	private String hostname;
-	private int port;
 	private ChatNI ni;
 	
-	public TCPServer (ServerSocket server, String hostname, int port, ChatNI ni) {
+	public TCPServer (ServerSocket server, ChatNI ni) {
 		this.server = server;
-		this.hostname = hostname;
-		this.port = port;
 		this.ni = ni;
 		System.out.println("Serveur créé");
 	}
-	
+
 	public void run() {	
 		Socket soc;
 
@@ -35,6 +31,14 @@ public class TCPServer extends Thread {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	//////////////////////////////////////////
+	//         GETTER ET SETTER             //
+	//////////////////////////////////////////
+	
+	public ServerSocket getServer() {
+		return server;
 	}
 
 
