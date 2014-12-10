@@ -37,6 +37,7 @@ public class TCPReceiver extends Thread {
 			
 	        ObjectInput oi= new ObjectInputStream(byteIn);
 	        
+	        System.out.println("reception du filmsg");
 	        // Lecture du filemsg
 			FileMessage fmsg = (FileMessage) oi.readObject();
 	        
@@ -44,9 +45,11 @@ public class TCPReceiver extends Thread {
 			bufIn = new byte[(int) fmsg.getFileSize()];
 			FileOutputStream fos = new FileOutputStream("./" + fmsg.getNamefile());
 			
+			System.out.println("Reception du file dans le buffer");
 	        // Lecture du file
 	        is.read(bufIn);
 	        
+	        System.out.println("enregistrement du file sur le disque");
 	        // Ecriture dans le "fmsg.getNameFile()" du file orésent dans le bufIn
 	        fos.write(bufIn);
 	        

@@ -22,9 +22,12 @@ public class TCPServer extends Thread {
 		Socket soc;
 		while(true) {
 			try {
+				System.out.println("Création nouveau socket");
 				soc = new Socket(IPAddress.getIPaddress(this.hostname), this.port);
 		 		TCPReceiver receiver = new TCPReceiver(soc, this.ni);
+		 		System.out.println("lancement du receiver");
 		 		receiver.start();
+		 		
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
