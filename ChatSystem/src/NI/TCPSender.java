@@ -1,16 +1,10 @@
 package NI;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.net.Socket;
@@ -38,81 +32,7 @@ public class TCPSender extends Thread {
 		this.file = file;
 		this.fmsg = new FileMessage(file.getName(), dest, file.length());
 		this.fmsg.setNickname(user);
-	}
-	
-	/*
-	public void run2() {
-	
-		File f = this.file; 
-		if(f.exists()) { 
-			System.out.println("Envoi du fichier "+f.toURI().toURL()); 
-			Socket s = new Socket(InetAddress.getByName(serv),port); 
-
-			OutputStream fluxsortie = s.getOutputStream(); 
-			
-			long taillefichier =f.length(); 
-
-			System.out.println("Taille : "+ taillefichier); 
-
-			long nbpassagesuposé=taillefichier / 4096; 
-
-			System.out.println("Passages supposés : "+nbpassagesuposé); 
-
-			InputStream in = new BufferedInputStream(new FileInputStream(f)); 
-			ByteArrayOutputStream tableaubytes = new ByteArrayOutputStream(); 
-			BufferedOutputStream tampon = new BufferedOutputStream(tableaubytes); 
-
-			int lu = in.read(); 
-			int[] aecrire = new int[4096]; 
-			int compteur = 0; 
-			long ouonestrendu=0; 
-		
-			//Tant qu'on est pas à la fin du fichier 
-			while(lu > -1) { 
-				//On lit les données du fichier 
-				aecrire[compteur] = lu; 
-				lu = in.read(); 
-				compteur++; 
-				//Quand on a rempli le tableau, on envoie un paquet de 4096 octets 
-				if(compteur == 4096) { 
-					compteur=0; 
-					ouonestrendu++; 
-					//On remplit le tampon 
-					for(int x=0;x<4096;x++) 
-						tampon.write(aecrire[x]); 
-				
-					//Et on l'envoie 
-					fluxsortie.write(tableaubytes.toByteArray()); 
-				
-					tableaubytes.reset(); 
-					System.out.println("Avancement : "+(float) ouonestrendu/nbpassagesuposé * 100+"%"); 
-				} 
-			} 
-
-				//On envoie le dernier paquet, qui ne fait pas forcément 4096 octets 
-				//On remplit le tampon 
-			for(int x=0;x<4096;x++) 
-				tampon.write(aecrire[x]); 
-
-			//Et on l'envoie 
-			tampon.flush(); 
-			fluxsortie.write(tableaubytes.toByteArray()); 
-			fluxsortie.flush(); 
-		
-			System.out.println("Avancement: "+(float) ouonestrendu/nbpassagesuposé * 100+"%"); 
-		
-			System.out.println("Youpi finished"); 
-			in.close(); 
-			tampon.close(); 
-			System.out.println("Passages effectués : "+ouonestrendu); 
-			s.close(); 
-		} 
-		else { 
-			System.out.println("Le fichier "+f+" est introuvable"); 
-		} 
-	} */
-
-		
+	}		
 		
 	public void run() {
         byte[] bufOut = new byte[(int) file.length()];
