@@ -28,7 +28,7 @@ public class SendMsgActionListener implements ActionListener {
 		else {
 			Object[] listDest = cont.getGui().getConnectedWindow().getUl().getSelectedValues();
 			String emetteur = cont.getModel().getLocalUser().getHostName();
-			TxtMessage messageToSend = new TxtMessage(emetteur,contenuToSend);
+			ModelTxtMessage messageToSend = new ModelTxtMessage(emetteur,contenuToSend);
 			messageToSend.addDests(listDest);
 			cont.sendMessage(messageToSend);	
 			// on vide la SendTextArea
