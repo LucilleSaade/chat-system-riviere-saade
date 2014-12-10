@@ -108,7 +108,8 @@ public class ConnectedWindow extends JFrame implements WindowListener {
 	}
 	
 	public void notifyDisconnection(String hostname) {
-		JOptionPane.showMessageDialog(this,hostname+" is disconnected.");
+		if (!hostname.equals(controller.getModel().getLocalUser().getHostName()))
+			JOptionPane.showMessageDialog(this,hostname+" is disconnected.");
 	}
 	
 	public void notifyEmptyMessage() {
