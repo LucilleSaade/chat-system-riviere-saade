@@ -1,18 +1,13 @@
 package NI;
 
 import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.net.Socket;
 
-import org.omg.CORBA.portable.InputStream;
-
-import Signals.AbstractMessage;
 import Signals.FileMessage;
 
 public class TCPReceiver extends Thread {
