@@ -26,7 +26,6 @@ public class Controller {
 		
 		
 		// ouverture de la connected window
-		//model = new DataModel(new User(hostname,this), this);
 		model = new DataModel(new User(hostname,this),this);
 		this.gui.setConnectedWindow(new ConnectedWindow(this));
 		this.getGui().getConnectedWindow().setUl(new VisualUserList(this));
@@ -43,7 +42,6 @@ public class Controller {
 		// TODO : fermer threads / sockets ??
 		this.getNI().closeSocAndThreads();
 		this.setGui(new ChatGUI(this));
-		this.getGui().setDisconnectedWindow(new DisconnectedWindow(this));
 		//System.exit(0);
 	}
 	
