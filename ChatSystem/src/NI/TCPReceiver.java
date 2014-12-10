@@ -25,34 +25,35 @@ public class TCPReceiver extends Thread {
 		byte[] bufIn = new byte[1024];
 	
 		try {
+			InputStream is = (InputStream) soc.getInputStream();
+	        // Lecture du filemsg
+	        is.read(bufIn);
 			ByteArrayInputStream byteIn = new ByteArrayInputStream(bufIn);
-	
-			InputStream is;
-			is = (InputStream) soc.getInputStream();
-			
 	        ObjectInput oi= new ObjectInputStream(byteIn);
 	        
 	        System.out.println("reception du filmsg");
 	        // Lecture du filemsg
 			FileMessage fmsg = (FileMessage) oi.readObject();
-	        
-			// configuration du bufIn et du FileOutputStream
-			bufIn = new byte[(int) fmsg.getFileSize()];
 			FileOutputStream fos = new FileOutputStream("./" + fmsg.getNamefile());
+	        
+			// appel au NI
+			this.ni.rcvdFile(fmsg.getNickname(), fmsg.getNamefile(), fmsg.getDest());
+			
+			// configuration du bufIn et du FileOutputStream
+			bufIn = null;
+			bufIn = new byte[(int) fmsg.getFileSize()];
 			
 			System.out.println("Reception du file dans le buffer");
-	        // Lecture du file
-	        is.read(bufIn);
 	        
 	        System.out.println("enregistrement du file sur le disque");
 	        // Ecriture dans le "fmsg.getNameFile()" du file present dans le bufIn
-	        fos.write(bufIn);
+	        while(is.read(bufIn, 0, bufIn.length) != -1) {
+	        	fos.write(bufIn, 0, bufIn.length);
+	        }
 	        
 	    	fos.close();
 	    	oi.close();
 	    	is.close();
-	    
-	    	this.ni.rcvdFile(fmsg.getNickname(), fmsg.getNamefile(), fmsg.getDest());
 	    	
 	    	soc.close();
     	
