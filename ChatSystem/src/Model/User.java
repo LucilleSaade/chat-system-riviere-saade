@@ -23,9 +23,10 @@ public class User extends Observable {
 		this.addObserver(this.controller.getGui().getConnectedWindow().getHistoricArea());
 	}
 	
-	public void addReceivedMessage(String hostname, String msg){
+	public void addReceivedMessage(String hostname, String msg, ArrayList<String> listDest){
 		ModelTxtMessage m = new ModelTxtMessage(hostname,msg);
-		m.addDest(this.hostName);
+		for (String host : listDest)
+			m.addDest(host);
 		this.messages.add(m);
 		setChanged();
 		notifyObservers(m);

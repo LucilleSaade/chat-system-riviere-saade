@@ -108,8 +108,8 @@ public class ChatNI {
 		this.controller.removeFromUserList(hostname);
 	}
 	
-	public void processMessage(String hostname, String msg){
-		this.controller.messageReceived(hostname, msg);
+	public void processMessage(String hostname, String msg, ArrayList<String> listDest){
+		this.controller.messageReceived(hostname, msg, listDest);
 	}
 
 	

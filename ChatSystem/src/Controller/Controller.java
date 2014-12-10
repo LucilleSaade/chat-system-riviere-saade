@@ -92,8 +92,8 @@ public class Controller {
 		this.gui.getConnectedWindow().notifyDisconnection(hostname);
 	}
 	
-	public void messageReceived(String hostname, String msg) {
-		this.model.getLocalUser().addReceivedMessage(hostname, msg);
+	public void messageReceived(String hostname, String msg, ArrayList<String> listDest) {
+		this.model.getLocalUser().addReceivedMessage(hostname, msg, listDest);
 	}
 	
 	public void fileReceived(String hostname, String fileName) {
