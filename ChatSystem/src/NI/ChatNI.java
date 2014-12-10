@@ -34,7 +34,7 @@ public class ChatNI {
 			this.soc.setBroadcast(true);
 			this.usender = new UDPSender(this.hostname, this.portUDP, soc);
 			this.ureceiver = new UDPReceiver(this, this.hostname, soc);
-			this.tserver = new TCPServer(new ServerSocket(portTCP), this.hostname, this.portTCP);
+			this.tserver = new TCPServer(new ServerSocket(portTCP), this.hostname, this.portTCP, this);
 			ureceiver.start(); // TODO
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
@@ -120,6 +120,17 @@ public class ChatNI {
 	public void sendFile(File file, ArrayList<String> dest) {
 		TCPSender tsender = new TCPSender(this.hostname, dest, file, this.portTCP);
 		tsender.start();
+	}
+
+	
+	
+	
+	//////////////////////////////////////////
+	//           POUR TCP SERVER            //
+	//////////////////////////////////////////
+	
+	public void rcvdFile(String hostSource, String fileName) {
+		this.controller.fileReceived(hostSource, fileName);
 	}
 	
 	

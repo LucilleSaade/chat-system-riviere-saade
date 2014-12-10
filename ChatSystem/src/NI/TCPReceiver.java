@@ -17,10 +17,12 @@ import Signals.FileMessage;
 
 public class TCPReceiver extends Thread {
 	
-	Socket soc;
-
-	public TCPReceiver (Socket soc) {
+	private Socket soc;
+	private ChatNI ni;
+	
+	public TCPReceiver (Socket soc, ChatNI ni) {
 		this.soc = soc;
+		this.ni = ni;
 	}
 	
 
@@ -40,7 +42,7 @@ public class TCPReceiver extends Thread {
 	        
 			// configuration du bufIn et du FileOutputStream
 			bufIn = new byte[(int) fmsg.getFileSize()];
-			FileOutputStream fos = new FileOutputStream(fmsg.getNamefile());
+			FileOutputStream fos = new FileOutputStream("./" + fmsg.getNamefile());
 			
 	        // Lecture du file
 	        is.read(bufIn);
@@ -51,6 +53,9 @@ public class TCPReceiver extends Thread {
 	    	fos.close();
 	    	oi.close();
 	    	is.close();
+	    
+	    	this.ni.rcvdFile(fmsg.getNickname(), fmsg.getNamefile());
+	    	
 	    	soc.close();
     	
 		} catch (IOException e) {
