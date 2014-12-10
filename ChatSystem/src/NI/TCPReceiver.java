@@ -45,14 +45,14 @@ public class TCPReceiver extends Thread {
 	        is.read(bufIn);
 	        
 	        System.out.println("enregistrement du file sur le disque");
-	        // Ecriture dans le "fmsg.getNameFile()" du file orésent dans le bufIn
+	        // Ecriture dans le "fmsg.getNameFile()" du file present dans le bufIn
 	        fos.write(bufIn);
 	        
 	    	fos.close();
 	    	oi.close();
 	    	is.close();
 	    
-	    	this.ni.rcvdFile(fmsg.getNickname(), fmsg.getNamefile());
+	    	this.ni.rcvdFile(fmsg.getNickname(), fmsg.getNamefile(), fmsg.getDest());
 	    	
 	    	soc.close();
     	
