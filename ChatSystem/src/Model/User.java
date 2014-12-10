@@ -34,6 +34,7 @@ public class User extends Observable {
 
 	public void addReceivedFile(String hostname, String fileName) {
 		ModelFileMessage m = new ModelFileMessage(hostname, fileName);
+		m.addDest(this.hostName);
 		messages.add(m);
 		setChanged();
 		notifyObservers(m);
