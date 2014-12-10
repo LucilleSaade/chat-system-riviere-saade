@@ -19,7 +19,7 @@ public class ChatNI {
 	private UDPSender usender;
 	private UDPReceiver ureceiver;
 	private TCPServer tserver;
-	private DatagramSocket soc ;
+	private DatagramSocket soc;
 	
 	private int portUDP = 9876;
 	private int portTCP = 6789;
@@ -34,7 +34,7 @@ public class ChatNI {
 			this.soc.setBroadcast(true);
 			this.usender = new UDPSender(this.hostname, this.portUDP, soc);
 			this.ureceiver = new UDPReceiver(this, this.hostname, soc);
-			//this.tserver = new TCPServer(new ServerSocket(portTCP));
+			this.tserver = new TCPServer(new ServerSocket(portTCP), this.hostname, this.portTCP);
 			ureceiver.start(); // TODO
 		} catch (SocketException e) {
 			// TODO Auto-generated catch block
