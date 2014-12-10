@@ -33,7 +33,7 @@ public class ChatNI {
 			this.soc = new DatagramSocket(this.portUDP);
 			this.soc.setBroadcast(true);
 			this.usender = new UDPSender(this.hostname, this.portUDP, this.soc);
-			this.ureceiver = new UDPReceiver(this, this.hostname, this.soc);
+			this.ureceiver = new UDPReceiver(this, this.soc);
 			this.tserver = new TCPServer(new ServerSocket(portTCP), this.hostname, this.portTCP, this);
 			ureceiver.start(); // TODO
 		} catch (SocketException e) {

@@ -13,16 +13,13 @@ import Signals.*;
 
 public class UDPReceiver extends Thread {
 	
-	private String hostname;
 	private ChatNI ni;
-	private InetAddress address ;
 	private DatagramSocket server ;
 	private byte[] bufIn;
 	
 
-	public UDPReceiver(ChatNI n, String hostname, DatagramSocket soc) throws IOException {
+	public UDPReceiver(ChatNI n, DatagramSocket soc) throws IOException {
 		this.ni = n;
-		this.hostname = hostname;
         this.server = soc;
         bufIn = new byte[5000];
 	}
