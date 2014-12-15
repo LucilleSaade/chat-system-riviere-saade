@@ -11,11 +11,20 @@ public class SendMsgActionListener implements ActionListener {
 	
 	private Controller cont;
 	
+	/**
+	 * SendMsgActionListener
+	 * @param controller cont
+	 */
 	public SendMsgActionListener(Controller cont){
 		super();
 		this.cont = cont;
 	}
 
+	/**
+	 * actionPerformed(ActionEvent arg0)
+	 * checks that a receiver is selected and the message is not empty
+	 * creates the ModelTxtMessage messageToSend and calls sendMessage(messageToSend)
+	 */
 	public void actionPerformed(ActionEvent arg0) {
 		
 		String contenuToSend = cont.getGui().getConnectedWindow().getSendTextArea().getTxtArea().getText();

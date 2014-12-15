@@ -10,12 +10,23 @@ import Model.*;
 
 public class HistoricArea implements Observer {
 	
+	/**
+	 * hist : JTextArea, contains all the messages 
+	 */
 	private JTextArea hist; 
 	
+	/**
+	 * HistoricArea constructor
+	 */
 	public HistoricArea() {
 		this.setHist(new JTextArea());
 	}
 	
+	/**
+	 *  update(Observable obs, Object arg)
+	 *  Method called when a message is sent or received
+	 *  add this message to the historic area
+	 */
 	public void update(Observable obs, Object arg) {
 		if (obs instanceof User) {
 			if (arg instanceof ModelTxtMessage) {
@@ -34,6 +45,11 @@ public class HistoricArea implements Observer {
 		}
 	}
 	
+	/**
+	 * addTxtMessageToHist
+	 * Add a text message to the historic area
+	 * @param ModelTxtMessage m
+	 */
 	public void addTxtMessageToHist (ModelTxtMessage m) {
 		String emetteur = m.getEmetteur();
 		String mess = m.getContenu();
@@ -44,6 +60,11 @@ public class HistoricArea implements Observer {
 		this.hist.append(" : \n"+mess+"\n\n");
 	}
 	
+	/**
+	 * addFileSentToHist
+	 * Add a sent file message to the historic area
+	 * @param ModelFileMessage m
+	 */
 	public void addFileSentToHist(ModelFileMessage m) {
 		String emetteur = m.getEmetteur();
 		ArrayList<String> listDest = m.getListDest();
@@ -54,6 +75,11 @@ public class HistoricArea implements Observer {
 		this.hist.append(" : \nFile sent : "+fileName+"\n\n");
 	}
 	
+	/**
+	 * addReceivedFileToHist
+	 * Add a received file message to the historic area
+	 * @param ModelFileMessage m
+	 */
 	public void addReceivedFileToHist (ModelFileMessage m) {
 		String emetteur = m.getEmetteur();
 		ArrayList<String> listDest = m.getListDest();
@@ -70,10 +96,18 @@ public class HistoricArea implements Observer {
 	//////////////////////////////////////////
 
 
+	/**
+	 * getHist()
+	 * @return JTextArea hist
+	 */
 	public JTextArea getHist() {
 		return hist;
 	}
 
+	/**
+	 * setHist(JTextArea hist)
+	 * @param JTextArea hist
+	 */
 	public void setHist(JTextArea hist) {
 		this.hist = hist;
 	}

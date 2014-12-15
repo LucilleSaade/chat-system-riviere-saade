@@ -15,13 +15,17 @@ import NI.IPAddress;
 public class DisconnectedWindow extends JFrame implements ActionListener {
 	
 	/**
-	 * 
+	 * Frame displayed when the user is disconnected
 	 */
 	private static final long serialVersionUID = 1L;
 	private Controller controller ;
 	private ConnectButton connectB;
 	private NicknameTextArea nicknameArea ;
 	
+	/**
+	 * DisconnectedWindow constructor
+	 * @param controller
+	 */
 	public DisconnectedWindow (Controller c) {
 		this.controller = c;
 		this.connectB = new ConnectButton();
@@ -30,6 +34,10 @@ public class DisconnectedWindow extends JFrame implements ActionListener {
 		initComponents();
 	}
 	
+	/**
+	 * initComponents() :
+	 * init all the components and add them into the frame
+	 */
 	private void initComponents() {
 		this.setTitle("Connection to the ChatSystem");
         this.setSize(500, 80);
@@ -47,6 +55,12 @@ public class DisconnectedWindow extends JFrame implements ActionListener {
 	
 	/* LORSQU'ON CLIQUE SUR LE BOUTTON DE CONNEXION */
 	
+	/**
+	 * actionPerformed :
+	 * method called when the user clicks on the connect button
+	 * verify that the nickname is correct
+	 * call controller.performConnect(localHostname) if the localHostname is correct
+	 */
 	public void actionPerformed(ActionEvent arg0) {
 		// on verifie que le nickname a ete saisi
 		if (this.nicknameArea.getNicknameTA().getText().equals("")) {

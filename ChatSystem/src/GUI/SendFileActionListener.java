@@ -13,11 +13,19 @@ public class SendFileActionListener implements ActionListener {
 	
 	private Controller cont;
 	
+	/**
+	 * SendFileActionListener
+	 * @param controller cont
+	 */
 	public SendFileActionListener(Controller cont){
 		super();
 		this.setCont(cont);
 	}
 	
+	/**
+	 * selectFile() : select a file in a directory chosen by the user
+	 * @return File
+	 */
 	public File selectFile() {
 		JFileChooser dialogue = new JFileChooser(new File("."));
 		File fichier = null;	
@@ -27,6 +35,11 @@ public class SendFileActionListener implements ActionListener {
 		return fichier;
 	}
 
+	/**
+	 * actionPerformed(ActionEvent arg0)
+	 * checks that a receiver is selected
+	 * creates the ModelFileMessage fileToSend and calls sendFile(fileToSend) 
+	 */
 	public void actionPerformed(ActionEvent arg0) {
 		
 		if (cont.getGui().getConnectedWindow().getUl().getSelectedValues().length == 0) {
@@ -52,10 +65,18 @@ public class SendFileActionListener implements ActionListener {
 	//         GETTER ET SETTER             //
 	//////////////////////////////////////////
 
+	/**
+	 * getCont()
+	 * @return Controller cont
+	 */
 	public Controller getCont() {
 		return cont;
 	}
 
+	/**
+	 * setCont(Controller cont)
+	 * @param Controller cont
+	 */
 	public void setCont(Controller cont) {
 		this.cont = cont;
 	}
