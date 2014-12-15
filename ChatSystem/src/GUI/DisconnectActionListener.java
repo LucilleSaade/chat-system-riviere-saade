@@ -9,11 +9,19 @@ public class DisconnectActionListener implements ActionListener {
 	
 	private Controller cont;
 	
+	/**
+	 * DisconnectActionListener : 
+	 * ActionListener used when the user selects the disconnect button
+	 * @param controller
+	 */
 	public DisconnectActionListener(Controller cont){
 		super();
 		this.cont = cont;
 	}
 
+	/**
+	 * actionPerformed : call performDisconnect()
+	 */
 	public void actionPerformed(ActionEvent arg0) {
 		cont.performDisconnect() ;
 	}

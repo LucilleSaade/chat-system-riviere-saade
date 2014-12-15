@@ -17,7 +17,7 @@ import Controller.Controller;
 public class ConnectedWindow extends JFrame implements WindowListener {
 	
 	/**
-	 * 
+	 * Frame displayed when the user is connected
 	 */
 	private static final long serialVersionUID = 1L;
 	private final int WIDTH = 800;
@@ -38,6 +38,10 @@ public class ConnectedWindow extends JFrame implements WindowListener {
 	private JPanel userListPanel;
 	private JPanel histPanel ;
 	
+	/**
+	 * ConnectedWindow constructor
+	 * @param Controller c
+	 */
 	public ConnectedWindow(Controller c) {
 		this.controller = c;
 		this.ul = new VisualUserList() ;
@@ -58,6 +62,10 @@ public class ConnectedWindow extends JFrame implements WindowListener {
 		addWindowListener(this);
 	}
 	
+	/**
+	 * initComponents() :
+	 * init all the components and add them into the frame
+	 */
 	public void initComponents() {
 		
 		disconnectPanel.setLayout(new BorderLayout());
@@ -101,21 +109,39 @@ public class ConnectedWindow extends JFrame implements WindowListener {
 	//        NOTIFICATIONS                 //
 	//////////////////////////////////////////
 	
+	/**
+	 * notifyConnection : 
+	 * Open a new frame to inform that a new user (hostname) is connected
+	 * @param hostname
+	 */
 	public void notifyConnection(String hostname) {
 		// si l'utilisateur n'est pas l'utilisateur local, on affiche le message
 		if (!controller.getModel().getLocalUser().getHostName().equals(hostname))
 		JOptionPane.showMessageDialog(this,hostname+" is connected.");
 	}
 	
+	/**
+	 * notifyDisonnection : 
+	 * Open a new frame to inform that the hostname user is disconnected
+	 * @param hostname
+	 */
 	public void notifyDisconnection(String hostname) {
 		if (!hostname.equals(controller.getModel().getLocalUser().getHostName()))
 			JOptionPane.showMessageDialog(this,hostname+" is disconnected.");
 	}
 	
+	/**
+	 * notifyEmptyMessage :
+	 * Indicates that the user has tried to send an empty message
+	 */
 	public void notifyEmptyMessage() {
 		JOptionPane.showMessageDialog(this,"You can't send an empty message.");
 	}
 	
+	/**
+	 * notifyEmptyDestList :
+	 * Indicates that the user has tried to send a message without selecting a receiver
+	 */
 	public void notifyEmptyDestList() {
 		JOptionPane.showMessageDialog(this,"Please select at least one user.");
 	}
@@ -127,26 +153,50 @@ public class ConnectedWindow extends JFrame implements WindowListener {
 	//////////////////////////////////////////
 
 
+	/**
+	 * getUl()
+	 * @return VisualUserList ul
+	 */
 	public VisualUserList getUl() {
 		return ul;
 	}
 
+	/**
+	 * setUl
+	 * @param VisualUserList ul
+	 */
 	public void setUl(VisualUserList ul) {
 		this.ul = ul;
 	}
 
+	/**
+	 * getSendTextArea
+	 * @return MessageToSendTxtArea
+	 */
 	public MessageToSendTxtArea getSendTextArea() {
 		return sendTextArea;
 	}
 
+	/**
+	 * setSendTextArea
+	 * @param sendTextArea (type MessageToSendTxtArea)
+	 */
 	public void setSendTextArea(MessageToSendTxtArea sendTextArea) {
 		this.sendTextArea = sendTextArea;
 	}
 
+	/**
+	 * getHistoricArea
+	 * @return HistoricArea
+	 */
 	public HistoricArea getHistoricArea() {
 		return historicArea;
 	}
 
+	/**
+	 * setHistoricArea
+	 * @param historicArea
+	 */
 	public void setHistoricArea(HistoricArea historicArea) {
 		this.historicArea = historicArea;
 	}
@@ -161,7 +211,10 @@ public class ConnectedWindow extends JFrame implements WindowListener {
 		// TODO Auto-generated method stub	
 	}
 
-	
+	/**
+	 * windowClosing :
+	 * disconnect the user if he closes the connected window
+	 */
 	public void windowClosing(WindowEvent arg0) {
 		controller.performDisconnect();	
 		

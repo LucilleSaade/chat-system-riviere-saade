@@ -10,6 +10,11 @@ public class DataModel extends DefaultListModel {
 	private User localUser ;
 	private Controller controller;
 	
+	/**
+	 * 
+	 * @param User localUser
+	 * @param Controller c
+	 */
 	public DataModel(User localUser, Controller c) {
 		this.controller = c ;
 		this.setLocalUser(localUser);
