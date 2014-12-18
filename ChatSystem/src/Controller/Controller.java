@@ -60,7 +60,6 @@ public class Controller {
 		sendGoodbye();
 		// fermeture de la connected window
 		this.getGui().getConnectedWindow().dispose() ;
-		// TODO : fermer threads / sockets ??
 		this.getNI().closeSocAndThreads();
 		this.setGui(new ChatGUI(this));
 		//System.exit(0);
@@ -108,7 +107,6 @@ public class Controller {
 	 * @param ModelFileMessage f
 	 */
 	public void sendFile(ModelFileMessage f) {
-		ArrayList<String> Dest = f.getListDest(); 
 		this.getModel().getLocalUser().addSentFile(f);
 		// on envoie le message
 		this.ni.sendFile(f.getFile(),f.getListDest());
