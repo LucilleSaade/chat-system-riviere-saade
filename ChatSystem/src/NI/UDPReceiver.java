@@ -15,17 +15,34 @@ import Signals.*;
 
 public class UDPReceiver extends Thread {
 	
+	/**
+	 * Object use to send everything except a file to a remote user.
+	 */
+	
 	private ChatNI ni;
 	private DatagramSocket server ;
 	private byte[] bufIn;
 	
 
+	/**
+	 * UDPReceiver constructor :
+	 * instantiate the ChatNI field, the Datagram socket field, and the byte[] field.
+	 * @param n : ChatNI
+	 * @param soc : DatagramSocket
+	 * @throws IOException
+	 */
 	public UDPReceiver(ChatNI n, DatagramSocket soc) throws IOException {
 		this.ni = n;
         this.server = soc;
         bufIn = new byte[5000];
 	}
 	
+	
+	/**
+	 * run() : instantiate a DatagramPacket object (packet), launch the DatagramSocket's method receive(packet)
+	 * Manage the AbstractMessage received and depending on the Type if the AbstractMessage (Hello, HelloACK, Goodbye, Message)
+	 * call the correct method of the ChatNI object.
+	 */
 	public void run() {
 		ObjectInput in = null;
 		ByteArrayInputStream byteIn = new ByteArrayInputStream(bufIn);
@@ -69,16 +86,22 @@ public class UDPReceiver extends Thread {
 	}
 	
 	
+	/**
+	 * GETTERS AND SETTERS
+	 */
 	
-	
-	//////////////////////////////////////////
-	//         GETTER ET SETTER             //
-	//////////////////////////////////////////
-
+	/**
+	 * getServer()
+	 * @return server : DatagramSocket
+	 */
 	public DatagramSocket getServer() {
 		return server;
 	}
 
+	/**
+	 * setServer()
+	 * @param server : DatagramSocket
+	 */
 	public void setServer(DatagramSocket server) {
 		this.server = server;
 	}

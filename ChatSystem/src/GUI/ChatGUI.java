@@ -46,7 +46,7 @@ public class ChatGUI {
 	
 	
 	/**
-	 * getConnectedWindow
+	 * getConnectedWindow()
 	 * @return ConnectedWindow
 	 */
 	public ConnectedWindow getConnectedWindow() {
@@ -54,7 +54,7 @@ public class ChatGUI {
 	}
 
 	/**
-	 * setConnectedWindow
+	 * setConnectedWindow()
 	 * @param connectedWindow
 	 */
 	public void setConnectedWindow(ConnectedWindow connectedWindow) {
