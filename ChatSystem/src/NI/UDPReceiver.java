@@ -16,7 +16,7 @@ import Signals.*;
 public class UDPReceiver extends Thread {
 	
 	/**
-	 * Object use to send everything except a file to a remote user.
+	 * Object use to receiver everything except a file to a remote user.
 	 */
 	
 	private ChatNI ni;
