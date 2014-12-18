@@ -59,14 +59,13 @@ public class UDPSender {
 
 		
 		try {
-			//(obj.getTypeContenu() == typeContenu.HELLO) | (obj.getTypeContenu() == typeContenu.GOODBYE)
 			if (hostname == "default") {
 				address = InetAddress.getByName("255.255.255.255");
 			} else {
 				// Preparation de l'adresse destinataire au bon format
 				remoteIp = IPAddress.getIPaddress(hostname);
 				address = InetAddress.getByName(remoteIp);
-				System.out.println(address);
+				System.out.println("Envoie d'un message à "+hostname);
 			}
 			this.bos.reset();
 			// Serialisation de l'obj a envoyer
@@ -85,7 +84,6 @@ public class UDPSender {
 			out.close();
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	 
 	}
