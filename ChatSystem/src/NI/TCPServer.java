@@ -10,18 +10,34 @@ public class TCPServer extends Thread {
 	private ServerSocket server;
 	private ChatNI ni;
 	
+	/**
+	 * This class allows to create a TCPServer to receive files from remote users
+	 */
+	
+	/**
+	 * TCPServer constructor
+	 * instantiate the ServerSocket and the chatNI
+	 * @param ServerSocket server
+	 * @param ChatNI ni
+	 */
+	
 	public TCPServer (ServerSocket server, ChatNI ni) {
 		this.server = server;
 		this.ni = ni;
-		System.out.println("Serveur créé");
+		System.out.println("Serveur cree");
 	}
+	
+	/**
+	 * run() : thread method
+	 * Creates a new TCPReceiver() when the ServerSocket accepts a connexion
+	 */
 
 	public void run() {	
 		Socket soc;
 		try {
 			while(true) {
 
-				System.out.println("Création nouveau socket");
+				System.out.println("Creation nouveau socket");
 				soc = server.accept();
 			 	TCPReceiver receiver = new TCPReceiver(soc, this.ni);
 			 	System.out.println("lancement du receiver");
@@ -41,6 +57,10 @@ public class TCPServer extends Thread {
 	//         GETTER ET SETTER             //
 	//////////////////////////////////////////
 	
+	/**
+	 * getServer() 
+	 * @return ServerSocket server
+	 */
 	public ServerSocket getServer() {
 		return server;
 	}
