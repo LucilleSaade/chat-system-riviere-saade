@@ -23,7 +23,15 @@ public class TCPSender extends Thread {
 	private int port;
 	
 	
-	
+	/**
+	 * TCPSender constructor :
+	 * instantiate the user field, the dest field, the bos field, the port, field, the file field,
+	 * the fmsg field (FileMessage object), and the Nickname of the fmsg field.
+	 * @param user : String
+	 * @param dest : ArrayList<String>
+	 * @param file : File
+	 * @param port: int
+	 */
 	public TCPSender(String user, ArrayList<String> dest, File file, int port){
 		this.user= user;
 		this.dest = dest;
@@ -34,6 +42,10 @@ public class TCPSender extends Thread {
 		this.fmsg.setNickname(user);
 	}		
 		
+	
+	/**
+	 * run() : for each recipient, serialise the fmsg and send it.
+	 */
 	public void run() {
         byte[] bufOut = new byte[(int) file.length()];
         FileInputStream fis;
@@ -79,33 +91,54 @@ public class TCPSender extends Thread {
         
     }
 
+	/**
+	 * GETTERS AND SETTERS
+	 */
 	
-	
-	//////////////////////////////////////////
-	//         GETTER ET SETTER             //
-	//////////////////////////////////////////	
-	
+	/**
+	 * getDest()
+	 * @return dest : ArrayList<String>
+	 */
 	public ArrayList<String> getDest() {
 		return dest;
 	}
 
+	/**
+	 * setDest()
+	 * @param dest : ArrayList<String>
+	 */
 	public void setDest(ArrayList<String> dest) {
 		this.dest = dest;
 	}
 
+	/**
+	 * getNi()
+	 * @return ni : ChatNI
+	 */
 	public ChatNI getNi() {
 		return ni;
 	}
 
+	/**
+	 * setNi()
+	 * @param ni : ChatNI
+	 */
 	public void setNi(ChatNI ni) {
 		this.ni = ni;
 	}
 
+	/**
+	 * getBos()
+	 * @return bos : ByteArrayOutputStream
+	 */
 	public ByteArrayOutputStream getBos() {
 		return bos;
 	}
 
-
+	/**
+	 * setBos()
+	 * @param bos : ByteArrayOutputStream
+	 */
 	public void setBos(ByteArrayOutputStream bos) {
 		this.bos = bos;
 	}

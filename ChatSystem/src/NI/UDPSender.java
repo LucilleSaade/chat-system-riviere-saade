@@ -19,7 +19,7 @@ public class UDPSender {
 	
 	
 	/**
-	 * Object use to receive everything except a file to a remote user.
+	 * Object use to send everything except a file to a remote user.
 	 */
 	
 	private String hostname;

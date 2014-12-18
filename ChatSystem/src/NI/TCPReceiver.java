@@ -12,15 +12,29 @@ import Signals.FileMessage;
 
 public class TCPReceiver extends Thread {
 	
+	/**
+	 * Object use to receive a file.
+	 */
+	
 	private Socket soc;
 	private ChatNI ni;
 	
+	
+	/**
+	 * TCPReceiver constructor :
+	 * instantiate the soc field and the ni field.
+	 * @param soc : Socket
+	 * @param ni : ChatNI
+	 */
 	public TCPReceiver (Socket soc, ChatNI ni) {
 		this.soc = soc;
 		this.ni = ni;
 	}
 	
-
+	
+	/**
+	 * run() : receive and manage FileMessage.
+	 */
 	public void run() {
 		byte[] bufIn = new byte[1024];
 	
@@ -31,6 +45,7 @@ public class TCPReceiver extends Thread {
 			ByteArrayInputStream byteIn = new ByteArrayInputStream(bufIn);
 	        ObjectInput oi= new ObjectInputStream(byteIn);
 	        
+	   
 	        System.out.println("reception du filmsg");
 	        // Lecture du filemsg
 			FileMessage fmsg = (FileMessage) oi.readObject();
@@ -67,15 +82,22 @@ public class TCPReceiver extends Thread {
 	}
 	
 	
-	
-	//////////////////////////////////////////
-	//         GETTER ET SETTER             //
-	//////////////////////////////////////////	
-	
+	/**
+	 * GETTERS AND SETTERS
+	 */
+		
+	/**
+	 * getSoc()
+	 * @return soc : Socket
+	 */
 	public Socket getSoc() {
 		return soc;
 	}
 	
+	/**
+	 * setSoc()
+	 * @param soc : Socket
+	 */
 	public void setSoc(Socket soc) {
 		this.soc = soc;
 	}
