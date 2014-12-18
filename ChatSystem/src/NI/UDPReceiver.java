@@ -80,7 +80,6 @@ public class UDPReceiver extends Thread {
 		} catch (SocketException e) {
 			this.interrupt();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	  
 	}
