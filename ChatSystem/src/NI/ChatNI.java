@@ -49,10 +49,8 @@ public class ChatNI {
 			ureceiver.start();
 			tserver.start();
 		} catch (SocketException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -69,7 +67,6 @@ public class ChatNI {
 		try {
 			this.usender.sendHello();
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -83,7 +80,6 @@ public class ChatNI {
 		try {
 			this.usender.sendHelloAck(hostname);
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -96,7 +92,6 @@ public class ChatNI {
 		try {
 			this.usender.sendGoodbye();
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -112,7 +107,6 @@ public class ChatNI {
 		try {
 			this.usender.sendMessage(dest, msg);
 		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -211,7 +205,6 @@ public class ChatNI {
 			tserver.getServer().close();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		usender.getSoc().close();
